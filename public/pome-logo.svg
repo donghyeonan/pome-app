@@ -1,0 +1,19 @@
+<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g transform="translate(50, 50)">
+    <!-- Pomegranate body -->
+    <circle cx="0" cy="5" r="35" fill="#E63946"/>
+    
+    <!-- Crown/leaves at top -->
+    <path d="M -8 -28 L -12 -35 L -8 -32 L -4 -38 L 0 -32 L 4 -38 L 8 -32 L 12 -35 L 8 -28 Z" fill="#E63946"/>
+    
+    <!-- White section with seeds -->
+    <path d="M 0 -30 A 35 35 0 0 1 0 40 L 0 -30 Z" fill="white"/>
+    
+    <!-- Seeds -->
+    <circle cx="0" cy="-10" r="4" fill="#E63946"/>
+    <circle cx="5" cy="0" r="4" fill="#E63946"/>
+    <circle cx="0" cy="10" r="4" fill="#E63946"/>
+    <circle cx="5" cy="20" r="4" fill="#E63946"/>
+    <circle cx="0" cy="30" r="4" fill="#E63946"/>
+  </g>
+</svg>
