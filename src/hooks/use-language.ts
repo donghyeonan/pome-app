@@ -7,6 +7,45 @@ import type { Locale } from '@/i18n';
 
 const LANGUAGE_STORAGE_KEY = 'preferredLanguage';
 
+/**
+ * Language Hook
+ * 
+ * Provides language switching functionality with localStorage persistence
+ * and URL locale management.
+ * 
+ * @hook
+ * @example
+ * ```tsx
+ * function LanguageSelector() {
+ *   const { currentLocale, changeLanguage } = useLanguage();
+ * 
+ *   return (
+ *     <select 
+ *       value={currentLocale} 
+ *       onChange={(e) => changeLanguage(e.target.value as Locale)}
+ *     >
+ *       <option value="en">English</option>
+ *       <option value="ko">한국어</option>
+ *       <option value="zh">中文</option>
+ *       <option value="ja">日本語</option>
+ *     </select>
+ *   );
+ * }
+ * ```
+ * 
+ * Features:
+ * - Automatic localStorage persistence of language preference
+ * - URL locale management (updates pathname with new locale)
+ * - Router refresh to apply changes immediately
+ * - Retrieval of stored language preference
+ * 
+ * Available Properties:
+ * - `currentLocale` - Current active locale (en, ko, zh, ja)
+ * - `changeLanguage` - Function to change the application language
+ * - `getStoredLanguage` - Function to retrieve stored language preference
+ * 
+ * @returns {Object} Language utilities
+ */
 export function useLanguage() {
   const router = useRouter();
   const pathname = usePathname();
@@ -28,12 +67,13 @@ export function useLanguage() {
     // Update URL with new locale
     // Remove current locale from pathname if it exists
     const pathnameWithoutLocale = pathname.replace(`/${currentLocale}`, '');
-    
+
     // Add new locale prefix (unless it's the default 'en')
-    const newPath = newLocale === 'en' 
-      ? pathnameWithoutLocale || '/'
-      : `/${newLocale}${pathnameWithoutLocale || '/'}`;
-    
+    const newPath =
+      newLocale === 'en'
+        ? pathnameWithoutLocale || '/'
+        : `/${newLocale}${pathnameWithoutLocale || '/'}`;
+
     router.push(newPath);
     router.refresh();
   };

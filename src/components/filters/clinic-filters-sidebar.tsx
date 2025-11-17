@@ -58,7 +58,9 @@ export function ClinicFiltersSidebar({
         <CardContent className="space-y-6">
           {/* Location Filter */}
           <div>
-            <h3 className="font-semibold mb-3 text-sm">{t('filterByLocation')}</h3>
+            <h3 className="font-semibold mb-3 text-sm">
+              {t('filterByLocation')}
+            </h3>
             <div className="space-y-2 max-h-[200px] overflow-y-auto pr-2">
               {allLocations.map((location) => (
                 <label
@@ -77,7 +79,9 @@ export function ClinicFiltersSidebar({
 
           {/* Specialty Filter */}
           <div>
-            <h3 className="font-semibold mb-3 text-sm">{t('filterBySpecialty')}</h3>
+            <h3 className="font-semibold mb-3 text-sm">
+              {t('filterBySpecialty')}
+            </h3>
             <div className="space-y-2 max-h-[200px] overflow-y-auto pr-2">
               {allSpecialties.map((specialty) => (
                 <label
@@ -101,13 +105,17 @@ export function ClinicFiltersSidebar({
                 checked={verifiedOnly}
                 onCheckedChange={onVerifiedToggle}
               />
-              <span className="text-sm font-semibold">{t('filterByVerified')}</span>
+              <span className="text-sm font-semibold">
+                {t('filterByVerified')}
+              </span>
             </label>
           </div>
 
           {/* Price Level Filter */}
           <div>
-            <h3 className="font-semibold mb-3 text-sm">{t('filterByPriceLevel')}</h3>
+            <h3 className="font-semibold mb-3 text-sm">
+              {t('filterByPriceLevel')}
+            </h3>
             <div className="space-y-2">
               {[1, 2, 3].map((level) => (
                 <label

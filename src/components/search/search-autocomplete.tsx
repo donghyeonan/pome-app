@@ -6,13 +6,67 @@ import * as LucideIcons from 'lucide-react';
 import { Treatment } from '@/types';
 import { Card } from '@/components/ui/card';
 
+/**
+ * Props for the SearchAutocomplete component
+ */
 interface SearchAutocompleteProps {
+  /** Current search query */
   query: string;
+  /** Array of treatment results to display */
   results: Treatment[];
+  /** Callback when a treatment is selected */
   onSelect: (treatment: Treatment) => void;
+  /** Whether the autocomplete dropdown should be visible */
   isVisible: boolean;
 }
 
+/**
+ * Search Autocomplete Component
+ * 
+ * A dropdown that displays treatment suggestions as the user types in the search input.
+ * Automatically navigates to the treatment detail page when a suggestion is selected.
+ * 
+ * @component
+ * @example
+ * ```tsx
+ * // Basic usage
+ * <SearchAutocomplete 
+ *   query={searchQuery}
+ *   results={treatmentResults}
+ *   onSelect={(treatment) => console.log('Selected:', treatment)}
+ *   isVisible={showAutocomplete}
+ * />
+ * 
+ * // With search input
+ * <div className="relative">
+ *   <SearchInput 
+ *     onQueryChange={setQuery}
+ *     onSearch={handleSearch}
+ *   />
+ *   <SearchAutocomplete 
+ *     query={query}
+ *     results={filteredTreatments}
+ *     onSelect={handleSelect}
+ *     isVisible={query.length > 0}
+ *   />
+ * </div>
+ * ```
+ * 
+ * Features:
+ * - Displays up to 10 treatment suggestions
+ * - Shows treatment icon, name, categories, and price
+ * - Keyboard navigation support (Enter/Space)
+ * - Automatic navigation to treatment detail page
+ * - Scrollable dropdown for many results
+ * - Hover effects on items
+ * - Returns null when not visible or no results
+ * 
+ * Translation Keys Used:
+ * - `search.suggestions` - Suggestions section header
+ * 
+ * @param {SearchAutocompleteProps} props - Component props
+ * @returns {JSX.Element | null} The autocomplete dropdown or null
+ */
 export function SearchAutocomplete({
   query,
   results,
@@ -51,7 +105,9 @@ export function SearchAutocomplete({
           {limitedResults.map((treatment) => {
             const IconComponent = (LucideIcons[
               treatment.icon as keyof typeof LucideIcons
-            ] || LucideIcons.Sparkles) as React.ComponentType<{ className?: string }>;
+            ] || LucideIcons.Sparkles) as React.ComponentType<{
+              className?: string;
+            }>;
 
             return (
               <div

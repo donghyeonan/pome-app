@@ -6,16 +6,71 @@ import { useTranslations } from 'next-intl';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 
+/**
+ * Props for the SearchInput component
+ */
 interface SearchInputProps {
+  /** Placeholder text for the input */
   placeholder?: string;
+  /** Callback when search is submitted (Enter key or form submit) */
   onSearch: (query: string) => void;
+  /** Callback when query changes (debounced for autocomplete) */
   onQueryChange?: (query: string) => void;
+  /** Whether to enable autocomplete behavior */
   showAutocomplete?: boolean;
+  /** Whether to show loading spinner */
   isLoading?: boolean;
+  /** Default value for the input */
   defaultValue?: string;
+  /** Debounce delay in milliseconds. Defaults to 300ms */
   debounceMs?: number;
 }
 
+/**
+ * Search Input Component
+ * 
+ * A search input field with debouncing, autocomplete support, and loading states.
+ * 
+ * @component
+ * @example
+ * ```tsx
+ * // Basic usage
+ * <SearchInput 
+ *   onSearch={(query) => router.push(`/search?q=${query}`)}
+ * />
+ * 
+ * // With autocomplete
+ * <SearchInput 
+ *   onSearch={handleSearch}
+ *   onQueryChange={handleQueryChange}
+ *   showAutocomplete={true}
+ *   isLoading={isSearching}
+ * />
+ * 
+ * // With custom debounce and default value
+ * <SearchInput 
+ *   onSearch={handleSearch}
+ *   defaultValue="botox"
+ *   debounceMs={500}
+ *   placeholder="Search treatments..."
+ * />
+ * ```
+ * 
+ * Features:
+ * - Debounced input for performance (default 300ms)
+ * - Clear button when input has value
+ * - Loading spinner during search
+ * - Enter key submission
+ * - Rounded design with muted background
+ * - Search icon indicator
+ * 
+ * Translation Keys Used:
+ * - `search.searchPlaceholder` - Default placeholder text
+ * - `search.clear` - Clear button aria-label
+ * 
+ * @param {SearchInputProps} props - Component props
+ * @returns {JSX.Element} The search input component
+ */
 export function SearchInput({
   placeholder,
   onSearch,

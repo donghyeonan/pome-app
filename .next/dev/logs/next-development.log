@@ -1,2 +1,122 @@
-[00:00:00.375] Server  WARN     ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
-[00:00:00.411] Server  LOG      ✓ Ready in 284ms
+[00:00:00.608] Server  WARN     ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+[00:00:00.668] Server  LOG      ✓ Ready in 511ms
+[00:00:58.169] Server  LOG      ○ Compiling /[locale] ...
+[00:01:00.626] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/seoul-skin.jpg" "received" null
+[00:01:00.627] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/gangnam-beauty.jpg" "received" null
+[00:01:00.627] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/apgujeong-aesthetic.jpg" "received" null
+[00:01:00.628] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/hongdae-derma.jpg" "received" null
+[00:01:00.628] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/itaewon-international.jpg" "received" null
+[00:01:22.579] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/hongdae-derma.jpg" "received" null
+[00:01:22.645] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/apgujeong-aesthetic.jpg" "received" null
+[00:01:22.645] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/gangnam-beauty.jpg" "received" null
+[00:01:22.653] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/seoul-skin.jpg" "received" null
+[00:01:22.656] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/itaewon-international.jpg" "received" null
+[00:02:03.943] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/seoul-skin.jpg" "received" null
+[00:02:03.981] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/apgujeong-aesthetic.jpg" "received" null
+[00:02:03.983] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/gangnam-beauty.jpg" "received" null
+[00:02:04.134] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/gangnam-beauty.jpg" "received" null
+[00:02:04.134] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/seoul-skin.jpg" "received" null
+[00:02:04.134] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/apgujeong-aesthetic.jpg" "received" null
+[00:02:06.984] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `search.clear` in messages for locale `en`."}
+[00:02:06.984] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `search.clear` in messages for locale `en`."}
+[00:02:06.984] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `search.clear` in messages for locale `en`."}
+[00:02:06.984] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `search.clear` in messages for locale `en`."}
+[00:02:07.267] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `search.clear` in messages for locale `en`."}
+[00:02:07.267] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `search.clear` in messages for locale `en`."}
+[00:02:08.177] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `search.clear` in messages for locale `en`."}
+[00:02:08.177] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `search.clear` in messages for locale `en`."}
+[00:02:21.196] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/gangnam-beauty.jpg" "received" null
+[00:02:21.204] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/apgujeong-aesthetic.jpg" "received" null
+[00:02:21.204] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/itaewon-international.jpg" "received" null
+[00:02:21.205] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/yeonnam-skin.jpg" "received" null
+[00:02:22.869] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/gangnam-beauty.jpg" "received" null
+[00:02:22.870] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/seoul-skin.jpg" "received" null
+[00:02:22.881] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/apgujeong-aesthetic.jpg" "received" null
+[00:02:24.582] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/gangnam-beauty.jpg" "received" null
+[00:02:24.588] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/apgujeong-aesthetic.jpg" "received" null
+[00:02:24.589] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/itaewon-international.jpg" "received" null
+[00:02:24.589] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/sinsa-plastic.jpg" "received" null
+[00:02:25.595] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/cheongdam-luxury.jpg" "received" null
+[00:02:25.596] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/hannam-boutique.jpg" "received" null
+[00:03:02.386] Server  ERROR   Error: MISSING_MESSAGE: Could not resolve `clinics.sortBy` in messages for locale `en`.
+[00:03:02.574] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `clinics.sortBy` in messages for locale `en`."}
+[00:03:02.574] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `clinics.sortBy` in messages for locale `en`."}
+[00:03:24.667] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/gangnam-beauty.jpg" "received" null
+[00:03:24.672] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/seoul-skin.jpg" "received" null
+[00:03:24.673] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/apgujeong-aesthetic.jpg" "received" null
+[00:03:58.372] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `search.clear` in messages for locale `en`."}
+[00:03:58.372] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `search.clear` in messages for locale `en`."}
+[00:03:58.372] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `search.clear` in messages for locale `en`."}
+[00:03:58.372] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `search.clear` in messages for locale `en`."}
+[00:03:58.856] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `search.clear` in messages for locale `en`."}
+[00:03:58.857] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `search.clear` in messages for locale `en`."}
+[00:03:58.857] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `search.clear` in messages for locale `en`."}
+[00:03:58.857] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `search.clear` in messages for locale `en`."}
+[00:03:59.064] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `search.clear` in messages for locale `en`."}
+[00:03:59.064] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `search.clear` in messages for locale `en`."}
+[00:03:59.176] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `search.clear` in messages for locale `en`."}
+[00:03:59.176] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `search.clear` in messages for locale `en`."}
+[00:03:59.490] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `search.clear` in messages for locale `en`."}
+[00:03:59.490] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `search.clear` in messages for locale `en`."}
+[00:03:59.714] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `search.clear` in messages for locale `en`."}
+[00:03:59.714] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `search.clear` in messages for locale `en`."}
+[00:04:00.017] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `search.clear` in messages for locale `en`."}
+[00:04:00.018] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `search.clear` in messages for locale `en`."}
+[00:04:01.642] Server  WARN    Error: Route "/[locale]/search" used `searchParams.q`. `searchParams` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[00:05:25.007] Server  LOG      ✓ Compiled in 78ms
+[00:05:54.864] Server  LOG      ✓ Compiled in 31ms
+[00:06:13.553] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/apgujeong-aesthetic.jpg" "received" null
+[00:06:13.554] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/gangnam-beauty.jpg" "received" null
+[00:06:13.554] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/seoul-skin.jpg" "received" null
+[00:06:22.345] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/seoul-skin.jpg" "received" null
+[00:06:22.358] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/hongdae-derma.jpg" "received" null
+[00:06:24.485] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/gangnam-beauty.jpg" "received" null
+[00:06:24.487] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/seoul-skin.jpg" "received" null
+[00:06:24.488] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/apgujeong-aesthetic.jpg" "received" null
+[00:08:36.063] Server  LOG      ✓ Compiled in 81ms
+[00:08:56.670] Server  LOG      ✓ Compiled in 16ms
+[00:09:27.957] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `clinics.sortBy` in messages for locale `en`."}
+[00:09:27.957] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `clinics.sortBy` in messages for locale `en`."}
+[00:09:28.316] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/apgujeong-aesthetic.jpg" "received" null
+[00:09:28.316] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/cheongdam-luxury.jpg" "received" null
+[00:09:28.316] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/gangnam-beauty.jpg" "received" null
+[00:09:28.324] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/sinsa-plastic.jpg" "received" null
+[00:09:28.325] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/hannam-boutique.jpg" "received" null
+[00:09:28.325] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/itaewon-international.jpg" "received" null
+[00:09:28.405] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/seocho-advanced.jpg" "received" null
+[00:09:28.408] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/seoul-skin.jpg" "received" null
+[00:09:28.431] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/yeonnam-skin.jpg" "received" null
+[00:09:28.434] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/hongdae-derma.jpg" "received" null
+[00:10:33.284] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/gangnam-beauty.jpg" "received" null
+[00:10:33.284] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/seoul-skin.jpg" "received" null
+[00:10:33.286] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/apgujeong-aesthetic.jpg" "received" null
+[00:10:33.603] Server  LOG      ✓ Compiled in 88ms
+[00:10:53.785] Server  LOG      ✓ Compiled in 77ms
+[00:11:31.063] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `clinics.sortBy` in messages for locale `en`."}
+[00:11:31.063] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `clinics.sortBy` in messages for locale `en`."}
+[00:11:31.075] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/hannam-boutique.jpg" "received" null
+[00:11:31.075] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/cheongdam-luxury.jpg" "received" null
+[00:11:31.075] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/gangnam-beauty.jpg" "received" null
+[00:11:31.075] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/sinsa-plastic.jpg" "received" null
+[00:11:31.076] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/apgujeong-aesthetic.jpg" "received" null
+[00:11:31.182] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/itaewon-international.jpg" "received" null
+[00:11:31.182] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/seocho-advanced.jpg" "received" null
+[00:11:31.207] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/seoul-skin.jpg" "received" null
+[00:11:31.216] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/yeonnam-skin.jpg" "received" null
+[00:11:31.217] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/hongdae-derma.jpg" "received" null
+[00:11:33.384] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/gangnam-beauty.jpg" "received" null
+[00:11:33.384] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/apgujeong-aesthetic.jpg" "received" null
+[00:11:33.389] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/itaewon-international.jpg" "received" null
+[00:11:33.390] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/sinsa-plastic.jpg" "received" null
+[00:11:35.715] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/gangnam-beauty.jpg" "received" null
+[00:11:35.716] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/seoul-skin.jpg" "received" null
+[00:11:35.716] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/apgujeong-aesthetic.jpg" "received" null
+[00:11:41.797] Server  WARN    Error: Route "/[locale]/search" used `searchParams.q`. `searchParams` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[00:11:44.643] Server  WARN    Error: Route "/[locale]/search" used `searchParams.q`. `searchParams` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[00:11:45.789] Server  WARN    Error: Route "/[locale]/search" used `searchParams.q`. `searchParams` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[00:11:50.423] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/seoul-skin.jpg" "received" null
+[00:11:50.479] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/apgujeong-aesthetic.jpg" "received" null
+[00:11:50.484] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/gangnam-beauty.jpg" "received" null
+[00:11:50.602] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/gangnam-beauty.jpg" "received" null
+[00:11:50.603] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/seoul-skin.jpg" "received" null
+[00:11:50.609] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/apgujeong-aesthetic.jpg" "received" null

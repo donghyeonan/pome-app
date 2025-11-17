@@ -4,7 +4,13 @@ import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/hooks/use-auth';
 import { useLanguage } from '@/hooks/use-language';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { LanguageSwitcher } from './language-switcher';
 import { ThemeSwitcher } from './theme-switcher';
@@ -36,7 +42,9 @@ export function ProfileContent() {
             <User className="h-4 w-4 sm:h-5 sm:w-5" />
             {t('personalInfo')}
           </CardTitle>
-          <CardDescription className="text-xs sm:text-sm">{t('accountSettings')}</CardDescription>
+          <CardDescription className="text-xs sm:text-sm">
+            {t('accountSettings')}
+          </CardDescription>
         </CardHeader>
         <CardContent className="space-y-3 sm:space-y-4">
           <div>
@@ -57,7 +65,9 @@ export function ProfileContent() {
       {/* Language Preference Card */}
       <Card>
         <CardHeader className="pb-3 sm:pb-6">
-          <CardTitle className="text-lg sm:text-xl">{t('languagePreference')}</CardTitle>
+          <CardTitle className="text-lg sm:text-xl">
+            {t('languagePreference')}
+          </CardTitle>
           <CardDescription className="text-xs sm:text-sm">
             {t('languageDescription')}
           </CardDescription>
@@ -70,7 +80,9 @@ export function ProfileContent() {
       {/* Theme Preference Card */}
       <Card>
         <CardHeader className="pb-3 sm:pb-6">
-          <CardTitle className="text-lg sm:text-xl">{t('themePreference')}</CardTitle>
+          <CardTitle className="text-lg sm:text-xl">
+            {t('themePreference')}
+          </CardTitle>
           <CardDescription className="text-xs sm:text-sm">
             {t('themeDescription')}
           </CardDescription>
@@ -81,10 +93,15 @@ export function ProfileContent() {
       </Card>
 
       {/* User Preferences Card */}
-      {(user.gender || user.ageRange || user.skinType || user.treatmentGoals) && (
+      {(user.gender ||
+        user.ageRange ||
+        user.skinType ||
+        user.treatmentGoals) && (
         <Card>
           <CardHeader className="pb-3 sm:pb-6">
-            <CardTitle className="text-lg sm:text-xl">{t('preferences')}</CardTitle>
+            <CardTitle className="text-lg sm:text-xl">
+              {t('preferences')}
+            </CardTitle>
           </CardHeader>
           <CardContent className="space-y-3 sm:space-y-4">
             {user.gender && (
@@ -102,7 +119,9 @@ export function ProfileContent() {
                 <label className="text-xs sm:text-sm font-medium text-muted-foreground">
                   {t('ageRange')}
                 </label>
-                <p className="text-sm sm:text-base mt-1">{t(`ageRangeOptions.${user.ageRange}`)}</p>
+                <p className="text-sm sm:text-base mt-1">
+                  {t(`ageRangeOptions.${user.ageRange}`)}
+                </p>
               </div>
             )}
             {user.skinType && (

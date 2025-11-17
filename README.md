@@ -1,96 +1,495 @@
 # Pome - Your Trusted Guide to Beauty in Korea
 
-A modern web application for discovering dermatology cosmetic procedures and clinics in Korea, built with Next.js 14+ App Router and TypeScript.
+A modern, full-stack web application for discovering dermatology cosmetic procedures and clinics in Korea. Built with Next.js 14+ App Router, TypeScript, and a focus on performance, accessibility, and internationalization.
 
-## Tech Stack
+## 🌟 Features
 
+- **Treatment Discovery**: Browse and search dermatology procedures with detailed information
+- **Clinic Directory**: Find verified clinics with ratings, locations, and specialties
+- **Smart Search**: Autocomplete search with intelligent result categorization
+- **Saved Items**: Bookmark favorite treatments and clinics
+- **Multi-language Support**: English (with Korean, Chinese, Japanese coming soon)
+- **Dark Mode**: Full dark mode support with system preference detection
+- **Responsive Design**: Mobile-first design that works on all devices
+- **Protected Routes**: Authentication-based access control for premium features
+
+## 🚀 Tech Stack
+
+### Core
 - **Framework**: Next.js 14+ with App Router
 - **Language**: TypeScript (strict mode)
+- **Runtime**: React 19
 - **Styling**: Tailwind CSS v4
 - **UI Components**: shadcn/ui with Radix UI primitives
 - **Icons**: Lucide React
 - **Font**: Inter (via next/font)
 
-## Project Structure
+### Internationalization
+- **i18n Library**: next-intl
+- **Supported Languages**: English (en), Korean (ko), Chinese (zh), Japanese (ja)
+- **Translation Management**: JSON-based translation files
+
+### Future Stack (Phase 2+)
+- **Database**: Neon (Serverless PostgreSQL)
+- **ORM**: Prisma
+- **Authentication**: NextAuth.js with JWT strategy
+- **Deployment**: Vercel
+
+## 📁 Project Structure
 
 ```
 pome-app/
+├── messages/                      # i18n translation files
+│   ├── en.json                   # English translations
+│   ├── ko.json                   # Korean translations (placeholder)
+│   ├── zh.json                   # Chinese translations (placeholder)
+│   ├── ja.json                   # Japanese translations (placeholder)
+│   ├── README.md                 # Translation documentation
+│   └── TRANSLATION_WORKFLOW.md   # Translation workflow guide
+│
 ├── src/
-│   ├── app/              # Next.js App Router pages
-│   ├── components/       # React components
-│   │   ├── ui/          # shadcn/ui components
-│   │   ├── layout/      # Layout components
-│   │   ├── search/      # Search components
-│   │   ├── cards/       # Card components
-│   │   └── forms/       # Form components
-│   ├── lib/             # Utility functions
-│   ├── hooks/           # Custom React hooks
-│   ├── types/           # TypeScript type definitions
-│   ├── data/            # Mock data (Phase 1)
-│   └── styles/          # Global styles
-├── public/              # Static assets
-└── ...config files
+│   ├── app/                      # Next.js App Router pages
+│   │   ├── [locale]/            # Locale-based routing
+│   │   │   ├── page.tsx         # Homepage
+│   │   │   ├── login/           # Login page
+│   │   │   ├── treatments/      # Treatments list & detail
+│   │   │   ├── clinics/         # Clinics list & detail
+│   │   │   ├── search/          # Search results
+│   │   │   ├── saved/           # Saved items
+│   │   │   └── profile/         # User profile
+│   │   └── layout.tsx           # Root layout
+│   │
+│   ├── components/              # React components
+│   │   ├── ui/                 # shadcn/ui components
+│   │   ├── layout/             # Layout components (Header, BottomNav)
+│   │   ├── search/             # Search components
+│   │   ├── cards/              # Card components
+│   │   ├── forms/              # Form components
+│   │   ├── auth/               # Authentication components
+│   │   ├── profile/            # Profile components
+│   │   ├── treatments/         # Treatment-specific components
+│   │   ├── clinics/            # Clinic-specific components
+│   │   ├── saved/              # Saved items components
+│   │   └── filters/            # Filter components
+│   │
+│   ├── contexts/               # React contexts
+│   │   └── auth-context.tsx   # Authentication context
+│   │
+│   ├── hooks/                  # Custom React hooks
+│   │   ├── use-auth.ts        # Authentication hook
+│   │   ├── use-language.ts    # Language switching hook
+│   │   ├── use-search.ts      # Search functionality hook
+│   │   ├── use-saved-items.ts # Saved items hook
+│   │   └── use-protected-route.ts # Route protection hook
+│   │
+│   ├── lib/                    # Utility functions
+│   │   ├── utils.ts           # General utilities (cn, etc.)
+│   │   ├── constants.ts       # App constants
+│   │   └── mock-auth.ts       # Mock authentication (Phase 1)
+│   │
+│   ├── types/                  # TypeScript type definitions
+│   │   ├── index.ts           # Main type exports
+│   │   ├── treatment.ts       # Treatment types
+│   │   ├── clinic.ts          # Clinic types
+│   │   ├── user.ts            # User types
+│   │   ├── search.ts          # Search types
+│   │   └── i18n.ts            # i18n types
+│   │
+│   ├── data/                   # Mock data (Phase 1)
+│   │   ├── treatments.ts      # Mock treatments
+│   │   ├── clinics.ts         # Mock clinics
+│   │   ├── users.ts           # Mock users
+│   │   └── clinic-treatments.ts # Junction data
+│   │
+│   ├── styles/
+│   │   └── globals.css        # Global styles + Tailwind
+│   │
+│   ├── i18n.ts                # i18n configuration
+│   └── middleware.ts          # Next.js middleware (locale detection)
+│
+├── public/                     # Static assets
+│   └── images/                # Image assets
+│
+├── .kiro/                      # Kiro specs and configuration
+│   └── specs/
+│       └── pome-app-migration/ # Migration spec documents
+│
+├── components.json             # shadcn/ui configuration
+├── tailwind.config.ts         # Tailwind configuration
+├── tsconfig.json              # TypeScript configuration
+├── next.config.mjs            # Next.js configuration
+├── package.json               # Dependencies and scripts
+└── README.md                  # This file
 ```
 
-## Getting Started
+## 🛠️ Getting Started
 
 ### Prerequisites
 
-- Node.js 18+ 
-- npm or yarn
+- **Node.js**: 18.17 or higher
+- **npm**: 9.0 or higher (or yarn/pnpm)
 
 ### Installation
 
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd pome-app
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Set up environment variables** (optional for Phase 1)
+   ```bash
+   cp .env.example .env.local
+   ```
+
+4. **Run the development server**
+   ```bash
+   npm run dev
+   ```
+
+5. **Open your browser**
+   Navigate to [http://localhost:3000](http://localhost:3000)
+
+### Available Scripts
+
 ```bash
-# Install dependencies
-npm install
+# Development
+npm run dev          # Start development server
+npm run build        # Build for production
+npm run start        # Start production server
 
-# Run development server
-npm run dev
+# Code Quality
+npm run lint         # Run ESLint
+npm run format       # Format code with Prettier
+npm run type-check   # Run TypeScript compiler check
 
-# Build for production
-npm run build
-
-# Start production server
-npm start
-
-# Run linter
-npm run lint
-
-# Format code
-npm run format
+# Testing (Future)
+npm run test         # Run tests
+npm run test:watch   # Run tests in watch mode
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to view the application.
+## 🌍 Internationalization (i18n)
 
-## Development Phase
+### Current Implementation
 
-**Current Phase**: Phase 1 - UI/UX Migration with Mock Data
+The application uses `next-intl` for internationalization with full support for:
+- **English (en)**: Complete translations ✅
+- **Korean (ko)**: Placeholder (Phase 4)
+- **Chinese (zh)**: Placeholder (Phase 4)
+- **Japanese (ja)**: Placeholder (Phase 4)
 
-### Phase 1 Features
-- ✅ Next.js App Router with TypeScript
-- ✅ Tailwind CSS v4 configuration
-- ✅ shadcn/ui component library
-- ✅ TypeScript type definitions
-- ✅ Project structure and configuration
-- 🚧 Mock data implementation
-- 🚧 Page implementations
-- 🚧 Responsive design
-- 🚧 Dark mode support
+### Using Translations in Components
 
-### Future Phases
-- Phase 2: Database integration (Neon + Prisma)
-- Phase 3: Authentication (NextAuth.js)
-- Phase 4: Search functionality
-- Phase 5: Advanced features
+**Server Components:**
+```tsx
+import { useTranslations } from 'next-intl';
 
-## Code Quality
+export default function MyPage() {
+  const t = useTranslations('home');
+  return <h1>{t('title')}</h1>;
+}
+```
 
-- TypeScript strict mode enabled
-- ESLint for code linting
-- Prettier for code formatting
-- No `any` types allowed
+**Client Components:**
+```tsx
+'use client';
+import { useTranslations } from 'next-intl';
 
-## License
+export function MyComponent() {
+  const t = useTranslations('common');
+  return <button>{t('save')}</button>;
+}
+```
+
+### Translation File Structure
+
+Translation keys are organized by feature:
+- `common`: Shared UI elements (save, cancel, loading, etc.)
+- `nav`: Navigation labels
+- `home`: Homepage content
+- `auth`: Authentication forms
+- `treatments`: Treatment pages
+- `clinics`: Clinic pages
+- `profile`: Profile page
+- `search`: Search functionality
+- `saved`: Saved items page
+- `validation`: Form validation messages
+
+### Adding New Translations
+
+1. Add keys to `messages/en.json`
+2. Use the key in your component: `t('yourKey')`
+3. For future languages, add translations to `ko.json`, `zh.json`, `ja.json`
+
+See `messages/TRANSLATION_WORKFLOW.md` for detailed guidelines.
+
+## 🔐 Authentication (Phase 1 - Mock)
+
+Phase 1 uses mock authentication with localStorage for demonstration purposes.
+
+### Mock Credentials
+
+```
+Email: sarah.kim@example.com
+Password: password123
+```
+
+Other available test accounts:
+- `john.park@example.com` / `password123`
+- `minji.lee@example.com` / `password123`
+- `emma.chen@example.com` / `password123`
+- `test@example.com` / `password123`
+
+### Using Authentication
+
+```tsx
+import { useAuth } from '@/hooks/use-auth';
+
+function MyComponent() {
+  const { user, isAuthenticated, login, logout } = useAuth();
+  
+  // Check if user is logged in
+  if (!isAuthenticated) {
+    return <LoginPrompt />;
+  }
+  
+  return <div>Welcome, {user?.name}!</div>;
+}
+```
+
+### Protected Routes
+
+Routes that require authentication:
+- `/treatments` (list)
+- `/clinics` (list and detail)
+- `/search`
+- `/saved`
+- `/profile`
+
+Public routes:
+- `/` (homepage)
+- `/treatments/[id]` (treatment detail)
+- `/login`
+
+## 🎨 Styling and Theming
+
+### Tailwind Configuration
+
+The application uses a custom Tailwind configuration with:
+- Custom color palette (primary: #D90429)
+- Dark mode support
+- Custom border radius values
+- Responsive breakpoints
+
+### Dark Mode
+
+Dark mode is implemented using `next-themes`:
+```tsx
+import { useTheme } from 'next-themes';
+
+function ThemeToggle() {
+  const { theme, setTheme } = useTheme();
+  return (
+    <button onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>
+      Toggle Theme
+    </button>
+  );
+}
+```
+
+### shadcn/ui Components
+
+All UI components are from shadcn/ui and can be customized in `src/components/ui/`.
+
+To add new components:
+```bash
+npx shadcn-ui@latest add [component-name]
+```
+
+## 📱 Responsive Design
+
+The application follows a mobile-first approach:
+- **Mobile**: < 640px (single column, bottom navigation)
+- **Tablet**: 640px - 1024px (2 columns, bottom navigation)
+- **Desktop**: > 1024px (multi-column, no bottom navigation)
+
+## 🧪 Testing (Future Phase)
+
+Testing infrastructure will be added in Phase 2:
+- Unit tests with Jest
+- Component tests with React Testing Library
+- E2E tests with Playwright
+- Integration tests for API routes
+
+## 📊 Development Phases
+
+### ✅ Phase 1: UI/UX Migration (Current)
+- Next.js App Router with TypeScript
+- shadcn/ui component library
+- Mock data implementation
+- All pages with visual parity
+- Responsive design
+- Dark mode support
+- i18n infrastructure with English
+- Mock authentication
+- Mock saved items functionality
+
+### 🔜 Phase 2: Database Integration
+- Neon PostgreSQL setup
+- Prisma ORM configuration
+- Database schema implementation
+- API routes for data fetching
+- Replace mock data with real database queries
+
+### 🔜 Phase 3: Authentication
+- NextAuth.js integration
+- JWT strategy implementation
+- User registration
+- Password reset functionality
+- Email verification
+
+### 🔜 Phase 4: Internationalization Expansion
+- Professional Korean translations
+- Chinese translations
+- Japanese translations
+- Translation management workflow
+
+### 🔜 Phase 5: Advanced Features
+- Real-time search with Algolia/Meilisearch
+- User reviews and ratings
+- Clinic booking system
+- Email notifications
+- Admin dashboard
+
+## 🔧 Phase 2 Preparation
+
+### Database Schema (Prisma)
+
+TypeScript interfaces in Phase 1 are designed to match the future Prisma schema:
+
+```prisma
+model User {
+  id                String   @id @default(cuid())
+  email             String   @unique
+  password_hash     String
+  name              String
+  languagePreference String  @default("en")
+  createdAt         DateTime @default(now())
+  savedItems        SavedItem[]
+}
+
+model Treatment {
+  id              String   @id @default(cuid())
+  name            String
+  description     String
+  icon            String
+  priceRangeMin   Int
+  priceRangeMax   Int
+  currency        String
+  duration        String
+  recoveryTime    String
+  risks           String[]
+  categories      String[]
+  clinics         ClinicTreatment[]
+}
+
+model Clinic {
+  id           String   @id @default(cuid())
+  name         String
+  location     String
+  description  String
+  imageUrl     String
+  rating       Float
+  reviewCount  Int?
+  specialties  String[]
+  verified     Boolean  @default(false)
+  treatments   ClinicTreatment[]
+}
+
+model ClinicTreatment {
+  clinicId     String
+  treatmentId  String
+  price        Int?
+  availability String
+  clinic       Clinic    @relation(fields: [clinicId], references: [id])
+  treatment    Treatment @relation(fields: [treatmentId], references: [id])
+  @@id([clinicId, treatmentId])
+}
+
+model SavedItem {
+  id        String   @id @default(cuid())
+  userId    String
+  itemType  String
+  itemId    String
+  savedAt   DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id])
+}
+```
+
+### API Routes to Implement
+
+Phase 2 will add these API routes:
+- `GET /api/treatments` - List treatments with filters
+- `GET /api/treatments/[id]` - Get treatment details
+- `GET /api/clinics` - List clinics with filters
+- `GET /api/clinics/[id]` - Get clinic details
+- `GET /api/search` - Search treatments and clinics
+- `POST /api/saved` - Save an item
+- `DELETE /api/saved/[id]` - Remove saved item
+- `GET /api/saved` - Get user's saved items
+
+### Mock Data Replacement
+
+Current mock data locations that will be replaced:
+- `src/data/treatments.ts` → API calls to `/api/treatments`
+- `src/data/clinics.ts` → API calls to `/api/clinics`
+- `src/data/users.ts` → NextAuth session management
+- `src/lib/mock-auth.ts` → NextAuth.js authentication
+
+## 🤝 Contributing
+
+### Code Style
+
+- Use TypeScript strict mode (no `any` types)
+- Follow ESLint and Prettier configurations
+- Write JSDoc comments for all components and functions
+- Use translation keys for all user-facing text
+- Follow the existing component structure
+
+### Component Guidelines
+
+1. **Server Components by default**: Use Server Components unless you need client-side interactivity
+2. **Client Components**: Add `'use client'` directive only when needed
+3. **Props documentation**: Always document props with JSDoc
+4. **Translation keys**: Never hardcode user-facing strings
+5. **Responsive design**: Test on mobile, tablet, and desktop
+6. **Accessibility**: Ensure proper ARIA labels and keyboard navigation
+
+### Git Workflow
+
+1. Create a feature branch from `main`
+2. Make your changes
+3. Run linting and type checking
+4. Commit with descriptive messages
+5. Create a pull request
+
+## 📝 License
 
 ISC
+
+## 🙏 Acknowledgments
+
+- [Next.js](https://nextjs.org/) - React framework
+- [shadcn/ui](https://ui.shadcn.com/) - UI component library
+- [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework
+- [Lucide](https://lucide.dev/) - Icon library
+- [next-intl](https://next-intl-docs.vercel.app/) - Internationalization library
+
+---
+
+**Built with ❤️ for the beauty and wellness community in Korea**

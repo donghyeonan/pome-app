@@ -56,11 +56,17 @@ export function SavedItemsContent() {
   return (
     <Tabs defaultValue="treatments" className="w-full">
       <TabsList className="grid w-full grid-cols-2 mb-4 sm:mb-6 min-h-[44px]">
-        <TabsTrigger value="treatments" className="flex items-center gap-1.5 sm:gap-2 min-h-[44px] touch-manipulation">
+        <TabsTrigger
+          value="treatments"
+          className="flex items-center gap-1.5 sm:gap-2 min-h-[44px] touch-manipulation"
+        >
           <Sparkles className="h-4 w-4" />
           <span className="text-sm sm:text-base">{t('savedTreatments')}</span>
         </TabsTrigger>
-        <TabsTrigger value="clinics" className="flex items-center gap-1.5 sm:gap-2 min-h-[44px] touch-manipulation">
+        <TabsTrigger
+          value="clinics"
+          className="flex items-center gap-1.5 sm:gap-2 min-h-[44px] touch-manipulation"
+        >
           <Building2 className="h-4 w-4" />
           <span className="text-sm sm:text-base">{t('savedClinics')}</span>
         </TabsTrigger>
@@ -78,7 +84,10 @@ export function SavedItemsContent() {
             <p className="text-sm sm:text-base text-muted-foreground mb-4 sm:mb-6 max-w-md">
               {t('startExploring')}
             </p>
-            <Button onClick={() => router.push('/treatments')} className="min-h-[44px] touch-manipulation">
+            <Button
+              onClick={() => router.push('/treatments')}
+              className="min-h-[44px] touch-manipulation"
+            >
               {t('exploreTreatments')}
             </Button>
           </div>
@@ -119,7 +128,10 @@ export function SavedItemsContent() {
             <p className="text-sm sm:text-base text-muted-foreground mb-4 sm:mb-6 max-w-md">
               {t('startExploring')}
             </p>
-            <Button onClick={() => router.push('/clinics')} className="min-h-[44px] touch-manipulation">
+            <Button
+              onClick={() => router.push('/clinics')}
+              className="min-h-[44px] touch-manipulation"
+            >
               {t('exploreClinics')}
             </Button>
           </div>

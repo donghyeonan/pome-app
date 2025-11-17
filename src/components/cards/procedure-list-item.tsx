@@ -6,13 +6,70 @@ import { ChevronRight, Building2 } from 'lucide-react';
 import { Treatment } from '@/types';
 import { cn } from '@/lib/utils';
 
+/**
+ * Props for the ProcedureListItem component
+ */
 interface ProcedureListItemProps {
+  /** Treatment data to display */
   treatment: Treatment;
+  /** Whether to show the number of clinics offering this treatment */
   showClinicCount?: boolean;
+  /** Number of clinics offering this treatment */
   clinicCount?: number;
+  /** Optional click handler for the item */
   onClick?: () => void;
 }
 
+/**
+ * Procedure List Item Component
+ * 
+ * Displays treatment information in a compact list format, suitable for
+ * search results, autocomplete dropdowns, or list views.
+ * 
+ * @component
+ * @example
+ * ```tsx
+ * // Basic usage
+ * <ProcedureListItem treatment={treatmentData} />
+ * 
+ * // With clinic count
+ * <ProcedureListItem 
+ *   treatment={treatmentData} 
+ *   showClinicCount={true}
+ *   clinicCount={5}
+ * />
+ * 
+ * // With click handler
+ * <ProcedureListItem 
+ *   treatment={treatmentData} 
+ *   onClick={() => router.push(`/treatments/${treatmentData.id}`)}
+ * />
+ * 
+ * // In a list
+ * <div className="space-y-2">
+ *   {treatments.map(treatment => (
+ *     <ProcedureListItem 
+ *       key={treatment.id} 
+ *       treatment={treatment}
+ *       showClinicCount={true}
+ *       clinicCount={getClinicCount(treatment.id)}
+ *     />
+ *   ))}
+ * </div>
+ * ```
+ * 
+ * Features:
+ * - Compact horizontal layout
+ * - Dynamic Lucide icon based on treatment.icon
+ * - Treatment name and price range
+ * - Optional clinic count with icon
+ * - Chevron indicator for clickable items
+ * - Hover effects with border highlight
+ * - Touch-friendly interactions
+ * 
+ * @param {ProcedureListItemProps} props - Component props
+ * @returns {JSX.Element} The procedure list item component
+ */
 export function ProcedureListItem({
   treatment,
   showClinicCount = false,
@@ -22,10 +79,9 @@ export function ProcedureListItem({
   const t = useTranslations('treatments');
 
   // Dynamically get the Lucide icon component
-  const IconComponent = (
-    LucideIcons[treatment.icon as keyof typeof LucideIcons] ||
-    LucideIcons.Sparkles
-  ) as React.ComponentType<{ className?: string }>;
+  const IconComponent = (LucideIcons[
+    treatment.icon as keyof typeof LucideIcons
+  ] || LucideIcons.Sparkles) as React.ComponentType<{ className?: string }>;
 
   // Format price range
   const formatPrice = (amount: number, currency: string) => {

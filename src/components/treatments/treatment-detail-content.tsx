@@ -23,10 +23,9 @@ export function TreatmentDetailContent({
   const router = useRouter();
 
   // Get the icon component
-  const IconComponent = (
-    LucideIcons[treatment.icon as keyof typeof LucideIcons] ||
-    LucideIcons.Sparkles
-  ) as React.ComponentType<{ className?: string }>;
+  const IconComponent = (LucideIcons[
+    treatment.icon as keyof typeof LucideIcons
+  ] || LucideIcons.Sparkles) as React.ComponentType<{ className?: string }>;
 
   // Format price range
   const formatPrice = (amount: number, currency: string) => {
@@ -51,7 +50,9 @@ export function TreatmentDetailContent({
             <IconComponent className="h-8 w-8 sm:h-10 sm:w-10 text-primary" />
           </div>
           <div className="flex-1 min-w-0">
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-2">{treatment.name}</h1>
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-2">
+              {treatment.name}
+            </h1>
             <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-sm">
               <span className="font-semibold text-primary text-base sm:text-lg">
                 {priceRangeText}
@@ -68,7 +69,9 @@ export function TreatmentDetailContent({
       {/* Description */}
       <Card className="mb-4 sm:mb-6">
         <CardContent className="p-4 sm:p-6 lg:p-8">
-          <h2 className="text-lg sm:text-xl font-semibold mb-2 sm:mb-3">{t('description')}</h2>
+          <h2 className="text-lg sm:text-xl font-semibold mb-2 sm:mb-3">
+            {t('description')}
+          </h2>
           <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
             {treatment.description}
           </p>
@@ -80,16 +83,24 @@ export function TreatmentDetailContent({
         {/* Duration */}
         <Card>
           <CardContent className="p-4 sm:p-6">
-            <h3 className="text-sm sm:text-base font-semibold mb-2">{t('duration')}</h3>
-            <p className="text-sm sm:text-base text-muted-foreground">{treatment.duration}</p>
+            <h3 className="text-sm sm:text-base font-semibold mb-2">
+              {t('duration')}
+            </h3>
+            <p className="text-sm sm:text-base text-muted-foreground">
+              {treatment.duration}
+            </p>
           </CardContent>
         </Card>
 
         {/* Recovery Time */}
         <Card>
           <CardContent className="p-4 sm:p-6">
-            <h3 className="text-sm sm:text-base font-semibold mb-2">{t('recoveryTime')}</h3>
-            <p className="text-sm sm:text-base text-muted-foreground">{treatment.recoveryTime}</p>
+            <h3 className="text-sm sm:text-base font-semibold mb-2">
+              {t('recoveryTime')}
+            </h3>
+            <p className="text-sm sm:text-base text-muted-foreground">
+              {treatment.recoveryTime}
+            </p>
           </CardContent>
         </Card>
       </div>
@@ -97,7 +108,9 @@ export function TreatmentDetailContent({
       {/* Categories */}
       <Card className="mb-4 sm:mb-6">
         <CardContent className="p-4 sm:p-6">
-          <h2 className="text-lg sm:text-xl font-semibold mb-2 sm:mb-3">{t('categories')}</h2>
+          <h2 className="text-lg sm:text-xl font-semibold mb-2 sm:mb-3">
+            {t('categories')}
+          </h2>
           <div className="flex flex-wrap gap-1.5 sm:gap-2">
             {treatment.categories.map((category) => (
               <span
@@ -135,12 +148,16 @@ export function TreatmentDetailContent({
       {treatment.suitableFor && (
         <Card className="mb-4 sm:mb-6">
           <CardContent className="p-4 sm:p-6">
-            <h2 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4">{t('suitableFor')}</h2>
+            <h2 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4">
+              {t('suitableFor')}
+            </h2>
             <div className="space-y-3 sm:space-y-4">
               {/* Skin Types */}
               {treatment.suitableFor.skinTypes.length > 0 && (
                 <div>
-                  <h3 className="font-medium text-xs sm:text-sm mb-2">Skin Types</h3>
+                  <h3 className="font-medium text-xs sm:text-sm mb-2">
+                    {t('skinTypes')}
+                  </h3>
                   <div className="flex flex-wrap gap-1.5 sm:gap-2">
                     {treatment.suitableFor.skinTypes.map((type) => (
                       <span
@@ -157,7 +174,9 @@ export function TreatmentDetailContent({
               {/* Age Ranges */}
               {treatment.suitableFor.ageRanges.length > 0 && (
                 <div>
-                  <h3 className="font-medium text-xs sm:text-sm mb-2">Age Ranges</h3>
+                  <h3 className="font-medium text-xs sm:text-sm mb-2">
+                    {t('ageRanges')}
+                  </h3>
                   <div className="flex flex-wrap gap-1.5 sm:gap-2">
                     {treatment.suitableFor.ageRanges.map((range) => (
                       <span
@@ -174,7 +193,9 @@ export function TreatmentDetailContent({
               {/* Goals */}
               {treatment.suitableFor.goals.length > 0 && (
                 <div>
-                  <h3 className="font-medium text-xs sm:text-sm mb-2">Treatment Goals</h3>
+                  <h3 className="font-medium text-xs sm:text-sm mb-2">
+                    {t('treatmentGoals')}
+                  </h3>
                   <div className="flex flex-wrap gap-1.5 sm:gap-2">
                     {treatment.suitableFor.goals.map((goal) => (
                       <span
@@ -193,36 +214,42 @@ export function TreatmentDetailContent({
       )}
 
       {/* Before/After Images */}
-      {treatment.beforeAfterImages && treatment.beforeAfterImages.length > 0 && (
-        <Card className="mb-4 sm:mb-6">
-          <CardContent className="p-4 sm:p-6">
-            <h2 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4">{t('beforeAfter')}</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
-              {treatment.beforeAfterImages.map((_, index) => (
-                <div key={index} className="space-y-2">
-                  <div className="aspect-video bg-muted rounded-lg flex items-center justify-center">
-                    <p className="text-xs sm:text-sm text-muted-foreground">
-                      Before & After Image {index + 1}
-                    </p>
+      {treatment.beforeAfterImages &&
+        treatment.beforeAfterImages.length > 0 && (
+          <Card className="mb-4 sm:mb-6">
+            <CardContent className="p-4 sm:p-6">
+              <h2 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4">
+                {t('beforeAfter')}
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
+                {treatment.beforeAfterImages.map((_, index) => (
+                  <div key={index} className="space-y-2">
+                    <div className="aspect-video bg-muted rounded-lg flex items-center justify-center">
+                      <p className="text-xs sm:text-sm text-muted-foreground">
+                        {t('beforeAfterImage', { number: index + 1 })}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-      )}
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        )}
 
       {/* Clinics Offering This Treatment */}
       {offeringClinics.length > 0 && (
         <div className="mb-6 sm:mb-8">
-          <h2 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">{t('clinicsOffering')}</h2>
+          <h2 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">
+            {t('clinicsOffering')}
+          </h2>
           <p className="text-sm sm:text-base text-muted-foreground mb-4">
-            {offeringClinics.length} clinics offer this treatment
+            {t('clinicsOfferingCount', { count: offeringClinics.length })}
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-5">
             {offeringClinics.map((clinic) => {
               const clinicTreatment = clinicTreatmentData.find(
-                (ct) => ct.clinicId === clinic.id && ct.treatmentId === treatment.id
+                (ct) =>
+                  ct.clinicId === clinic.id && ct.treatmentId === treatment.id
               );
               return (
                 <div key={clinic.id}>
@@ -232,8 +259,9 @@ export function TreatmentDetailContent({
                   />
                   {clinicTreatment?.price && (
                     <p className="text-xs sm:text-sm text-muted-foreground mt-2 px-2">
-                      Price at this clinic: ₩
-                      {(clinicTreatment.price / 1000).toFixed(0)}K
+                      {t('priceAtClinic', {
+                        price: `₩${(clinicTreatment.price / 1000).toFixed(0)}K`,
+                      })}
                     </p>
                   )}
                 </div>

@@ -1,6 +1,6 @@
 /**
  * Type definitions for translation keys
- * 
+ *
  * These types provide autocomplete and type safety when using translations
  * throughout the application.
  */

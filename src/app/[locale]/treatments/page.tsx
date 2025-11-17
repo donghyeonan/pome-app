@@ -118,7 +118,10 @@ export default function TreatmentsPage() {
     setPriceRange([0, 10000000]);
   };
 
-  const hasActiveFilters = selectedCategories.length > 0 || priceRange[0] > 0 || priceRange[1] < 10000000;
+  const hasActiveFilters =
+    selectedCategories.length > 0 ||
+    priceRange[0] > 0 ||
+    priceRange[1] < 10000000;
 
   return (
     <ProtectedRoute
@@ -133,7 +136,9 @@ export default function TreatmentsPage() {
       <PageLayout title={t('title')}>
         {/* Header */}
         <div className="mb-4 sm:mb-6">
-          <h1 className="text-2xl sm:text-3xl font-bold mb-1 sm:mb-2">{t('allTreatments')}</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold mb-1 sm:mb-2">
+            {t('allTreatments')}
+          </h1>
           <p className="text-sm sm:text-base text-muted-foreground">
             {filteredTreatments.length} {t('title').toLowerCase()}
           </p>
@@ -153,7 +158,10 @@ export default function TreatmentsPage() {
             {/* Filter Button */}
             <Sheet open={isFilterOpen} onOpenChange={setIsFilterOpen}>
               <SheetTrigger asChild>
-                <Button variant="outline" className="flex-1 sm:flex-none min-h-[44px] touch-manipulation">
+                <Button
+                  variant="outline"
+                  className="flex-1 sm:flex-none min-h-[44px] touch-manipulation"
+                >
                   <SlidersHorizontal className="h-4 w-4" />
                   <span className="ml-2">{tCommon('filter')}</span>
                   {hasActiveFilters && (
@@ -171,7 +179,9 @@ export default function TreatmentsPage() {
                 <div className="mt-6 space-y-6">
                   {/* Categories Filter */}
                   <div>
-                    <h3 className="font-semibold mb-3">{t('filterByCategory')}</h3>
+                    <h3 className="font-semibold mb-3">
+                      {t('filterByCategory')}
+                    </h3>
                     <div className="space-y-2 max-h-[300px] overflow-y-auto">
                       {allCategories.map((category) => (
                         <label
@@ -207,7 +217,10 @@ export default function TreatmentsPage() {
                           step="100000"
                           value={priceRange[0]}
                           onChange={(e) =>
-                            setPriceRange([parseInt(e.target.value), priceRange[1]])
+                            setPriceRange([
+                              parseInt(e.target.value),
+                              priceRange[1],
+                            ])
                           }
                           className="w-full"
                         />
@@ -223,7 +236,10 @@ export default function TreatmentsPage() {
                           step="100000"
                           value={priceRange[1]}
                           onChange={(e) =>
-                            setPriceRange([priceRange[0], parseInt(e.target.value)])
+                            setPriceRange([
+                              priceRange[0],
+                              parseInt(e.target.value),
+                            ])
                           }
                           className="w-full"
                         />
@@ -246,14 +262,23 @@ export default function TreatmentsPage() {
             </Sheet>
 
             {/* Sort Dropdown */}
-            <Select value={sortBy} onValueChange={(value) => setSortBy(value as SortOption)}>
+            <Select
+              value={sortBy}
+              onValueChange={(value) => setSortBy(value as SortOption)}
+            >
               <SelectTrigger className="flex-1 sm:w-[180px] min-h-[44px] touch-manipulation">
                 <SelectValue placeholder={t('sortBy')} />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="popularity">{t('sortByPopularity')}</SelectItem>
-                <SelectItem value="price-asc">{t('sortByPrice')} (Low)</SelectItem>
-                <SelectItem value="price-desc">{t('sortByPrice')} (High)</SelectItem>
+                <SelectItem value="popularity">
+                  {t('sortByPopularity')}
+                </SelectItem>
+                <SelectItem value="price-asc">
+                  {t('sortByPrice')} (Low)
+                </SelectItem>
+                <SelectItem value="price-desc">
+                  {t('sortByPrice')} (High)
+                </SelectItem>
                 <SelectItem value="name">{t('sortByName')}</SelectItem>
               </SelectContent>
             </Select>
@@ -290,7 +315,9 @@ export default function TreatmentsPage() {
             ) : (
               <div className="flex flex-col items-center justify-center py-12 text-center">
                 <p className="text-lg font-medium mb-2">{t('noTreatments')}</p>
-                <p className="text-muted-foreground mb-4">{tCommon('tryAgain')}</p>
+                <p className="text-muted-foreground mb-4">
+                  {tCommon('tryAgain')}
+                </p>
                 {hasActiveFilters && (
                   <Button variant="outline" onClick={clearFilters}>
                     {tCommon('clear')} {tCommon('filter')}

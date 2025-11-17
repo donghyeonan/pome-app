@@ -16,11 +16,11 @@ export default function TreatmentNotFound() {
             <Sparkles className="h-16 w-16 text-gray-400 dark:text-gray-600" />
           </div>
         </div>
-        
+
         <h1 className="mb-2 text-2xl font-bold text-gray-900 dark:text-gray-100">
           {tTreatments('noTreatments')}
         </h1>
-        
+
         <p className="mb-8 text-gray-600 dark:text-gray-400">
           {t('tryAgainLater')}
         </p>
@@ -31,11 +31,9 @@ export default function TreatmentNotFound() {
               {tCommon('back')} to {tTreatments('title')}
             </Link>
           </Button>
-          
+
           <Button asChild variant="outline" size="lg">
-            <Link href="/">
-              {t('backToHome')}
-            </Link>
+            <Link href="/">{t('backToHome')}</Link>
           </Button>
         </div>
       </div>

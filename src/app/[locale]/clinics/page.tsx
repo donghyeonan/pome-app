@@ -187,7 +187,9 @@ export default function ClinicsPage() {
       <PageLayout title={t('title')}>
         {/* Header */}
         <div className="mb-4 sm:mb-6">
-          <h1 className="text-2xl sm:text-3xl font-bold mb-1 sm:mb-2">{t('allClinics')}</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold mb-1 sm:mb-2">
+            {t('allClinics')}
+          </h1>
           <p className="text-sm sm:text-base text-muted-foreground">
             {filteredClinics.length} {t('title').toLowerCase()}
           </p>
@@ -207,7 +209,10 @@ export default function ClinicsPage() {
             {/* Filter Button */}
             <Sheet open={isFilterOpen} onOpenChange={setIsFilterOpen}>
               <SheetTrigger asChild>
-                <Button variant="outline" className="flex-1 sm:flex-none min-h-[44px] touch-manipulation">
+                <Button
+                  variant="outline"
+                  className="flex-1 sm:flex-none min-h-[44px] touch-manipulation"
+                >
                   <SlidersHorizontal className="h-4 w-4" />
                   <span className="ml-2">{tCommon('filter')}</span>
                   {hasActiveFilters && (
@@ -375,7 +380,9 @@ export default function ClinicsPage() {
             ) : (
               <div className="flex flex-col items-center justify-center py-12 text-center">
                 <p className="text-lg font-medium mb-2">{t('noClinics')}</p>
-                <p className="text-muted-foreground mb-4">{tCommon('tryAgain')}</p>
+                <p className="text-muted-foreground mb-4">
+                  {tCommon('tryAgain')}
+                </p>
                 {hasActiveFilters && (
                   <Button variant="outline" onClick={clearFilters}>
                     {tCommon('clear')} {tCommon('filter')}

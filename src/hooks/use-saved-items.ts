@@ -26,9 +26,11 @@ export function useSavedItems(userId?: string): UseSavedItemsReturn {
     try {
       const stored = localStorage.getItem(STORAGE_KEY);
       if (stored) {
-        const parsed = JSON.parse(stored);
+        const parsed = JSON.parse(stored) as Array<
+          Omit<SavedItem, 'savedAt'> & { savedAt: string }
+        >;
         // Convert savedAt strings back to Date objects
-        const items = parsed.map((item: any) => ({
+        const items: SavedItem[] = parsed.map((item) => ({
           ...item,
           savedAt: new Date(item.savedAt),
         }));

@@ -68,7 +68,10 @@
     "loginRequired": "Please log in to continue",
     "loginSuccess": "Successfully logged in",
     "logoutSuccess": "Successfully logged out",
-    "sessionExpired": "Your session has expired. Please log in again."
+    "sessionExpired": "Your session has expired. Please log in again.",
+    "demoCredentials": "Demo Credentials:",
+    "demoEmail": "Email:",
+    "demoPassword": "Password:"
   },
   "treatments": {
     "title": "Treatments",
@@ -82,8 +85,14 @@
     "considerations": "Considerations",
     "categories": "Categories",
     "suitableFor": "Suitable For",
+    "skinTypes": "Skin Types",
+    "ageRanges": "Age Ranges",
+    "treatmentGoals": "Treatment Goals",
     "beforeAfter": "Before & After",
+    "beforeAfterImage": "Before & After Image {number}",
     "clinicsOffering": "Clinics Offering This Treatment",
+    "clinicsOfferingCount": "{count} clinics offer this treatment",
+    "priceAtClinic": "Price at this clinic: {price}",
     "relatedTreatments": "Related Treatments",
     "filterByCategory": "Filter by Category",
     "filterByPrice": "Filter by Price",
@@ -140,7 +149,8 @@
     "popularSearches": "Popular Searches",
     "treatmentsSection": "Treatments",
     "clinicsSection": "Clinics",
-    "viewAll": "View All"
+    "viewAll": "View All",
+    "clear": "Clear search"
   },
   "saved": {
     "title": "Saved Items",

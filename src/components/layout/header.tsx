@@ -28,7 +28,8 @@ export function Header({ title, showBackButton }: HeaderProps) {
   const { user, isAuthenticated, logout } = useAuth();
 
   // Determine if we should show the back button
-  const shouldShowBack = showBackButton || (pathname !== '/' && pathname.split('/').length > 2);
+  const shouldShowBack =
+    showBackButton || (pathname !== '/' && pathname.split('/').length > 2);
 
   const handleBack = () => {
     router.back();
@@ -66,7 +67,10 @@ export function Header({ title, showBackButton }: HeaderProps) {
               <ArrowLeft className="h-5 w-5 sm:h-6 sm:w-6" />
             </Button>
           ) : (
-            <div className="flex items-center gap-2 sm:gap-3 cursor-pointer" onClick={() => router.push('/')}>
+            <div
+              className="flex items-center gap-2 sm:gap-3 cursor-pointer"
+              onClick={() => router.push('/')}
+            >
               <Image
                 src="/pome-logo.svg"
                 alt="Pome"
@@ -86,7 +90,13 @@ export function Header({ title, showBackButton }: HeaderProps) {
               <Button
                 variant="ghost"
                 onClick={() => router.push('/')}
-                className={isActivePath('/') && !isActivePath('/treatments') && !isActivePath('/clinics') ? 'bg-accent' : ''}
+                className={
+                  isActivePath('/') &&
+                  !isActivePath('/treatments') &&
+                  !isActivePath('/clinics')
+                    ? 'bg-accent'
+                    : ''
+                }
               >
                 {t('nav.home')}
               </Button>
@@ -139,19 +149,27 @@ export function Header({ title, showBackButton }: HeaderProps) {
               <DropdownMenuContent align="end" className="w-56">
                 <DropdownMenuLabel>
                   <div className="flex flex-col space-y-1">
-                    <p className="text-sm font-medium leading-none">{user.name}</p>
+                    <p className="text-sm font-medium leading-none">
+                      {user.name}
+                    </p>
                     <p className="text-xs leading-none text-muted-foreground">
                       {user.email}
                     </p>
                   </div>
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={handleProfileClick} className="cursor-pointer">
+                <DropdownMenuItem
+                  onClick={handleProfileClick}
+                  className="cursor-pointer"
+                >
                   <User className="mr-2 h-4 w-4" />
                   <span>{t('nav.profile')}</span>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={handleLogout} className="cursor-pointer">
+                <DropdownMenuItem
+                  onClick={handleLogout}
+                  className="cursor-pointer"
+                >
                   <LogOut className="mr-2 h-4 w-4" />
                   <span>{t('auth.logout')}</span>
                 </DropdownMenuItem>

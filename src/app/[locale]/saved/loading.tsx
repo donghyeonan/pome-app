@@ -17,9 +17,13 @@ export default function SavedLoading() {
 
         {/* Content skeleton */}
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {Array.from({ length: 6 }).map((_, i) => (
-            i % 2 === 0 ? <TreatmentCardSkeleton key={i} /> : <ClinicCardSkeleton key={i} />
-          ))}
+          {Array.from({ length: 6 }).map((_, i) =>
+            i % 2 === 0 ? (
+              <TreatmentCardSkeleton key={i} />
+            ) : (
+              <ClinicCardSkeleton key={i} />
+            )
+          )}
         </div>
       </div>
     </div>

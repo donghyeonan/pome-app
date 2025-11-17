@@ -67,9 +67,7 @@ export function SearchResultsContent({ query }: SearchResultsContentProps) {
           <p className="text-base sm:text-lg text-muted-foreground mb-2">
             {t('noResults', { query })}
           </p>
-          <p className="text-sm text-muted-foreground">
-            {t('tryDifferent')}
-          </p>
+          <p className="text-sm text-muted-foreground">{t('tryDifferent')}</p>
         </div>
       )}
 

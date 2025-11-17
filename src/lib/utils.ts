@@ -8,7 +8,10 @@ export function cn(...inputs: ClassValue[]) {
 /**
  * Format price in Korean Won
  */
-export function formatPrice(amount: number, currency: 'KRW' | 'USD' = 'KRW'): string {
+export function formatPrice(
+  amount: number,
+  currency: 'KRW' | 'USD' = 'KRW'
+): string {
   if (currency === 'KRW') {
     return `₩${amount.toLocaleString('ko-KR')}`;
   }
@@ -18,7 +21,11 @@ export function formatPrice(amount: number, currency: 'KRW' | 'USD' = 'KRW'): st
 /**
  * Format price range
  */
-export function formatPriceRange(min: number, max: number, currency: 'KRW' | 'USD' = 'KRW'): string {
+export function formatPriceRange(
+  min: number,
+  max: number,
+  currency: 'KRW' | 'USD' = 'KRW'
+): string {
   return `${formatPrice(min, currency)} - ${formatPrice(max, currency)}`;
 }
 

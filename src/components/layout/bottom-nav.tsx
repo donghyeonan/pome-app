@@ -7,6 +7,9 @@ import { useTranslations } from 'next-intl';
 import { Home, Building2, Sparkles, Bookmark, User } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
+/**
+ * Navigation item configuration
+ */
 interface NavItem {
   href: string;
   label: string;
@@ -14,6 +17,37 @@ interface NavItem {
   protected: boolean;
 }
 
+/**
+ * Bottom Navigation Bar Component
+ * 
+ * A fixed bottom navigation bar for mobile and tablet viewports that provides
+ * quick access to the main sections of the application.
+ * 
+ * @component
+ * @example
+ * ```tsx
+ * <BottomNav />
+ * ```
+ * 
+ * Features:
+ * - Fixed positioning at bottom of viewport
+ * - 5 navigation tabs: Home, Procedures, Clinics, Saved, Profile
+ * - Active state highlighting based on current route
+ * - Lucide icons for visual clarity
+ * - Touch-friendly tap targets (min 44x44px)
+ * - Backdrop blur effect for modern appearance
+ * - Hidden on desktop viewports (lg breakpoint)
+ * - Locale-aware routing
+ * 
+ * Translation Keys Used:
+ * - `nav.home` - Home tab label
+ * - `nav.procedures` - Procedures tab label
+ * - `nav.clinics` - Clinics tab label
+ * - `nav.saved` - Saved tab label
+ * - `nav.profile` - Profile tab label
+ * 
+ * @returns {JSX.Element} The bottom navigation bar
+ */
 export function BottomNav() {
   const pathname = usePathname();
   const t = useTranslations('nav');
@@ -68,7 +102,7 @@ export function BottomNav() {
           {navItems.map((item) => {
             const Icon = item.icon;
             const active = isActive(item.href);
-            
+
             return (
               <Link
                 key={item.href}
@@ -83,8 +117,18 @@ export function BottomNav() {
                 )}
                 aria-label={item.label}
               >
-                <Icon className={cn('h-5 w-5 sm:h-6 sm:w-6', active && 'stroke-[2.5]')} />
-                <span className={cn('text-xs sm:text-sm', active && 'font-semibold')}>
+                <Icon
+                  className={cn(
+                    'h-5 w-5 sm:h-6 sm:w-6',
+                    active && 'stroke-[2.5]'
+                  )}
+                />
+                <span
+                  className={cn(
+                    'text-xs sm:text-sm',
+                    active && 'font-semibold'
+                  )}
+                >
                   {item.label}
                 </span>
               </Link>

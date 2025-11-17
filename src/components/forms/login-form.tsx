@@ -8,10 +8,52 @@ import { Input } from '@/components/ui/input';
 import { Checkbox } from '@/components/ui/checkbox';
 import { useAuth } from '@/hooks/use-auth';
 
+/**
+ * Props for the LoginForm component
+ */
 interface LoginFormProps {
+  /** Optional callback to execute after successful login */
   onSuccess?: () => void;
 }
 
+/**
+ * Login Form Component
+ * 
+ * A complete login form with email/password inputs, password visibility toggle,
+ * remember me checkbox, and error handling.
+ * 
+ * @component
+ * @example
+ * ```tsx
+ * // Basic usage
+ * <LoginForm />
+ * 
+ * // With success callback
+ * <LoginForm 
+ *   onSuccess={() => router.push('/dashboard')}
+ * />
+ * ```
+ * 
+ * Features:
+ * - Email and password inputs with validation
+ * - Password visibility toggle (Eye/EyeOff icons)
+ * - Remember me checkbox with localStorage persistence
+ * - Loading state during authentication
+ * - Error message display
+ * - Disabled state during submission
+ * - Accessible form labels and ARIA attributes
+ * 
+ * Translation Keys Used:
+ * - `auth.email` - Email field label and placeholder
+ * - `auth.password` - Password field label and placeholder
+ * - `auth.rememberMe` - Remember me checkbox label
+ * - `auth.login` - Login button text
+ * - `auth.invalidCredentials` - Error message for failed login
+ * - `validation.required` - Required field validation message
+ * 
+ * @param {LoginFormProps} props - Component props
+ * @returns {JSX.Element} The login form component
+ */
 export function LoginForm({ onSuccess }: LoginFormProps) {
   const t = useTranslations('auth');
   const tValidation = useTranslations('validation');
@@ -135,12 +177,7 @@ export function LoginForm({ onSuccess }: LoginFormProps) {
       )}
 
       {/* Submit Button */}
-      <Button
-        type="submit"
-        className="w-full"
-        disabled={isLoading}
-        size="lg"
-      >
+      <Button type="submit" className="w-full" disabled={isLoading} size="lg">
         {isLoading ? (
           <>
             <Loader2 className="h-4 w-4 animate-spin" />

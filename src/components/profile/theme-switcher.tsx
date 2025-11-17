@@ -11,6 +11,38 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 
+/**
+ * Theme Switcher Component
+ * 
+ * A dropdown selector that allows users to change the application theme
+ * between light mode, dark mode, and system preference.
+ * 
+ * @component
+ * @example
+ * ```tsx
+ * <ThemeSwitcher />
+ * ```
+ * 
+ * Features:
+ * - Three theme options: light, dark, system
+ * - Persists selection in localStorage
+ * - Immediate theme update
+ * - Prevents hydration mismatch with mounted state
+ * - System option respects OS theme preference
+ * 
+ * Theme Options:
+ * - Light: Force light mode
+ * - Dark: Force dark mode
+ * - System: Follow OS preference
+ * 
+ * Translation Keys Used:
+ * - `profile.theme` - Label for the selector
+ * - `profile.themeOptions.light` - Light theme option
+ * - `profile.themeOptions.dark` - Dark theme option
+ * - `profile.themeOptions.system` - System theme option
+ * 
+ * @returns {JSX.Element | null} The theme switcher dropdown, or null if not mounted
+ */
 export function ThemeSwitcher() {
   const t = useTranslations('profile');
   const { theme, setTheme } = useTheme();

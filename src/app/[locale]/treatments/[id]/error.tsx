@@ -30,23 +30,20 @@ export default function TreatmentError({
             <AlertCircle className="h-12 w-12 text-red-600 dark:text-red-400" />
           </div>
         </div>
-        
+
         <h1 className="mb-2 text-2xl font-bold text-gray-900 dark:text-gray-100">
           {t('somethingWentWrong')}
         </h1>
-        
+
         <p className="mb-6 text-gray-600 dark:text-gray-400">
           {t('tryAgainLater')}
         </p>
 
         <div className="flex flex-col gap-3 sm:flex-row sm:justify-center">
-          <Button
-            onClick={reset}
-            className="w-full sm:w-auto"
-          >
+          <Button onClick={reset} className="w-full sm:w-auto">
             {tCommon('retry')}
           </Button>
-          
+
           <Button
             variant="outline"
             onClick={() => router.push('/treatments')}

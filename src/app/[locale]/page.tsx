@@ -80,7 +80,10 @@ export default function Home() {
         <div className="overflow-x-auto -mx-4 px-4 pb-4 scrollbar-hide lg:overflow-visible lg:mx-0 lg:px-0">
           <div className="flex gap-3 sm:gap-4 lg:gap-5 xl:gap-6 min-w-min lg:grid lg:grid-cols-3 xl:grid-cols-4 lg:min-w-0">
             {featuredClinics.map((clinic) => (
-              <div key={clinic.id} className="w-[260px] sm:w-[280px] lg:w-auto flex-shrink-0">
+              <div
+                key={clinic.id}
+                className="w-[260px] sm:w-[280px] lg:w-auto flex-shrink-0"
+              >
                 <ClinicCard
                   clinic={clinic}
                   onClick={() => handleClinicClick(clinic.id)}

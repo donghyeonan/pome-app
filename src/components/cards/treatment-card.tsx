@@ -6,12 +6,60 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Treatment } from '@/types';
 import { cn } from '@/lib/utils';
 
+/**
+ * Props for the TreatmentCard component
+ */
 interface TreatmentCardProps {
+  /** Treatment data to display */
   treatment: Treatment;
+  /** Whether to highlight the card (for featured items) */
   highlighted?: boolean;
+  /** Optional click handler for the card */
   onClick?: () => void;
 }
 
+/**
+ * Treatment Card Component
+ * 
+ * Displays treatment information in a card format with icon, name, description,
+ * price range, and duration. Supports highlighted state for featured treatments.
+ * 
+ * @component
+ * @example
+ * ```tsx
+ * // Basic usage
+ * <TreatmentCard treatment={treatmentData} />
+ * 
+ * // Highlighted/featured treatment
+ * <TreatmentCard treatment={treatmentData} highlighted={true} />
+ * 
+ * // With click handler
+ * <TreatmentCard 
+ *   treatment={treatmentData} 
+ *   onClick={() => router.push(`/treatments/${treatmentData.id}`)}
+ * />
+ * 
+ * // In a grid layout
+ * <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+ *   {treatments.map(treatment => (
+ *     <TreatmentCard key={treatment.id} treatment={treatment} />
+ *   ))}
+ * </div>
+ * ```
+ * 
+ * Features:
+ * - Dynamic Lucide icon based on treatment.icon property
+ * - Name and description with text truncation
+ * - Price range display with KRW formatting (₩XXK)
+ * - Duration display
+ * - Highlighted state with ring border
+ * - Hover effects and scale animations
+ * - Touch-friendly interactions
+ * - Responsive sizing
+ * 
+ * @param {TreatmentCardProps} props - Component props
+ * @returns {JSX.Element} The treatment card component
+ */
 export function TreatmentCard({
   treatment,
   highlighted = false,
@@ -20,10 +68,9 @@ export function TreatmentCard({
   const t = useTranslations('treatments');
 
   // Dynamically get the Lucide icon component
-  const IconComponent = (
-    LucideIcons[treatment.icon as keyof typeof LucideIcons] ||
-    LucideIcons.Sparkles
-  ) as React.ComponentType<{ className?: string }>;
+  const IconComponent = (LucideIcons[
+    treatment.icon as keyof typeof LucideIcons
+  ] || LucideIcons.Sparkles) as React.ComponentType<{ className?: string }>;
 
   // Format price range
   const formatPrice = (amount: number, currency: string) => {

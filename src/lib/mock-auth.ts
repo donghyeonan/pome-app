@@ -22,14 +22,18 @@ export interface AuthResponse {
  * Mock login function
  * Accepts any email from mockUsers with password "password123"
  */
-export async function mockLogin(credentials: LoginCredentials): Promise<AuthResponse> {
+export async function mockLogin(
+  credentials: LoginCredentials
+): Promise<AuthResponse> {
   // Simulate network delay
   await new Promise((resolve) => setTimeout(resolve, 500));
 
   const { email, password } = credentials;
 
   // Find user by email
-  const user = mockUsers.find((u) => u.email.toLowerCase() === email.toLowerCase());
+  const user = mockUsers.find(
+    (u) => u.email.toLowerCase() === email.toLowerCase()
+  );
 
   if (!user) {
     return {
@@ -111,7 +115,9 @@ export async function mockRegister(
   await new Promise((resolve) => setTimeout(resolve, 500));
 
   // Check if email already exists
-  const existingUser = mockUsers.find((u) => u.email.toLowerCase() === email.toLowerCase());
+  const existingUser = mockUsers.find(
+    (u) => u.email.toLowerCase() === email.toLowerCase()
+  );
 
   if (existingUser) {
     return {

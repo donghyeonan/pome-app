@@ -52,9 +52,7 @@ export default function LoginPage() {
         {/* Logo/Brand */}
         <div className="text-center">
           <h1 className="text-3xl font-bold text-primary mb-2">Pome</h1>
-          <p className="text-muted-foreground">
-            {t('loginRequired')}
-          </p>
+          <p className="text-muted-foreground">{t('loginRequired')}</p>
         </div>
 
         {/* Login Form Card */}
@@ -99,12 +97,13 @@ export default function LoginPage() {
 
         {/* Demo Credentials Info */}
         <div className="bg-muted/50 border border-border rounded-2xl p-4 text-sm">
-          <p className="font-medium mb-2">Demo Credentials:</p>
+          <p className="font-medium mb-2">{t('demoCredentials')}</p>
           <p className="text-muted-foreground">
-            Email: <span className="font-mono">user@example.com</span>
+            {t('demoEmail')}{' '}
+            <span className="font-mono">sarah.kim@example.com</span>
           </p>
           <p className="text-muted-foreground">
-            Password: <span className="font-mono">password123</span>
+            {t('demoPassword')} <span className="font-mono">password123</span>
           </p>
         </div>
       </div>

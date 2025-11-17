@@ -27,7 +27,7 @@ export default async function LocaleLayout({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  
+
   // Validate that the incoming `locale` parameter is valid
   if (!locales.includes(locale as any)) {
     notFound();
@@ -46,9 +46,7 @@ export default async function LocaleLayout({
           disableTransitionOnChange
         >
           <NextIntlClientProvider messages={messages}>
-            <AuthProvider>
-              {children}
-            </AuthProvider>
+            <AuthProvider>{children}</AuthProvider>
           </NextIntlClientProvider>
         </ThemeProvider>
       </body>

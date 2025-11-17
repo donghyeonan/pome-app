@@ -14,7 +14,9 @@ export default function SearchPage({ searchParams }: SearchPageProps) {
   return (
     <ProtectedRoute>
       <PageLayout title={t('title')}>
-        <h1 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">{t('title')}</h1>
+        <h1 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">
+          {t('title')}
+        </h1>
         <SearchResultsContent query={query} />
       </PageLayout>
     </ProtectedRoute>

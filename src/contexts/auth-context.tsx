@@ -19,7 +19,9 @@ export interface AuthContextType {
   isLoading: boolean;
 }
 
-export const AuthContext = createContext<AuthContextType | undefined>(undefined);
+export const AuthContext = createContext<AuthContextType | undefined>(
+  undefined
+);
 
 interface AuthProviderProps {
   children: React.ReactNode;
@@ -71,7 +73,9 @@ export function AuthProvider({ children }: AuthProviderProps) {
     return () => window.removeEventListener('storage', handleStorageChange);
   }, []);
 
-  const login = async (credentials: LoginCredentials): Promise<AuthResponse> => {
+  const login = async (
+    credentials: LoginCredentials
+  ): Promise<AuthResponse> => {
     setIsLoading(true);
     try {
       const response = await mockLogin(credentials);

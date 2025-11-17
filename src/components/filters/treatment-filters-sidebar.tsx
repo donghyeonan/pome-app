@@ -48,7 +48,9 @@ export function TreatmentFiltersSidebar({
         <CardContent className="space-y-6">
           {/* Categories Filter */}
           <div>
-            <h3 className="font-semibold mb-3 text-sm">{t('filterByCategory')}</h3>
+            <h3 className="font-semibold mb-3 text-sm">
+              {t('filterByCategory')}
+            </h3>
             <div className="space-y-2 max-h-[400px] overflow-y-auto pr-2">
               {allCategories.map((category) => (
                 <label
@@ -82,7 +84,10 @@ export function TreatmentFiltersSidebar({
                   step="100000"
                   value={priceRange[0]}
                   onChange={(e) =>
-                    onPriceRangeChange([parseInt(e.target.value), priceRange[1]])
+                    onPriceRangeChange([
+                      parseInt(e.target.value),
+                      priceRange[1],
+                    ])
                   }
                   className="w-full accent-primary"
                 />
@@ -98,7 +103,10 @@ export function TreatmentFiltersSidebar({
                   step="100000"
                   value={priceRange[1]}
                   onChange={(e) =>
-                    onPriceRangeChange([priceRange[0], parseInt(e.target.value)])
+                    onPriceRangeChange([
+                      priceRange[0],
+                      parseInt(e.target.value),
+                    ])
                   }
                   className="w-full accent-primary"
                 />

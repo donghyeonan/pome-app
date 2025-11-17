@@ -4,7 +4,8 @@ export const treatments: Treatment[] = [
   {
     id: 'botox-1',
     name: 'Botox',
-    description: 'Botulinum toxin injections to reduce wrinkles and fine lines by temporarily relaxing facial muscles.',
+    description:
+      'Botulinum toxin injections to reduce wrinkles and fine lines by temporarily relaxing facial muscles.',
     icon: 'Syringe',
     priceRange: {
       min: 200000,
@@ -30,7 +31,8 @@ export const treatments: Treatment[] = [
   {
     id: 'laser-toning-2',
     name: 'Laser Toning',
-    description: 'Low-energy laser treatment to improve skin tone, reduce pigmentation, and enhance overall skin brightness.',
+    description:
+      'Low-energy laser treatment to improve skin tone, reduce pigmentation, and enhance overall skin brightness.',
     icon: 'Sparkles',
     priceRange: {
       min: 100000,
@@ -38,7 +40,11 @@ export const treatments: Treatment[] = [
       currency: 'KRW',
     },
     duration: '20-30 minutes',
-    risks: ['Mild redness', 'Temporary sensitivity', 'Rare pigmentation changes'],
+    risks: [
+      'Mild redness',
+      'Temporary sensitivity',
+      'Rare pigmentation changes',
+    ],
     categories: ['skin rejuvenation', 'pigmentation', 'brightening'],
     recoveryTime: 'Immediate, mild redness for 1-2 hours',
     beforeAfterImages: [
@@ -56,7 +62,8 @@ export const treatments: Treatment[] = [
   {
     id: 'dermal-filler-3',
     name: 'Dermal Fillers',
-    description: 'Hyaluronic acid injections to restore volume, smooth wrinkles, and enhance facial contours.',
+    description:
+      'Hyaluronic acid injections to restore volume, smooth wrinkles, and enhance facial contours.',
     icon: 'Droplet',
     priceRange: {
       min: 400000,
@@ -82,7 +89,8 @@ export const treatments: Treatment[] = [
   {
     id: 'chemical-peel-4',
     name: 'Chemical Peel',
-    description: 'Application of chemical solution to exfoliate skin, improve texture, and reduce acne scars and pigmentation.',
+    description:
+      'Application of chemical solution to exfoliate skin, improve texture, and reduce acne scars and pigmentation.',
     icon: 'Droplets',
     priceRange: {
       min: 150000,
@@ -108,7 +116,8 @@ export const treatments: Treatment[] = [
   {
     id: 'microneedling-5',
     name: 'Microneedling',
-    description: 'Collagen induction therapy using fine needles to improve skin texture, reduce scars, and enhance product absorption.',
+    description:
+      'Collagen induction therapy using fine needles to improve skin texture, reduce scars, and enhance product absorption.',
     icon: 'Zap',
     priceRange: {
       min: 200000,
@@ -116,7 +125,12 @@ export const treatments: Treatment[] = [
       currency: 'KRW',
     },
     duration: '45-60 minutes',
-    risks: ['Redness', 'Swelling', 'Minor bleeding', 'Infection if not sterile'],
+    risks: [
+      'Redness',
+      'Swelling',
+      'Minor bleeding',
+      'Infection if not sterile',
+    ],
     categories: ['skin rejuvenation', 'scar treatment', 'texture improvement'],
     recoveryTime: '2-3 days, redness subsides within 24-48 hours',
     beforeAfterImages: [
@@ -134,7 +148,8 @@ export const treatments: Treatment[] = [
   {
     id: 'rhinoplasty-6',
     name: 'Rhinoplasty',
-    description: 'Surgical nose reshaping to improve appearance and/or breathing function.',
+    description:
+      'Surgical nose reshaping to improve appearance and/or breathing function.',
     icon: 'Wind',
     priceRange: {
       min: 3000000,
@@ -142,9 +157,16 @@ export const treatments: Treatment[] = [
       currency: 'KRW',
     },
     duration: '2-3 hours',
-    risks: ['Swelling', 'Bruising', 'Infection', 'Breathing difficulties', 'Revision may be needed'],
+    risks: [
+      'Swelling',
+      'Bruising',
+      'Infection',
+      'Breathing difficulties',
+      'Revision may be needed',
+    ],
     categories: ['facial surgery', 'nose reshaping', 'cosmetic surgery'],
-    recoveryTime: '1-2 weeks for initial recovery, 6-12 months for final results',
+    recoveryTime:
+      '1-2 weeks for initial recovery, 6-12 months for final results',
     beforeAfterImages: [
       {
         before: '/images/treatments/rhinoplasty-before-1.jpg',
@@ -160,7 +182,8 @@ export const treatments: Treatment[] = [
   {
     id: 'double-eyelid-7',
     name: 'Double Eyelid Surgery',
-    description: 'Blepharoplasty to create or enhance the eyelid crease for larger, more defined eyes.',
+    description:
+      'Blepharoplasty to create or enhance the eyelid crease for larger, more defined eyes.',
     icon: 'Eye',
     priceRange: {
       min: 1500000,
@@ -170,7 +193,8 @@ export const treatments: Treatment[] = [
     duration: '1-2 hours',
     risks: ['Swelling', 'Bruising', 'Asymmetry', 'Scarring', 'Dry eyes'],
     categories: ['eye surgery', 'facial surgery', 'cosmetic surgery'],
-    recoveryTime: '1-2 weeks for initial recovery, 3-6 months for final results',
+    recoveryTime:
+      '1-2 weeks for initial recovery, 3-6 months for final results',
     beforeAfterImages: [
       {
         before: '/images/treatments/eyelid-before-1.jpg',
@@ -186,7 +210,8 @@ export const treatments: Treatment[] = [
   {
     id: 'thread-lift-8',
     name: 'Thread Lift',
-    description: 'Minimally invasive procedure using dissolvable threads to lift and tighten sagging skin.',
+    description:
+      'Minimally invasive procedure using dissolvable threads to lift and tighten sagging skin.',
     icon: 'Move',
     priceRange: {
       min: 1000000,
@@ -194,7 +219,13 @@ export const treatments: Treatment[] = [
       currency: 'KRW',
     },
     duration: '45-90 minutes',
-    risks: ['Bruising', 'Swelling', 'Thread visibility', 'Asymmetry', 'Infection'],
+    risks: [
+      'Bruising',
+      'Swelling',
+      'Thread visibility',
+      'Asymmetry',
+      'Infection',
+    ],
     categories: ['facial lifting', 'non-surgical', 'anti-aging'],
     recoveryTime: '3-5 days, avoid strenuous activity for 2 weeks',
     beforeAfterImages: [
@@ -212,7 +243,8 @@ export const treatments: Treatment[] = [
   {
     id: 'hydrafacial-9',
     name: 'HydraFacial',
-    description: 'Multi-step facial treatment that cleanses, exfoliates, extracts, and hydrates skin using patented technology.',
+    description:
+      'Multi-step facial treatment that cleanses, exfoliates, extracts, and hydrates skin using patented technology.',
     icon: 'Waves',
     priceRange: {
       min: 150000,
@@ -238,7 +270,8 @@ export const treatments: Treatment[] = [
   {
     id: 'ultherapy-10',
     name: 'Ultherapy',
-    description: 'Non-invasive ultrasound treatment to lift and tighten skin on the face, neck, and décolletage.',
+    description:
+      'Non-invasive ultrasound treatment to lift and tighten skin on the face, neck, and décolletage.',
     icon: 'Radio',
     priceRange: {
       min: 1500000,
@@ -264,7 +297,8 @@ export const treatments: Treatment[] = [
   {
     id: 'lip-filler-11',
     name: 'Lip Filler',
-    description: 'Hyaluronic acid injections to enhance lip volume, shape, and definition.',
+    description:
+      'Hyaluronic acid injections to enhance lip volume, shape, and definition.',
     icon: 'Heart',
     priceRange: {
       min: 300000,
@@ -272,7 +306,13 @@ export const treatments: Treatment[] = [
       currency: 'KRW',
     },
     duration: '20-30 minutes',
-    risks: ['Swelling', 'Bruising', 'Asymmetry', 'Lumps', 'Rare vascular complications'],
+    risks: [
+      'Swelling',
+      'Bruising',
+      'Asymmetry',
+      'Lumps',
+      'Rare vascular complications',
+    ],
     categories: ['lip enhancement', 'volume restoration', 'facial contouring'],
     recoveryTime: '1-2 days, swelling subsides within a week',
     beforeAfterImages: [
@@ -290,7 +330,8 @@ export const treatments: Treatment[] = [
   {
     id: 'acne-treatment-12',
     name: 'Acne Treatment',
-    description: 'Comprehensive treatment combining medications, chemical peels, and laser therapy to treat active acne and prevent scarring.',
+    description:
+      'Comprehensive treatment combining medications, chemical peels, and laser therapy to treat active acne and prevent scarring.',
     icon: 'Shield',
     priceRange: {
       min: 100000,
