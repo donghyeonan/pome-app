@@ -54,6 +54,14 @@
       "namedRegex": "^/(?<nxtPlocale>[^/]+?)/login(?:/)?$"
     },
     {
+      "page": "/[locale]/profile",
+      "regex": "^/([^/]+?)/profile(?:/)?$",
+      "routeKeys": {
+        "nxtPlocale": "nxtPlocale"
+      },
+      "namedRegex": "^/(?<nxtPlocale>[^/]+?)/profile(?:/)?$"
+    },
+    {
       "page": "/[locale]/saved",
       "regex": "^/([^/]+?)/saved(?:/)?$",
       "routeKeys": {

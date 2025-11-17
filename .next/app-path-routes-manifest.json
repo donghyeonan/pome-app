@@ -3,6 +3,7 @@
   "/[locale]/clinics/page": "/[locale]/clinics",
   "/[locale]/login/page": "/[locale]/login",
   "/[locale]/page": "/[locale]",
+  "/[locale]/profile/page": "/[locale]/profile",
   "/[locale]/saved/page": "/[locale]/saved",
   "/[locale]/search/page": "/[locale]/search",
   "/[locale]/treatments/[id]/page": "/[locale]/treatments/[id]",

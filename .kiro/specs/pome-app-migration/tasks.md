@@ -283,8 +283,8 @@
     - Update UI state when item is saved/unsaved
     - _Requirements: 14.4, 21.3_
 
-- [ ] 14. Implement profile page
-  - [ ] 14.1 Create profile page
+- [x] 14. Implement profile page
+  - [x] 14.1 Create profile page
     - Create /src/app/profile/page.tsx as Server Component with Client Components
     - Add route protection (require auth)
     - Display user name and email with translation keys
@@ -293,7 +293,7 @@
     - Add logout button with translation
     - _Requirements: 5.1, 15.1, 15.2, 15.3, 15.4, 15.6, 21.3, 21.5, 21.8_
 
-  - [ ] 14.2 Implement logout functionality
+  - [x] 14.2 Implement logout functionality
     - Handle logout button click
     - Clear authentication state
     - Redirect to homepage

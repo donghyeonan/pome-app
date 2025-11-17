@@ -23,25 +23,17 @@ export function LanguageSwitcher() {
   };
 
   return (
-    <div className="space-y-2">
-      <label
-        htmlFor="language-select"
-        className="text-sm font-medium text-text-primary-light dark:text-text-primary-dark"
-      >
-        {t('languagePreference')}
-      </label>
-      <Select value={currentLocale} onValueChange={(value) => changeLanguage(value as Locale)}>
-        <SelectTrigger id="language-select" className="w-full">
-          <SelectValue placeholder={t('language')} />
-        </SelectTrigger>
-        <SelectContent>
-          {locales.map((locale) => (
-            <SelectItem key={locale} value={locale}>
-              {languageNames[locale]}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
-    </div>
+    <Select value={currentLocale} onValueChange={(value) => changeLanguage(value as Locale)}>
+      <SelectTrigger id="language-select" className="w-full">
+        <SelectValue placeholder={t('language')} />
+      </SelectTrigger>
+      <SelectContent>
+        {locales.map((locale) => (
+          <SelectItem key={locale} value={locale}>
+            {languageNames[locale]}
+          </SelectItem>
+        ))}
+      </SelectContent>
+    </Select>
   );
 }
