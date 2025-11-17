@@ -120,3 +120,110 @@
 [00:11:50.602] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/gangnam-beauty.jpg" "received" null
 [00:11:50.603] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/seoul-skin.jpg" "received" null
 [00:11:50.609] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/apgujeong-aesthetic.jpg" "received" null
+[00:15:02.068] Server  LOG      ✓ Compiled in 47ms
+[00:21:42.504] Server  LOG      ✓ Compiled in 40ms
+[00:22:21.562] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/seoul-skin.jpg" "received" null
+[00:22:21.568] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/gangnam-beauty.jpg" "received" null
+[00:22:21.569] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/apgujeong-aesthetic.jpg" "received" null
+[00:22:24.026] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/gangnam-beauty.jpg" "received" null
+[00:22:24.026] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/apgujeong-aesthetic.jpg" "received" null
+[00:22:24.029] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/itaewon-international.jpg" "received" null
+[00:22:24.030] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/sinsa-plastic.jpg" "received" null
+[00:22:25.918] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/gangnam-beauty.jpg" "received" null
+[00:22:25.918] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/seoul-skin.jpg" "received" null
+[00:22:25.919] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/apgujeong-aesthetic.jpg" "received" null
+[00:22:30.056] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/gangnam-beauty.jpg" "received" null
+[00:22:30.057] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/seoul-skin.jpg" "received" null
+[00:22:30.061] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/apgujeong-aesthetic.jpg" "received" null
+[00:25:43.770] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `clinics.sortBy` in messages for locale `en`."}
+[00:25:43.770] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `clinics.sortBy` in messages for locale `en`."}
+[00:25:43.787] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/apgujeong-aesthetic.jpg" "received" null
+[00:25:43.834] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/cheongdam-luxury.jpg" "received" null
+[00:25:43.835] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/gangnam-beauty.jpg" "received" null
+[00:25:43.886] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/sinsa-plastic.jpg" "received" null
+[00:25:43.887] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/hannam-boutique.jpg" "received" null
+[00:25:43.989] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/itaewon-international.jpg" "received" null
+[00:25:43.989] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/seocho-advanced.jpg" "received" null
+[00:25:43.998] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/seoul-skin.jpg" "received" null
+[00:25:43.999] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/yeonnam-skin.jpg" "received" null
+[00:25:44.025] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/hongdae-derma.jpg" "received" null
+[00:25:51.322] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `clinics.sortBy` in messages for locale `en`."}
+[00:25:51.322] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `clinics.sortBy` in messages for locale `en`."}
+[00:25:51.342] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/apgujeong-aesthetic.jpg" "received" null
+[00:25:51.398] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/cheongdam-luxury.jpg" "received" null
+[00:25:51.433] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/gangnam-beauty.jpg" "received" null
+[00:25:51.463] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/sinsa-plastic.jpg" "received" null
+[00:25:51.474] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/hannam-boutique.jpg" "received" null
+[00:25:51.498] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/itaewon-international.jpg" "received" null
+[00:25:51.546] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/seocho-advanced.jpg" "received" null
+[00:25:51.592] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/seoul-skin.jpg" "received" null
+[00:25:51.597] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/yeonnam-skin.jpg" "received" null
+[00:25:51.598] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/hongdae-derma.jpg" "received" null
+[00:25:53.298] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/jamsil-family.jpg" "received" null
+[00:25:53.305] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `clinics.sortBy` in messages for locale `en`."}
+[00:25:53.305] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `clinics.sortBy` in messages for locale `en`."}
+[00:25:54.479] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `clinics.sortBy` in messages for locale `en`."}
+[00:25:54.479] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `clinics.sortBy` in messages for locale `en`."}
+[00:25:54.479] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[00:25:54.479] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[00:25:56.387] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `clinics.sortBy` in messages for locale `en`."}
+[00:25:56.387] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `clinics.sortBy` in messages for locale `en`."}
+[00:25:57.196] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `clinics.sortBy` in messages for locale `en`."}
+[00:25:57.196] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `clinics.sortBy` in messages for locale `en`."}
+[00:25:57.246] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/apgujeong-aesthetic.jpg" "received" null
+[00:25:57.246] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/cheongdam-luxury.jpg" "received" null
+[00:25:57.246] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/gangnam-beauty.jpg" "received" null
+[00:25:57.252] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/hongdae-derma.jpg" "received" null
+[00:25:57.252] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/itaewon-international.jpg" "received" null
+[00:25:57.257] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/jamsil-family.jpg" "received" null
+[00:25:57.334] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/seocho-advanced.jpg" "received" null
+[00:25:57.339] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/seoul-skin.jpg" "received" null
+[00:25:57.341] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/sinsa-plastic.jpg" "received" null
+[00:25:58.388] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `clinics.sortBy` in messages for locale `en`."}
+[00:25:58.388] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `clinics.sortBy` in messages for locale `en`."}
+[00:25:59.368] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `clinics.sortBy` in messages for locale `en`."}
+[00:25:59.368] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `clinics.sortBy` in messages for locale `en`."}
+[00:25:59.421] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/apgujeong-aesthetic.jpg" "received" null
+[00:25:59.422] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/cheongdam-luxury.jpg" "received" null
+[00:25:59.422] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/gangnam-beauty.jpg" "received" null
+[00:25:59.427] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/hannam-boutique.jpg" "received" null
+[00:25:59.428] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/itaewon-international.jpg" "received" null
+[00:25:59.431] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/jamsil-family.jpg" "received" null
+[00:25:59.506] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/seocho-advanced.jpg" "received" null
+[00:25:59.508] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/seoul-skin.jpg" "received" null
+[00:25:59.509] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/sinsa-plastic.jpg" "received" null
+[00:25:59.619] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `clinics.sortBy` in messages for locale `en`."}
+[00:25:59.619] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `clinics.sortBy` in messages for locale `en`."}
+[00:26:00.129] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `clinics.sortBy` in messages for locale `en`."}
+[00:26:00.129] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `clinics.sortBy` in messages for locale `en`."}
+[00:26:00.179] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/apgujeong-aesthetic.jpg" "received" null
+[00:26:00.179] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/cheongdam-luxury.jpg" "received" null
+[00:26:00.180] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/gangnam-beauty.jpg" "received" null
+[00:26:00.185] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/hannam-boutique.jpg" "received" null
+[00:26:00.186] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/itaewon-international.jpg" "received" null
+[00:26:00.191] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/jamsil-family.jpg" "received" null
+[00:26:00.265] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/seocho-advanced.jpg" "received" null
+[00:26:00.268] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/seoul-skin.jpg" "received" null
+[00:26:00.268] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/sinsa-plastic.jpg" "received" null
+[00:26:00.736] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `clinics.sortBy` in messages for locale `en`."}
+[00:26:00.736] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `clinics.sortBy` in messages for locale `en`."}
+[00:26:01.423] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `clinics.sortBy` in messages for locale `en`."}
+[00:26:01.423] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `clinics.sortBy` in messages for locale `en`."}
+[00:26:01.445] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/apgujeong-aesthetic.jpg" "received" null
+[00:26:01.445] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/cheongdam-luxury.jpg" "received" null
+[00:26:01.445] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/gangnam-beauty.jpg" "received" null
+[00:26:01.446] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/hannam-boutique.jpg" "received" null
+[00:26:01.459] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/hongdae-derma.jpg" "received" null
+[00:26:01.460] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/jamsil-family.jpg" "received" null
+[00:26:01.533] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/seocho-advanced.jpg" "received" null
+[00:26:01.534] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/seoul-skin.jpg" "received" null
+[00:26:01.534] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/sinsa-plastic.jpg" "received" null
+[00:26:03.158] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `clinics.sortBy` in messages for locale `en`."}
+[00:26:03.158] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `clinics.sortBy` in messages for locale `en`."}
+[00:26:04.219] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `clinics.sortBy` in messages for locale `en`."}
+[00:26:04.219] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `clinics.sortBy` in messages for locale `en`."}
+[00:26:04.219] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[00:26:04.219] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[00:26:06.643] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `clinics.sortBy` in messages for locale `en`."}
+[00:26:06.643] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `clinics.sortBy` in messages for locale `en`."}
+[00:26:07.330] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/yeonnam-skin.jpg" "received" null
