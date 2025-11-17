@@ -55,35 +55,35 @@ export function SavedItemsContent() {
 
   return (
     <Tabs defaultValue="treatments" className="w-full">
-      <TabsList className="grid w-full grid-cols-2 mb-6">
-        <TabsTrigger value="treatments" className="flex items-center gap-2">
+      <TabsList className="grid w-full grid-cols-2 mb-4 sm:mb-6 min-h-[44px]">
+        <TabsTrigger value="treatments" className="flex items-center gap-1.5 sm:gap-2 min-h-[44px] touch-manipulation">
           <Sparkles className="h-4 w-4" />
-          {t('savedTreatments')}
+          <span className="text-sm sm:text-base">{t('savedTreatments')}</span>
         </TabsTrigger>
-        <TabsTrigger value="clinics" className="flex items-center gap-2">
+        <TabsTrigger value="clinics" className="flex items-center gap-1.5 sm:gap-2 min-h-[44px] touch-manipulation">
           <Building2 className="h-4 w-4" />
-          {t('savedClinics')}
+          <span className="text-sm sm:text-base">{t('savedClinics')}</span>
         </TabsTrigger>
       </TabsList>
 
-      <TabsContent value="treatments" className="mt-6">
+      <TabsContent value="treatments" className="mt-4 sm:mt-6">
         {savedTreatments.length === 0 ? (
           <div className="flex flex-col items-center justify-center min-h-[400px] text-center px-4">
-            <div className="rounded-full bg-muted p-6 mb-4">
-              <Bookmark className="h-12 w-12 text-muted-foreground" />
+            <div className="rounded-full bg-muted p-4 sm:p-6 mb-3 sm:mb-4">
+              <Bookmark className="h-10 w-10 sm:h-12 sm:w-12 text-muted-foreground" />
             </div>
-            <h3 className="text-xl font-semibold mb-2">
+            <h3 className="text-lg sm:text-xl font-semibold mb-2">
               {t('noSavedTreatments')}
             </h3>
-            <p className="text-muted-foreground mb-6 max-w-md">
+            <p className="text-sm sm:text-base text-muted-foreground mb-4 sm:mb-6 max-w-md">
               {t('startExploring')}
             </p>
-            <Button onClick={() => router.push('/treatments')}>
+            <Button onClick={() => router.push('/treatments')} className="min-h-[44px] touch-manipulation">
               {t('exploreTreatments')}
             </Button>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4 lg:gap-5">
             {savedTreatments.map((treatment) => (
               <div key={treatment.id} className="relative">
                 <TreatmentCard
@@ -93,7 +93,7 @@ export function SavedItemsContent() {
                 <Button
                   variant="outline"
                   size="sm"
-                  className="absolute top-2 right-2 bg-background/80 backdrop-blur-sm"
+                  className="absolute top-2 right-2 bg-background/80 backdrop-blur-sm min-h-[36px] touch-manipulation"
                   onClick={(e) => {
                     e.stopPropagation();
                     handleRemoveTreatment(treatment.id);
@@ -107,24 +107,24 @@ export function SavedItemsContent() {
         )}
       </TabsContent>
 
-      <TabsContent value="clinics" className="mt-6">
+      <TabsContent value="clinics" className="mt-4 sm:mt-6">
         {savedClinics.length === 0 ? (
           <div className="flex flex-col items-center justify-center min-h-[400px] text-center px-4">
-            <div className="rounded-full bg-muted p-6 mb-4">
-              <Bookmark className="h-12 w-12 text-muted-foreground" />
+            <div className="rounded-full bg-muted p-4 sm:p-6 mb-3 sm:mb-4">
+              <Bookmark className="h-10 w-10 sm:h-12 sm:w-12 text-muted-foreground" />
             </div>
-            <h3 className="text-xl font-semibold mb-2">
+            <h3 className="text-lg sm:text-xl font-semibold mb-2">
               {t('noSavedClinics')}
             </h3>
-            <p className="text-muted-foreground mb-6 max-w-md">
+            <p className="text-sm sm:text-base text-muted-foreground mb-4 sm:mb-6 max-w-md">
               {t('startExploring')}
             </p>
-            <Button onClick={() => router.push('/clinics')}>
+            <Button onClick={() => router.push('/clinics')} className="min-h-[44px] touch-manipulation">
               {t('exploreClinics')}
             </Button>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4 lg:gap-5">
             {savedClinics.map((clinic) => (
               <div key={clinic.id} className="relative">
                 <ClinicCard
@@ -134,7 +134,7 @@ export function SavedItemsContent() {
                 <Button
                   variant="outline"
                   size="sm"
-                  className="absolute top-2 right-2 bg-background/80 backdrop-blur-sm"
+                  className="absolute top-2 right-2 bg-background/80 backdrop-blur-sm min-h-[36px] touch-manipulation"
                   onClick={(e) => {
                     e.stopPropagation();
                     handleRemoveClinic(clinic.id);

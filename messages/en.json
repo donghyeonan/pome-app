@@ -194,6 +194,15 @@
       "sensitive": "Sensitive",
       "normal": "Normal"
     },
+    "languageDescription": "Choose your preferred language for the application",
+    "themePreference": "Theme Preference",
+    "theme": "Theme",
+    "themeDescription": "Choose your preferred color theme",
+    "themeOptions": {
+      "light": "Light",
+      "dark": "Dark",
+      "system": "System"
+    },
     "languageOptions": {
       "en": "English",
       "ko": "한국어 (Korean)",

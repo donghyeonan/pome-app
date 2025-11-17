@@ -3,11 +3,12 @@
 import { useState, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
-import { Filter, SlidersHorizontal } from 'lucide-react';
+import { SlidersHorizontal } from 'lucide-react';
 import { ProtectedRoute } from '@/components/auth/protected-route';
 import { PageLayout } from '@/components/layout/page-layout';
 import { SearchInput } from '@/components/search/search-input';
 import { TreatmentCard } from '@/components/cards/treatment-card';
+import { TreatmentFiltersSidebar } from '@/components/filters/treatment-filters-sidebar';
 import { Button } from '@/components/ui/button';
 import {
   Sheet,
@@ -24,7 +25,6 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { treatments } from '@/data/treatments';
-import { Treatment } from '@/types';
 
 type SortOption = 'popularity' | 'price-asc' | 'price-desc' | 'name';
 
@@ -132,15 +132,15 @@ export default function TreatmentsPage() {
     >
       <PageLayout title={t('title')}>
         {/* Header */}
-        <div className="mb-6">
-          <h1 className="text-3xl font-bold mb-2">{t('allTreatments')}</h1>
-          <p className="text-muted-foreground">
+        <div className="mb-4 sm:mb-6">
+          <h1 className="text-2xl sm:text-3xl font-bold mb-1 sm:mb-2">{t('allTreatments')}</h1>
+          <p className="text-sm sm:text-base text-muted-foreground">
             {filteredTreatments.length} {t('title').toLowerCase()}
           </p>
         </div>
 
         {/* Search and Filters Bar */}
-        <div className="mb-6 space-y-4">
+        <div className="mb-4 sm:mb-6 space-y-3 sm:space-y-4">
           {/* Search Input */}
           <SearchInput
             placeholder={t('searchTreatments')}
@@ -149,13 +149,13 @@ export default function TreatmentsPage() {
           />
 
           {/* Filter and Sort Controls */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             {/* Filter Button */}
             <Sheet open={isFilterOpen} onOpenChange={setIsFilterOpen}>
               <SheetTrigger asChild>
-                <Button variant="outline" className="flex-1 sm:flex-none">
+                <Button variant="outline" className="flex-1 sm:flex-none min-h-[44px] touch-manipulation">
                   <SlidersHorizontal className="h-4 w-4" />
-                  {tCommon('filter')}
+                  <span className="ml-2">{tCommon('filter')}</span>
                   {hasActiveFilters && (
                     <span className="ml-1 rounded-full bg-primary px-2 py-0.5 text-xs text-primary-foreground">
                       {selectedCategories.length}
@@ -182,7 +182,7 @@ export default function TreatmentsPage() {
                             type="checkbox"
                             checked={selectedCategories.includes(category)}
                             onChange={() => toggleCategory(category)}
-                            className="rounded border-gray-300"
+                            className="rounded border-border"
                           />
                           <span className="text-sm capitalize">
                             {category.replace(/-/g, ' ')}
@@ -247,7 +247,7 @@ export default function TreatmentsPage() {
 
             {/* Sort Dropdown */}
             <Select value={sortBy} onValueChange={(value) => setSortBy(value as SortOption)}>
-              <SelectTrigger className="flex-1 sm:w-[180px]">
+              <SelectTrigger className="flex-1 sm:w-[180px] min-h-[44px] touch-manipulation">
                 <SelectValue placeholder={t('sortBy')} />
               </SelectTrigger>
               <SelectContent>
@@ -260,28 +260,46 @@ export default function TreatmentsPage() {
           </div>
         </div>
 
-        {/* Treatments Grid */}
-        {filteredTreatments.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {filteredTreatments.map((treatment) => (
-              <TreatmentCard
-                key={treatment.id}
-                treatment={treatment}
-                onClick={() => handleTreatmentClick(treatment.id)}
-              />
-            ))}
-          </div>
-        ) : (
-          <div className="flex flex-col items-center justify-center py-12 text-center">
-            <p className="text-lg font-medium mb-2">{t('noTreatments')}</p>
-            <p className="text-muted-foreground mb-4">{tCommon('tryAgain')}</p>
-            {hasActiveFilters && (
-              <Button variant="outline" onClick={clearFilters}>
-                {tCommon('clear')} {tCommon('filter')}
-              </Button>
+        {/* Desktop Layout with Sidebar */}
+        <div className="lg:grid lg:grid-cols-[280px_1fr] lg:gap-6 xl:gap-8">
+          {/* Desktop Sidebar - Hidden on mobile/tablet */}
+          <aside className="hidden lg:block">
+            <TreatmentFiltersSidebar
+              allCategories={allCategories}
+              selectedCategories={selectedCategories}
+              priceRange={priceRange}
+              onCategoryToggle={toggleCategory}
+              onPriceRangeChange={setPriceRange}
+              onClearFilters={clearFilters}
+              hasActiveFilters={hasActiveFilters}
+            />
+          </aside>
+
+          {/* Treatments Grid */}
+          <div>
+            {filteredTreatments.length > 0 ? (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-3 sm:gap-4 lg:gap-5">
+                {filteredTreatments.map((treatment) => (
+                  <TreatmentCard
+                    key={treatment.id}
+                    treatment={treatment}
+                    onClick={() => handleTreatmentClick(treatment.id)}
+                  />
+                ))}
+              </div>
+            ) : (
+              <div className="flex flex-col items-center justify-center py-12 text-center">
+                <p className="text-lg font-medium mb-2">{t('noTreatments')}</p>
+                <p className="text-muted-foreground mb-4">{tCommon('tryAgain')}</p>
+                {hasActiveFilters && (
+                  <Button variant="outline" onClick={clearFilters}>
+                    {tCommon('clear')} {tCommon('filter')}
+                  </Button>
+                )}
+              </div>
             )}
           </div>
-        )}
+        </div>
       </PageLayout>
     </ProtectedRoute>
   );

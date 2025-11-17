@@ -37,13 +37,13 @@ export default function Home() {
   return (
     <PageLayout>
       {/* Hero Banner */}
-      <div className="relative -mx-4 -mt-6 mb-8 overflow-hidden bg-gradient-to-br from-primary/10 via-primary/5 to-transparent">
-        <div className="container mx-auto px-4 py-12 md:py-16">
-          <div className="max-w-2xl">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-text-primary-light dark:text-text-primary-dark mb-3">
+      <div className="relative -mx-4 sm:-mx-6 lg:-mx-8 -mt-4 sm:-mt-6 lg:-mt-8 mb-6 sm:mb-8 overflow-hidden bg-gradient-to-br from-primary/10 via-primary/5 to-transparent">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-16 lg:py-20">
+          <div className="max-w-2xl lg:max-w-3xl">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-2 sm:mb-3 lg:mb-4 transition-all">
               {t('title')}
             </h1>
-            <p className="text-base md:text-lg text-text-secondary-light dark:text-text-secondary-dark">
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground">
               {t('subtitle')}
             </p>
           </div>
@@ -51,7 +51,7 @@ export default function Home() {
       </div>
 
       {/* Sticky Search Input */}
-      <div className="sticky top-16 z-40 -mx-4 px-4 py-4 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-sm border-b border-transparent mb-8">
+      <div className="sticky top-16 sm:top-20 z-40 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 py-3 sm:py-4 bg-background/95 backdrop-blur-sm border-b border-transparent mb-6 sm:mb-8">
         <div className="max-w-2xl mx-auto">
           <SearchInput
             placeholder={t('searchPlaceholder')}
@@ -62,25 +62,25 @@ export default function Home() {
       </div>
 
       {/* Featured Clinics Section */}
-      <section className="mb-12">
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-2xl font-bold text-text-primary-light dark:text-text-primary-dark">
+      <section className="mb-8 sm:mb-12 lg:mb-16">
+        <div className="flex items-center justify-between mb-4 lg:mb-6">
+          <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold">
             {t('featuredClinics')}
           </h2>
           <Link
             href="/clinics"
-            className="flex items-center gap-1 text-sm font-medium text-primary hover:underline"
+            className="flex items-center gap-1 text-sm lg:text-base font-medium text-primary hover:underline touch-manipulation min-h-[44px] items-center transition-colors"
           >
             {tCommon('seeAll')}
-            <ChevronRight className="h-4 w-4" />
+            <ChevronRight className="h-4 w-4 lg:h-5 lg:w-5" />
           </Link>
         </div>
 
-        {/* Horizontal scrollable container */}
-        <div className="overflow-x-auto -mx-4 px-4 pb-4">
-          <div className="flex gap-4 min-w-min">
+        {/* Horizontal scrollable container - optimized for touch */}
+        <div className="overflow-x-auto -mx-4 px-4 pb-4 scrollbar-hide lg:overflow-visible lg:mx-0 lg:px-0">
+          <div className="flex gap-3 sm:gap-4 lg:gap-5 xl:gap-6 min-w-min lg:grid lg:grid-cols-3 xl:grid-cols-4 lg:min-w-0">
             {featuredClinics.map((clinic) => (
-              <div key={clinic.id} className="w-[280px] flex-shrink-0">
+              <div key={clinic.id} className="w-[260px] sm:w-[280px] lg:w-auto flex-shrink-0">
                 <ClinicCard
                   clinic={clinic}
                   onClick={() => handleClinicClick(clinic.id)}
@@ -92,22 +92,22 @@ export default function Home() {
       </section>
 
       {/* Popular Procedures Section */}
-      <section className="mb-12">
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-2xl font-bold text-text-primary-light dark:text-text-primary-dark">
+      <section className="mb-8 sm:mb-12 lg:mb-16">
+        <div className="flex items-center justify-between mb-4 lg:mb-6">
+          <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold">
             {t('popularProcedures')}
           </h2>
           <Link
             href="/treatments"
-            className="flex items-center gap-1 text-sm font-medium text-primary hover:underline"
+            className="flex items-center gap-1 text-sm lg:text-base font-medium text-primary hover:underline touch-manipulation min-h-[44px] items-center transition-colors"
           >
             {tCommon('seeAll')}
-            <ChevronRight className="h-4 w-4" />
+            <ChevronRight className="h-4 w-4 lg:h-5 lg:w-5" />
           </Link>
         </div>
 
-        {/* Grid layout: 2 columns on mobile, 4 on desktop */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        {/* Grid layout: 1 column on mobile, 2 on tablet, 4 on desktop, 5 on xl */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-5 gap-3 sm:gap-4 lg:gap-5 xl:gap-6">
           {popularProcedures.map((treatment) => (
             <TreatmentCard
               key={treatment.id}

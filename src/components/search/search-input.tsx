@@ -82,7 +82,7 @@ export function SearchInput({
           onChange={handleInputChange}
           onKeyDown={handleKeyDown}
           placeholder={placeholder || t('searchPlaceholder')}
-          className="pl-10 pr-20 h-11 rounded-2xl bg-search-light dark:bg-search-dark border-none focus-visible:ring-2 focus-visible:ring-primary"
+          className="pl-10 pr-20 h-11 rounded-2xl bg-muted border-none focus-visible:ring-2 focus-visible:ring-primary"
         />
         <div className="absolute right-2 flex items-center gap-1">
           {isLoading && (

@@ -40,7 +40,7 @@ export function SearchResultsContent({ query }: SearchResultsContentProps) {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       {/* Search Input */}
       <SearchInput
         defaultValue={query}
@@ -51,11 +51,11 @@ export function SearchResultsContent({ query }: SearchResultsContentProps) {
 
       {/* Results Header */}
       {query && (
-        <div className="space-y-2">
-          <h2 className="text-lg font-semibold">
+        <div className="space-y-1 sm:space-y-2">
+          <h2 className="text-base sm:text-lg font-semibold">
             {t('resultsFor', { query })}
           </h2>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-xs sm:text-sm text-muted-foreground">
             {t('resultsCount', { count: totalResults })}
           </p>
         </div>
@@ -63,8 +63,8 @@ export function SearchResultsContent({ query }: SearchResultsContentProps) {
 
       {/* Empty State */}
       {query && totalResults === 0 && (
-        <div className="text-center py-12">
-          <p className="text-lg text-muted-foreground mb-2">
+        <div className="text-center py-8 sm:py-12 px-4">
+          <p className="text-base sm:text-lg text-muted-foreground mb-2">
             {t('noResults', { query })}
           </p>
           <p className="text-sm text-muted-foreground">
@@ -75,11 +75,11 @@ export function SearchResultsContent({ query }: SearchResultsContentProps) {
 
       {/* Treatments Section */}
       {treatments.length > 0 && (
-        <div className="space-y-4">
-          <h3 className="text-xl font-semibold">
+        <div className="space-y-3 sm:space-y-4">
+          <h3 className="text-lg sm:text-xl font-semibold">
             {t('treatmentsSection')}
           </h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4 lg:gap-5">
             {treatments.map((treatment) => (
               <TreatmentCard
                 key={treatment.id}
@@ -93,11 +93,11 @@ export function SearchResultsContent({ query }: SearchResultsContentProps) {
 
       {/* Clinics Section */}
       {clinics.length > 0 && (
-        <div className="space-y-4">
-          <h3 className="text-xl font-semibold">
+        <div className="space-y-3 sm:space-y-4">
+          <h3 className="text-lg sm:text-xl font-semibold">
             {t('clinicsSection')}
           </h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4 lg:gap-5">
             {clinics.map((clinic) => (
               <ClinicCard
                 key={clinic.id}

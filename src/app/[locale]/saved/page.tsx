@@ -1,5 +1,6 @@
 import { useTranslations } from 'next-intl';
 import { ProtectedRoute } from '@/components/auth/protected-route';
+import { PageLayout } from '@/components/layout/page-layout';
 import { SavedItemsContent } from '@/components/saved/saved-items-content';
 
 export default function SavedPage() {
@@ -7,12 +8,10 @@ export default function SavedPage() {
 
   return (
     <ProtectedRoute>
-      <div className="min-h-screen bg-background pb-20">
-        <div className="container mx-auto px-4 py-6">
-          <h1 className="text-2xl font-bold mb-6">{t('title')}</h1>
-          <SavedItemsContent />
-        </div>
-      </div>
+      <PageLayout title={t('title')}>
+        <h1 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">{t('title')}</h1>
+        <SavedItemsContent />
+      </PageLayout>
     </ProtectedRoute>
   );
 }

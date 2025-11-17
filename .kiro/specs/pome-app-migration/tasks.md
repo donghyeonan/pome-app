@@ -299,35 +299,35 @@
     - Redirect to homepage
     - _Requirements: 15.5_
 
-- [ ] 15. Implement responsive design
-  - [ ] 15.1 Add responsive breakpoints
+- [x] 15. Implement responsive design
+  - [x] 15.1 Add responsive breakpoints
     - Configure Tailwind breakpoints (mobile < 640px, tablet 640-1024px, desktop > 1024px)
     - Test all pages at different viewport sizes
     - _Requirements: 18.1, 18.5_
 
-  - [ ] 15.2 Optimize mobile layout
+  - [x] 15.2 Optimize mobile layout
     - Ensure bottom navigation is visible and functional on mobile
     - Use single column layouts on mobile
     - Implement horizontal scrolling for card lists
     - Ensure touch targets are at least 44x44px
     - _Requirements: 18.2, 18.3, 18.4_
 
-  - [ ] 15.3 Enhance desktop layout
+  - [x] 15.3 Enhance desktop layout
     - Use multi-column grids on desktop
     - Show sidebar filters instead of sheets
     - Add hover states and transitions
     - Use larger images and content areas
     - _Requirements: 18.5_
 
-- [ ] 16. Add error handling and loading states
-  - [ ] 16.1 Create error boundaries
+- [x] 16. Add error handling and loading states
+  - [x] 16.1 Create error boundaries
     - Create /src/app/error.tsx for root error boundary
     - Add page-level error boundaries where needed
     - Display user-friendly error messages with translation keys
     - Provide retry mechanisms with translation
     - _Requirements: 22.4, 21.3_
 
-  - [ ] 16.2 Create loading states
+  - [x] 16.2 Create loading states
     - Create /src/app/loading.tsx for root loading state
     - Add loading.tsx files for route-level loading
     - Implement skeleton loaders for cards and lists
@@ -335,20 +335,20 @@
     - Disable buttons during async operations
     - _Requirements: 22.4, 21.3_
 
-  - [ ] 16.3 Create not found page
+  - [x] 16.3 Create not found page
     - Create /src/app/not-found.tsx for 404 handling
     - Handle invalid treatment/clinic IDs gracefully with translation
     - Provide navigation back to main pages with translation
     - _Requirements: 22.4, 21.3_
 
-- [ ] 17. Implement dark mode
-  - [ ] 17.1 Configure theme provider
+- [x] 17. Implement dark mode
+  - [x] 17.1 Configure theme provider
     - Install and configure next-themes
     - Add ThemeProvider to root layout
     - Set up dark mode class strategy
     - _Requirements: 2.4_
 
-  - [ ] 17.2 Apply dark mode styles
+  - [x] 17.2 Apply dark mode styles
     - Use Tailwind dark: variants for all components
     - Test all pages in both light and dark mode
     - Ensure proper contrast and readability

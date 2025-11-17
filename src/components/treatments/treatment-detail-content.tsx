@@ -43,20 +43,20 @@ export function TreatmentDetailContent({
   };
 
   return (
-    <div className="max-w-4xl mx-auto">
+    <div className="max-w-5xl mx-auto">
       {/* Treatment Header */}
-      <div className="mb-8">
-        <div className="flex items-start gap-4 mb-4">
-          <div className="flex-shrink-0 rounded-2xl bg-primary/10 p-4">
-            <IconComponent className="h-10 w-10 text-primary" />
+      <div className="mb-6 sm:mb-8">
+        <div className="flex items-start gap-3 sm:gap-4 mb-4">
+          <div className="flex-shrink-0 rounded-xl sm:rounded-2xl bg-primary/10 p-3 sm:p-4">
+            <IconComponent className="h-8 w-8 sm:h-10 sm:w-10 text-primary" />
           </div>
-          <div className="flex-1">
-            <h1 className="text-3xl font-bold mb-2">{treatment.name}</h1>
-            <div className="flex flex-wrap items-center gap-4 text-sm">
-              <span className="font-semibold text-primary text-lg">
+          <div className="flex-1 min-w-0">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-2">{treatment.name}</h1>
+            <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-sm">
+              <span className="font-semibold text-primary text-base sm:text-lg">
                 {priceRangeText}
               </span>
-              <span className="text-muted-foreground">
+              <span className="text-muted-foreground text-sm sm:text-base">
                 {treatment.duration}
               </span>
             </div>
@@ -66,43 +66,43 @@ export function TreatmentDetailContent({
       </div>
 
       {/* Description */}
-      <Card className="mb-6">
-        <CardContent className="p-6">
-          <h2 className="text-xl font-semibold mb-3">{t('description')}</h2>
-          <p className="text-muted-foreground leading-relaxed">
+      <Card className="mb-4 sm:mb-6">
+        <CardContent className="p-4 sm:p-6 lg:p-8">
+          <h2 className="text-lg sm:text-xl font-semibold mb-2 sm:mb-3">{t('description')}</h2>
+          <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
             {treatment.description}
           </p>
         </CardContent>
       </Card>
 
       {/* Details Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 lg:gap-6 mb-4 sm:mb-6">
         {/* Duration */}
         <Card>
-          <CardContent className="p-6">
-            <h3 className="font-semibold mb-2">{t('duration')}</h3>
-            <p className="text-muted-foreground">{treatment.duration}</p>
+          <CardContent className="p-4 sm:p-6">
+            <h3 className="text-sm sm:text-base font-semibold mb-2">{t('duration')}</h3>
+            <p className="text-sm sm:text-base text-muted-foreground">{treatment.duration}</p>
           </CardContent>
         </Card>
 
         {/* Recovery Time */}
         <Card>
-          <CardContent className="p-6">
-            <h3 className="font-semibold mb-2">{t('recoveryTime')}</h3>
-            <p className="text-muted-foreground">{treatment.recoveryTime}</p>
+          <CardContent className="p-4 sm:p-6">
+            <h3 className="text-sm sm:text-base font-semibold mb-2">{t('recoveryTime')}</h3>
+            <p className="text-sm sm:text-base text-muted-foreground">{treatment.recoveryTime}</p>
           </CardContent>
         </Card>
       </div>
 
       {/* Categories */}
-      <Card className="mb-6">
-        <CardContent className="p-6">
-          <h2 className="text-xl font-semibold mb-3">{t('categories')}</h2>
-          <div className="flex flex-wrap gap-2">
+      <Card className="mb-4 sm:mb-6">
+        <CardContent className="p-4 sm:p-6">
+          <h2 className="text-lg sm:text-xl font-semibold mb-2 sm:mb-3">{t('categories')}</h2>
+          <div className="flex flex-wrap gap-1.5 sm:gap-2">
             {treatment.categories.map((category) => (
               <span
                 key={category}
-                className="px-3 py-1 rounded-full bg-muted text-sm capitalize"
+                className="px-2.5 sm:px-3 py-1 rounded-full bg-muted text-xs sm:text-sm capitalize"
               >
                 {category.replace(/-/g, ' ')}
               </span>
@@ -112,16 +112,16 @@ export function TreatmentDetailContent({
       </Card>
 
       {/* Risks and Considerations */}
-      <Card className="mb-6">
-        <CardContent className="p-6">
-          <h2 className="text-xl font-semibold mb-3">
+      <Card className="mb-4 sm:mb-6">
+        <CardContent className="p-4 sm:p-6">
+          <h2 className="text-lg sm:text-xl font-semibold mb-2 sm:mb-3">
             {t('risks')} & {t('considerations')}
           </h2>
           <ul className="space-y-2">
             {treatment.risks.map((risk, index) => (
               <li
                 key={index}
-                className="flex items-start gap-2 text-muted-foreground"
+                className="flex items-start gap-2 text-sm sm:text-base text-muted-foreground"
               >
                 <span className="text-primary mt-1">•</span>
                 <span>{risk}</span>
@@ -133,15 +133,15 @@ export function TreatmentDetailContent({
 
       {/* Suitable For */}
       {treatment.suitableFor && (
-        <Card className="mb-6">
-          <CardContent className="p-6">
-            <h2 className="text-xl font-semibold mb-4">{t('suitableFor')}</h2>
-            <div className="space-y-4">
+        <Card className="mb-4 sm:mb-6">
+          <CardContent className="p-4 sm:p-6">
+            <h2 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4">{t('suitableFor')}</h2>
+            <div className="space-y-3 sm:space-y-4">
               {/* Skin Types */}
               {treatment.suitableFor.skinTypes.length > 0 && (
                 <div>
-                  <h3 className="font-medium text-sm mb-2">Skin Types</h3>
-                  <div className="flex flex-wrap gap-2">
+                  <h3 className="font-medium text-xs sm:text-sm mb-2">Skin Types</h3>
+                  <div className="flex flex-wrap gap-1.5 sm:gap-2">
                     {treatment.suitableFor.skinTypes.map((type) => (
                       <span
                         key={type}
@@ -157,8 +157,8 @@ export function TreatmentDetailContent({
               {/* Age Ranges */}
               {treatment.suitableFor.ageRanges.length > 0 && (
                 <div>
-                  <h3 className="font-medium text-sm mb-2">Age Ranges</h3>
-                  <div className="flex flex-wrap gap-2">
+                  <h3 className="font-medium text-xs sm:text-sm mb-2">Age Ranges</h3>
+                  <div className="flex flex-wrap gap-1.5 sm:gap-2">
                     {treatment.suitableFor.ageRanges.map((range) => (
                       <span
                         key={range}
@@ -174,8 +174,8 @@ export function TreatmentDetailContent({
               {/* Goals */}
               {treatment.suitableFor.goals.length > 0 && (
                 <div>
-                  <h3 className="font-medium text-sm mb-2">Treatment Goals</h3>
-                  <div className="flex flex-wrap gap-2">
+                  <h3 className="font-medium text-xs sm:text-sm mb-2">Treatment Goals</h3>
+                  <div className="flex flex-wrap gap-1.5 sm:gap-2">
                     {treatment.suitableFor.goals.map((goal) => (
                       <span
                         key={goal}
@@ -194,14 +194,14 @@ export function TreatmentDetailContent({
 
       {/* Before/After Images */}
       {treatment.beforeAfterImages && treatment.beforeAfterImages.length > 0 && (
-        <Card className="mb-6">
-          <CardContent className="p-6">
-            <h2 className="text-xl font-semibold mb-4">{t('beforeAfter')}</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {treatment.beforeAfterImages.map((images, index) => (
+        <Card className="mb-4 sm:mb-6">
+          <CardContent className="p-4 sm:p-6">
+            <h2 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4">{t('beforeAfter')}</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
+              {treatment.beforeAfterImages.map((_, index) => (
                 <div key={index} className="space-y-2">
                   <div className="aspect-video bg-muted rounded-lg flex items-center justify-center">
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-xs sm:text-sm text-muted-foreground">
                       Before & After Image {index + 1}
                     </p>
                   </div>
@@ -214,12 +214,12 @@ export function TreatmentDetailContent({
 
       {/* Clinics Offering This Treatment */}
       {offeringClinics.length > 0 && (
-        <div className="mb-8">
-          <h2 className="text-2xl font-bold mb-4">{t('clinicsOffering')}</h2>
-          <p className="text-muted-foreground mb-4">
+        <div className="mb-6 sm:mb-8">
+          <h2 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">{t('clinicsOffering')}</h2>
+          <p className="text-sm sm:text-base text-muted-foreground mb-4">
             {offeringClinics.length} clinics offer this treatment
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-5">
             {offeringClinics.map((clinic) => {
               const clinicTreatment = clinicTreatmentData.find(
                 (ct) => ct.clinicId === clinic.id && ct.treatmentId === treatment.id
@@ -231,7 +231,7 @@ export function TreatmentDetailContent({
                     onClick={() => handleClinicClick(clinic.id)}
                   />
                   {clinicTreatment?.price && (
-                    <p className="text-sm text-muted-foreground mt-2 px-2">
+                    <p className="text-xs sm:text-sm text-muted-foreground mt-2 px-2">
                       Price at this clinic: ₩
                       {(clinicTreatment.price / 1000).toFixed(0)}K
                     </p>

@@ -8,6 +8,7 @@ import { ProtectedRoute } from '@/components/auth/protected-route';
 import { PageLayout } from '@/components/layout/page-layout';
 import { SearchInput } from '@/components/search/search-input';
 import { ClinicCard } from '@/components/cards/clinic-card';
+import { ClinicFiltersSidebar } from '@/components/filters/clinic-filters-sidebar';
 import { Button } from '@/components/ui/button';
 import {
   Sheet,
@@ -185,15 +186,15 @@ export default function ClinicsPage() {
     >
       <PageLayout title={t('title')}>
         {/* Header */}
-        <div className="mb-6">
-          <h1 className="text-3xl font-bold mb-2">{t('allClinics')}</h1>
-          <p className="text-muted-foreground">
+        <div className="mb-4 sm:mb-6">
+          <h1 className="text-2xl sm:text-3xl font-bold mb-1 sm:mb-2">{t('allClinics')}</h1>
+          <p className="text-sm sm:text-base text-muted-foreground">
             {filteredClinics.length} {t('title').toLowerCase()}
           </p>
         </div>
 
         {/* Search and Filters Bar */}
-        <div className="mb-6 space-y-4">
+        <div className="mb-4 sm:mb-6 space-y-3 sm:space-y-4">
           {/* Search Input */}
           <SearchInput
             placeholder={t('searchClinics')}
@@ -202,13 +203,13 @@ export default function ClinicsPage() {
           />
 
           {/* Filter and Sort Controls */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             {/* Filter Button */}
             <Sheet open={isFilterOpen} onOpenChange={setIsFilterOpen}>
               <SheetTrigger asChild>
-                <Button variant="outline" className="flex-1 sm:flex-none">
+                <Button variant="outline" className="flex-1 sm:flex-none min-h-[44px] touch-manipulation">
                   <SlidersHorizontal className="h-4 w-4" />
-                  {tCommon('filter')}
+                  <span className="ml-2">{tCommon('filter')}</span>
                   {hasActiveFilters && (
                     <span className="ml-1 rounded-full bg-primary px-2 py-0.5 text-xs text-primary-foreground">
                       {activeFilterCount}
@@ -237,7 +238,7 @@ export default function ClinicsPage() {
                             type="checkbox"
                             checked={selectedLocations.includes(location)}
                             onChange={() => toggleLocation(location)}
-                            className="rounded border-gray-300"
+                            className="rounded border-border"
                           />
                           <span className="text-sm">{location}</span>
                         </label>
@@ -260,7 +261,7 @@ export default function ClinicsPage() {
                             type="checkbox"
                             checked={selectedSpecialties.includes(specialty)}
                             onChange={() => toggleSpecialty(specialty)}
-                            className="rounded border-gray-300"
+                            className="rounded border-border"
                           />
                           <span className="text-sm">{specialty}</span>
                         </label>
@@ -275,7 +276,7 @@ export default function ClinicsPage() {
                         type="checkbox"
                         checked={verifiedOnly}
                         onChange={(e) => setVerifiedOnly(e.target.checked)}
-                        className="rounded border-gray-300"
+                        className="rounded border-border"
                       />
                       <span className="text-sm font-semibold">
                         {t('filterByVerified')}
@@ -298,7 +299,7 @@ export default function ClinicsPage() {
                             type="checkbox"
                             checked={selectedPriceLevel.includes(level)}
                             onChange={() => togglePriceLevel(level)}
-                            className="rounded border-gray-300"
+                            className="rounded border-border"
                           />
                           <span className="text-sm">
                             {t(`priceLevel.${level}`)}
@@ -327,7 +328,7 @@ export default function ClinicsPage() {
               value={sortBy}
               onValueChange={(value) => setSortBy(value as SortOption)}
             >
-              <SelectTrigger className="flex-1 sm:w-[180px]">
+              <SelectTrigger className="flex-1 sm:w-[180px] min-h-[44px] touch-manipulation">
                 <SelectValue placeholder={t('sortBy')} />
               </SelectTrigger>
               <SelectContent>
@@ -339,28 +340,51 @@ export default function ClinicsPage() {
           </div>
         </div>
 
-        {/* Clinics Grid */}
-        {filteredClinics.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {filteredClinics.map((clinic) => (
-              <ClinicCard
-                key={clinic.id}
-                clinic={clinic}
-                onClick={() => handleClinicClick(clinic.id)}
-              />
-            ))}
-          </div>
-        ) : (
-          <div className="flex flex-col items-center justify-center py-12 text-center">
-            <p className="text-lg font-medium mb-2">{t('noClinics')}</p>
-            <p className="text-muted-foreground mb-4">{tCommon('tryAgain')}</p>
-            {hasActiveFilters && (
-              <Button variant="outline" onClick={clearFilters}>
-                {tCommon('clear')} {tCommon('filter')}
-              </Button>
+        {/* Desktop Layout with Sidebar */}
+        <div className="lg:grid lg:grid-cols-[280px_1fr] lg:gap-6 xl:gap-8">
+          {/* Desktop Sidebar - Hidden on mobile/tablet */}
+          <aside className="hidden lg:block">
+            <ClinicFiltersSidebar
+              allLocations={allLocations}
+              allSpecialties={allSpecialties}
+              selectedLocations={selectedLocations}
+              selectedSpecialties={selectedSpecialties}
+              verifiedOnly={verifiedOnly}
+              selectedPriceLevel={selectedPriceLevel}
+              onLocationToggle={toggleLocation}
+              onSpecialtyToggle={toggleSpecialty}
+              onVerifiedToggle={setVerifiedOnly}
+              onPriceLevelToggle={togglePriceLevel}
+              onClearFilters={clearFilters}
+              hasActiveFilters={hasActiveFilters}
+            />
+          </aside>
+
+          {/* Clinics Grid */}
+          <div>
+            {filteredClinics.length > 0 ? (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-3 sm:gap-4 lg:gap-5">
+                {filteredClinics.map((clinic) => (
+                  <ClinicCard
+                    key={clinic.id}
+                    clinic={clinic}
+                    onClick={() => handleClinicClick(clinic.id)}
+                  />
+                ))}
+              </div>
+            ) : (
+              <div className="flex flex-col items-center justify-center py-12 text-center">
+                <p className="text-lg font-medium mb-2">{t('noClinics')}</p>
+                <p className="text-muted-foreground mb-4">{tCommon('tryAgain')}</p>
+                {hasActiveFilters && (
+                  <Button variant="outline" onClick={clearFilters}>
+                    {tCommon('clear')} {tCommon('filter')}
+                  </Button>
+                )}
+              </div>
             )}
           </div>
-        )}
+        </div>
       </PageLayout>
     </ProtectedRoute>
   );
