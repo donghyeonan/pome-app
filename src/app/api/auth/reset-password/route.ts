@@ -78,11 +78,12 @@ export async function POST(req: NextRequest) {
 
     // Update user password and invalidate all sessions in a transaction
     await prisma.$transaction([
-      // Update password
+      // Update password and set passwordChangedAt timestamp
       prisma.user.update({
         where: { id: user.id },
         data: {
           passwordHash: newPasswordHash,
+          passwordChangedAt: new Date(), // Track when password was changed
         },
       }),
       // Invalidate all user sessions (force re-login)

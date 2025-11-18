@@ -12,18 +12,19 @@ datasource db {
 
 // User model - User accounts and preferences
 model User {
-  id             String      @id @default(cuid())
-  email          String      @unique
-  passwordHash   String?
-  name           String?
-  emailVerified  DateTime?   // For future email verification (Phase 4)
-  language       String      @default("en")
-  gender         String?
-  ageRange       String?
-  skinType       String?
-  treatmentGoals Json?
-  createdAt      DateTime    @default(now())
-  updatedAt      DateTime    @updatedAt
+  id                String      @id @default(cuid())
+  email             String      @unique
+  passwordHash      String?
+  name              String?
+  emailVerified     DateTime?   // For future email verification (Phase 4)
+  passwordChangedAt DateTime?   // Track password changes for JWT invalidation
+  language          String      @default("en")
+  gender            String?
+  ageRange          String?
+  skinType          String?
+  treatmentGoals    Json?
+  createdAt         DateTime    @default(now())
+  updatedAt         DateTime    @updatedAt
 
   // Relations
   accounts       Account[]

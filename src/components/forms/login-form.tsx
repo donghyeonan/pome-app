@@ -41,7 +41,7 @@ interface LoginFormProps {
  * Features:
  * - Email and password inputs with validation
  * - Password visibility toggle (Eye/EyeOff icons)
- * - Remember me checkbox with localStorage persistence
+ * - Remember me checkbox
  * - Loading state during authentication
  * - Error message display
  * - "Forgot password?" link
@@ -107,11 +107,6 @@ export function LoginForm({ onSuccess, callbackUrl = '/' }: LoginFormProps) {
       }
 
       if (result?.ok) {
-        // Store remember me preference if needed
-        if (rememberMe && typeof window !== 'undefined') {
-          localStorage.setItem('rememberMe', 'true');
-        }
-
         // Call success callback (which handles redirect)
         if (onSuccess) {
           onSuccess();

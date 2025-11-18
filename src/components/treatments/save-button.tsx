@@ -31,21 +31,29 @@ export function SaveButton({
   const [isAnimating, setIsAnimating] = useState(false);
 
   const saved = isSaved(itemId);
+  const [isSaving, setIsSaving] = useState(false);
 
-  const handleClick = () => {
+  const handleClick = async () => {
     if (!isAuthenticated) {
       // Redirect to login with return URL
       const currentPath = window.location.pathname;
-      router.push(`/login?redirect=${encodeURIComponent(currentPath)}`);
+      router.push(`/login?callbackUrl=${encodeURIComponent(currentPath)}`);
       return;
     }
 
-    if (saved) {
-      unsaveItem(itemId);
-    } else {
-      saveItem(itemType, itemId);
-      setIsAnimating(true);
-      setTimeout(() => setIsAnimating(false), 300);
+    setIsSaving(true);
+    try {
+      if (saved) {
+        await unsaveItem(itemId);
+      } else {
+        await saveItem(itemType, itemId);
+        setIsAnimating(true);
+        setTimeout(() => setIsAnimating(false), 300);
+      }
+    } catch (error) {
+      console.error('Failed to save/unsave item:', error);
+    } finally {
+      setIsSaving(false);
     }
   };
 
@@ -54,6 +62,7 @@ export function SaveButton({
       variant={saved ? 'default' : variant}
       size={size}
       onClick={handleClick}
+      disabled={isSaving}
       className={className}
     >
       <Bookmark
@@ -61,7 +70,7 @@ export function SaveButton({
           isAnimating ? 'scale-125' : ''
         } ${saved ? 'fill-current' : ''}`}
       />
-      {saved ? t('saved') : t('save')}
+      {isSaving ? tAuth('loading') : saved ? t('saved') : t('save')}
     </Button>
   );
 }

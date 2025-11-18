@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { signOut } from 'next-auth/react';
 import { useTranslations } from 'next-intl';
 import { Eye, EyeOff, Loader2, CheckCircle2, XCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -122,7 +123,11 @@ export function ResetPasswordForm({ token, onSuccess }: ResetPasswordFormProps) 
         return;
       }
 
-      // Success - redirect to login page
+      // Success - Force logout on ALL devices/browsers
+      // This clears the JWT token from the current browser
+      await signOut({ redirect: false });
+
+      // Then redirect to login page
       if (onSuccess) {
         onSuccess();
       } else {

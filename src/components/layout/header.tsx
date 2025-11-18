@@ -25,7 +25,7 @@ export function Header({ title, showBackButton }: HeaderProps) {
   const router = useRouter();
   const pathname = usePathname();
   const t = useTranslations();
-  const { user, isAuthenticated, logout } = useAuth();
+  const { user, isAuthenticated, logout, isLoading } = useAuth();
 
   // Determine if we should show the back button
   const shouldShowBack =
@@ -35,9 +35,9 @@ export function Header({ title, showBackButton }: HeaderProps) {
     router.back();
   };
 
-  const handleLogout = () => {
-    logout();
-    router.push('/');
+  const handleLogout = async () => {
+    // NextAuth signOut handles redirect to '/' automatically
+    await logout();
   };
 
   const handleProfileClick = () => {
@@ -132,7 +132,7 @@ export function Header({ title, showBackButton }: HeaderProps) {
           </h1>
         )}
 
-        {/* Right section - User menu */}
+        {/* Right section - User menu or Login/Register */}
         <div className="flex items-center gap-2">
           {isAuthenticated && user ? (
             <DropdownMenu>
@@ -150,7 +150,7 @@ export function Header({ title, showBackButton }: HeaderProps) {
                 <DropdownMenuLabel>
                   <div className="flex flex-col space-y-1">
                     <p className="text-sm font-medium leading-none">
-                      {user.name}
+                      {user.name || 'User'}
                     </p>
                     <p className="text-xs leading-none text-muted-foreground">
                       {user.email}
@@ -175,7 +175,23 @@ export function Header({ title, showBackButton }: HeaderProps) {
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
-          ) : null}
+          ) : (
+            <>
+              <Button
+                variant="ghost"
+                onClick={() => router.push('/login')}
+                className="hidden sm:inline-flex"
+              >
+                {t('auth.login')}
+              </Button>
+              <Button
+                onClick={() => router.push('/register')}
+                size="sm"
+              >
+                {t('auth.register')}
+              </Button>
+            </>
+          )}
         </div>
       </div>
     </header>

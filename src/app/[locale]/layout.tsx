@@ -4,6 +4,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { locales } from '@/i18n';
+import { SessionProvider } from '@/components/session-provider';
 import { AuthProvider } from '@/contexts/auth-context';
 import { ThemeProvider } from '@/components/theme-provider';
 import '@/styles/globals.css';
@@ -45,9 +46,11 @@ export default async function LocaleLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <NextIntlClientProvider messages={messages}>
-            <AuthProvider>{children}</AuthProvider>
-          </NextIntlClientProvider>
+          <SessionProvider>
+            <NextIntlClientProvider messages={messages}>
+              <AuthProvider>{children}</AuthProvider>
+            </NextIntlClientProvider>
+          </SessionProvider>
         </ThemeProvider>
       </body>
     </html>

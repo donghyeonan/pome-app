@@ -1,12 +1,10 @@
 // src/lib/auth.ts
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { prisma } from "@/lib/prisma";
 import { verifyPassword } from "@/lib/password";
 
 export const authOptions: NextAuthOptions = {
-  adapter: PrismaAdapter(prisma),
   providers: [
     CredentialsProvider({
       name: "credentials",
@@ -45,35 +43,32 @@ export const authOptions: NextAuthOptions = {
     })
   ],
   session: {
-    strategy: "database", // Use database sessions for revocability
+    strategy: "jwt", // JWT strategy is required for Credentials provider
     maxAge: 30 * 24 * 60 * 60, // 30 days
-    updateAge: 24 * 60 * 60, // Update session every 24 hours
   },
   pages: {
     signIn: "/login",
     error: "/login",
   },
   callbacks: {
-    // With database sessions, user data comes from DB, not JWT
-    async session({ session, user }) {
-      if (user && session.user) {
-        session.user.id = user.id;
-        session.user.email = user.email;
-        session.user.name = user.name;
+    // JWT callback - add user info to token
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id;
+        token.email = user.email;
+        token.name = user.name;
+      }
+      return token;
+    },
+    // Session callback - add user info from token to session
+    async session({ session, token }) {
+      if (token && session.user) {
+        session.user.id = token.id as string;
+        session.user.email = token.email as string;
+        session.user.name = token.name as string;
       }
       return session;
     }
-  },
-  cookies: {
-    sessionToken: {
-      name: `next-auth.session-token`,
-      options: {
-        httpOnly: true,
-        sameSite: "lax",
-        path: "/",
-        secure: process.env.NODE_ENV === "production",
-      },
-    },
   },
   secret: process.env.NEXTAUTH_SECRET,
 };

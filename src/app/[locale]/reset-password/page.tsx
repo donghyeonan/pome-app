@@ -16,6 +16,7 @@ export default function ResetPasswordPage() {
 
   const [token, setToken] = useState<string | null>(null);
   const [isValidating, setIsValidating] = useState(true);
+  const [tokenError, setTokenError] = useState<string | null>(null);
 
   useEffect(() => {
     // Extract token from query params
@@ -23,11 +24,33 @@ export default function ResetPasswordPage() {
 
     if (!tokenParam) {
       setIsValidating(false);
+      setTokenError('missing');
       return;
     }
 
-    setToken(tokenParam);
-    setIsValidating(false);
+    // Validate token by making a test API call
+    const validateToken = async () => {
+      try {
+        const response = await fetch('/api/auth/validate-reset-token', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ token: tokenParam }),
+        });
+
+        if (!response.ok) {
+          const data = await response.json();
+          setTokenError(data.error || 'invalid');
+        } else {
+          setToken(tokenParam);
+        }
+      } catch (error) {
+        setTokenError('network');
+      } finally {
+        setIsValidating(false);
+      }
+    };
+
+    validateToken();
   }, [searchParams]);
 
   const handleResetSuccess = () => {
@@ -47,8 +70,22 @@ export default function ResetPasswordPage() {
     );
   }
 
-  // Show error state if token is missing
-  if (!token) {
+  // Show error state if token is invalid, expired, or missing
+  if (tokenError) {
+    let errorTitle = 'Invalid Reset Link';
+    let errorMessage = 'This password reset link is invalid or missing. Please request a new password reset link.';
+
+    if (tokenError === 'expired') {
+      errorTitle = 'Reset Link Expired';
+      errorMessage = 'This password reset link has expired. Reset links are valid for 1 hour. Please request a new one.';
+    } else if (tokenError === 'missing') {
+      errorTitle = 'Missing Reset Token';
+      errorMessage = 'No reset token was provided. Please use the link from your password reset email.';
+    } else if (tokenError === 'network') {
+      errorTitle = 'Connection Error';
+      errorMessage = 'Unable to validate reset link. Please check your internet connection and try again.';
+    }
+
     return (
       <div className="min-h-screen flex items-center justify-center px-4 py-12 bg-background">
         <div className="w-full max-w-md space-y-8">
@@ -61,10 +98,8 @@ export default function ResetPasswordPage() {
           <div className="bg-card border border-border rounded-3xl p-8 shadow-sm">
             <div className="flex flex-col items-center text-center space-y-4">
               <XCircle className="h-16 w-16 text-destructive" />
-              <h2 className="text-2xl font-semibold">Invalid Reset Link</h2>
-              <p className="text-muted-foreground">
-                This password reset link is invalid or missing. Please request a new password reset link.
-              </p>
+              <h2 className="text-2xl font-semibold">{errorTitle}</h2>
+              <p className="text-muted-foreground">{errorMessage}</p>
               <div className="flex flex-col gap-2 w-full pt-4">
                 <Link href="/forgot-password" className="w-full">
                   <Button className="w-full" size="lg">
@@ -105,7 +140,7 @@ export default function ResetPasswordPage() {
             {t('resetPasswordInstructions')}
           </p>
 
-          <ResetPasswordForm token={token} onSuccess={handleResetSuccess} />
+          {token && <ResetPasswordForm token={token} onSuccess={handleResetSuccess} />}
         </div>
 
         {/* Help Text */}

@@ -1,17 +1,20 @@
-import { NextRequest } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { createSavedItemSchema } from '@/lib/validations';
 import { handleApiError } from '@/lib/api-error';
-
-// Mock user ID for Phase 2 (will be replaced with real auth in Phase 3)
-// Using the test user created in seed: test@pome.com
-const MOCK_USER_ID = 'cmi2vbsbg000g7p8eoywt8baa';
+import { requireAuthAPI } from '@/lib/api-auth';
 
 export async function GET(request: NextRequest) {
   try {
+    // Require authentication
+    const auth = await requireAuthAPI();
+    if (auth instanceof NextResponse) return auth;
+
+    const { userId } = auth;
+
     // Get user's saved items
     const savedItems = await prisma.savedItem.findMany({
-      where: { userId: MOCK_USER_ID },
+      where: { userId },
       orderBy: { savedAt: 'desc' },
     });
 
@@ -41,13 +44,19 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
+    // Require authentication
+    const auth = await requireAuthAPI();
+    if (auth instanceof NextResponse) return auth;
+
+    const { userId } = auth;
+
     const body = await request.json();
     const data = createSavedItemSchema.parse(body);
 
     // Create saved item
     const savedItem = await prisma.savedItem.create({
       data: {
-        userId: MOCK_USER_ID,
+        userId,
         itemType: data.itemType,
         itemId: data.itemId,
         notes: data.notes,

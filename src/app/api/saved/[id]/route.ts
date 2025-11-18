@@ -1,16 +1,39 @@
-import { NextRequest } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { savedItemIdSchema } from '@/lib/validations';
 import { handleApiError, ApiError } from '@/lib/api-error';
+import { requireAuthAPI } from '@/lib/api-auth';
 
 export async function DELETE(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    // Require authentication
+    const auth = await requireAuthAPI();
+    if (auth instanceof NextResponse) return auth;
+
+    const { userId } = auth;
+
     const { id } = savedItemIdSchema.parse(await params);
 
-    // Delete saved item
+    // First, verify the saved item belongs to the authenticated user
+    const savedItem = await prisma.savedItem.findUnique({
+      where: { id },
+    });
+
+    if (!savedItem) {
+      throw new ApiError('Saved item not found', 404);
+    }
+
+    if (savedItem.userId !== userId) {
+      return NextResponse.json(
+        { error: 'Forbidden. You can only delete your own saved items.' },
+        { status: 403 }
+      );
+    }
+
+    // Delete saved item (user owns it)
     await prisma.savedItem.delete({
       where: { id },
     });

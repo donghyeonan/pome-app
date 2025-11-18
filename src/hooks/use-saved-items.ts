@@ -5,85 +5,131 @@ import { SavedItem } from '@/types';
 
 interface UseSavedItemsReturn {
   savedItems: SavedItem[];
-  saveItem: (itemType: 'clinic' | 'treatment', itemId: string) => void;
-  unsaveItem: (itemId: string) => void;
+  saveItem: (itemType: 'clinic' | 'treatment', itemId: string) => Promise<void>;
+  unsaveItem: (itemId: string) => Promise<void>;
   isSaved: (itemId: string) => boolean;
   isLoading: boolean;
+  error: string | null;
 }
-
-const STORAGE_KEY = 'pome_saved_items';
 
 /**
  * Hook for managing saved items (treatments and clinics)
- * Uses localStorage for persistence in Phase 1
+ * Uses real API endpoints with authentication
  */
 export function useSavedItems(userId?: string): UseSavedItemsReturn {
   const [savedItems, setSavedItems] = useState<SavedItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  // Load saved items from localStorage on mount
+  // Fetch saved items from API on mount
   useEffect(() => {
-    try {
-      const stored = localStorage.getItem(STORAGE_KEY);
-      if (stored) {
-        const parsed = JSON.parse(stored) as Array<
-          Omit<SavedItem, 'savedAt'> & { savedAt: string }
-        >;
-        // Convert savedAt strings back to Date objects
-        const items: SavedItem[] = parsed.map((item) => ({
+    const fetchSavedItems = async () => {
+      if (!userId) {
+        setIsLoading(false);
+        return;
+      }
+
+      try {
+        const response = await fetch('/api/saved');
+        
+        if (!response.ok) {
+          if (response.status === 401) {
+            // User not authenticated, clear items
+            setSavedItems([]);
+            setIsLoading(false);
+            return;
+          }
+          throw new Error('Failed to fetch saved items');
+        }
+
+        const data = await response.json();
+        const items: SavedItem[] = data.savedItems.map((item: any) => ({
           ...item,
           savedAt: new Date(item.savedAt),
         }));
         setSavedItems(items);
+      } catch (err) {
+        console.error('Failed to load saved items:', err);
+        setError('Failed to load saved items');
+      } finally {
+        setIsLoading(false);
       }
-    } catch (error) {
-      console.error('Failed to load saved items:', error);
-    } finally {
-      setIsLoading(false);
-    }
-  }, []);
+    };
 
-  // Save to localStorage whenever savedItems changes
-  useEffect(() => {
-    if (!isLoading) {
-      try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(savedItems));
-      } catch (error) {
-        console.error('Failed to save items to localStorage:', error);
-      }
-    }
-  }, [savedItems, isLoading]);
+    fetchSavedItems();
+  }, [userId]);
 
   /**
    * Save an item (treatment or clinic)
    */
   const saveItem = useCallback(
-    (itemType: 'clinic' | 'treatment', itemId: string) => {
+    async (itemType: 'clinic' | 'treatment', itemId: string) => {
       // Check if already saved
       const alreadySaved = savedItems.some((item) => item.itemId === itemId);
       if (alreadySaved) {
         return;
       }
 
-      const newItem: SavedItem = {
-        id: `saved_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
-        userId: userId || 'mock_user',
-        itemType,
-        itemId,
-        savedAt: new Date(),
-      };
+      try {
+        const response = await fetch('/api/saved', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ itemType, itemId }),
+        });
 
-      setSavedItems((prev) => [...prev, newItem]);
+        if (!response.ok) {
+          throw new Error('Failed to save item');
+        }
+
+        const data = await response.json();
+        const newItem: SavedItem = {
+          ...data.savedItem,
+          savedAt: new Date(data.savedItem.savedAt),
+        };
+
+        setSavedItems((prev) => [...prev, newItem]);
+        setError(null);
+      } catch (err) {
+        console.error('Failed to save item:', err);
+        setError('Failed to save item');
+      }
     },
-    [savedItems, userId]
+    [savedItems]
   );
 
   /**
    * Remove a saved item by itemId
    */
-  const unsaveItem = useCallback((itemId: string) => {
-    setSavedItems((prev) => prev.filter((item) => item.itemId !== itemId));
-  }, []);
+  const unsaveItem = useCallback(
+    async (itemId: string) => {
+      // Find the saved item to get its ID
+      const savedItem = savedItems.find((item) => item.itemId === itemId);
+      if (!savedItem) {
+        return;
+      }
+
+      // Optimistically update UI
+      setSavedItems((prev) => prev.filter((item) => item.itemId !== itemId));
+
+      try {
+        const response = await fetch(`/api/saved/${savedItem.id}`, {
+          method: 'DELETE',
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to unsave item');
+        }
+
+        setError(null);
+      } catch (err) {
+        console.error('Failed to unsave item:', err);
+        setError('Failed to unsave item');
+        // Revert optimistic update on error
+        setSavedItems((prev) => [...prev, savedItem]);
+      }
+    },
+    [savedItems]
+  );
 
   /**
    * Check if an item is saved
@@ -101,5 +147,6 @@ export function useSavedItems(userId?: string): UseSavedItemsReturn {
     unsaveItem,
     isSaved,
     isLoading,
+    error,
   };
 }

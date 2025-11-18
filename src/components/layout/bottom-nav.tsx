@@ -2,10 +2,11 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { Home, Building2, Sparkles, Bookmark, User } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useAuth } from '@/hooks/use-auth';
 
 /**
  * Navigation item configuration
@@ -50,7 +51,9 @@ interface NavItem {
  */
 export function BottomNav() {
   const pathname = usePathname();
+  const router = useRouter();
   const t = useTranslations('nav');
+  const { isAuthenticated, isLoading } = useAuth();
 
   // Remove locale prefix from pathname for comparison
   const currentPath = pathname.replace(/^\/[a-z]{2}/, '') || '/';
@@ -95,6 +98,14 @@ export function BottomNav() {
     return currentPath.startsWith(href);
   };
 
+  const handleNavClick = (e: React.MouseEvent, item: NavItem) => {
+    // If route is protected and user is not authenticated, redirect to login
+    if (item.protected && !isAuthenticated && !isLoading) {
+      e.preventDefault();
+      router.push(`/login?callbackUrl=${encodeURIComponent(item.href)}`);
+    }
+  };
+
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-50 bg-card/95 backdrop-blur-lg border-t border-border lg:hidden">
       <div className="container mx-auto px-2 max-w-7xl">
@@ -102,20 +113,24 @@ export function BottomNav() {
           {navItems.map((item) => {
             const Icon = item.icon;
             const active = isActive(item.href);
+            const isDisabled = item.protected && !isAuthenticated && !isLoading;
 
             return (
               <Link
                 key={item.href}
                 href={item.href}
+                onClick={(e) => handleNavClick(e, item)}
                 className={cn(
                   'flex flex-col items-center justify-center gap-1 px-3 py-2 rounded-lg transition-colors',
                   'min-w-[60px] min-h-[44px] sm:min-w-[80px]',
                   'touch-manipulation',
                   active
                     ? 'text-primary'
-                    : 'text-muted-foreground hover:text-foreground'
+                    : 'text-muted-foreground hover:text-foreground',
+                  isDisabled && 'opacity-50'
                 )}
                 aria-label={item.label}
+                aria-disabled={isDisabled}
               >
                 <Icon
                   className={cn(
