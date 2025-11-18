@@ -107,49 +107,46 @@ export function BottomNav() {
   };
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50 bg-card/95 backdrop-blur-lg border-t border-border lg:hidden">
-      <div className="container mx-auto px-2 max-w-7xl">
-        <div className="flex items-center justify-around h-16 sm:h-20">
-          {navItems.map((item) => {
-            const Icon = item.icon;
-            const active = isActive(item.href);
-            const isDisabled = item.protected && !isAuthenticated && !isLoading;
+    <nav className="fixed bottom-0 left-0 right-0 z-10 border-t border-gray-200/50 dark:border-gray-700/50 bg-background/80 backdrop-blur-md lg:hidden">
+      <div className="flex h-20 items-center justify-around px-2">
+        {navItems.map((item) => {
+          const Icon = item.icon;
+          const active = isActive(item.href);
+          const isDisabled = item.protected && !isAuthenticated && !isLoading;
 
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={(e) => handleNavClick(e, item)}
+          return (
+            <Link
+              key={item.href}
+              href={item.href}
+              onClick={(e) => handleNavClick(e, item)}
+              className={cn(
+                'flex flex-col items-center gap-1.5 transition-colors',
+                active
+                  ? 'text-primary'
+                  : 'text-muted-foreground',
+                isDisabled && 'opacity-50'
+              )}
+              aria-label={item.label}
+              aria-disabled={isDisabled}
+            >
+              {active ? (
+                <div className="flex h-8 w-16 items-center justify-center rounded-full bg-[#FFE4E9]">
+                  <Icon className="h-6 w-6 text-[#D90429]" />
+                </div>
+              ) : (
+                <Icon className="h-6 w-6" />
+              )}
+              <span
                 className={cn(
-                  'flex flex-col items-center justify-center gap-1 px-3 py-2 rounded-lg transition-colors',
-                  'min-w-[60px] min-h-[44px] sm:min-w-[80px]',
-                  'touch-manipulation',
-                  active
-                    ? 'text-primary'
-                    : 'text-muted-foreground hover:text-foreground',
-                  isDisabled && 'opacity-50'
+                  'text-xs',
+                  active && 'font-semibold text-[#D90429]'
                 )}
-                aria-label={item.label}
-                aria-disabled={isDisabled}
               >
-                <Icon
-                  className={cn(
-                    'h-5 w-5 sm:h-6 sm:w-6',
-                    active && 'stroke-[2.5]'
-                  )}
-                />
-                <span
-                  className={cn(
-                    'text-xs sm:text-sm',
-                    active && 'font-semibold'
-                  )}
-                >
-                  {item.label}
-                </span>
-              </Link>
-            );
-          })}
-        </div>
+                {item.label}
+              </span>
+            </Link>
+          );
+        })}
       </div>
     </nav>
   );

@@ -130,16 +130,16 @@ export function SearchInput({
   return (
     <form onSubmit={handleSubmit} className="relative w-full">
       <div className="relative flex items-center">
-        <Search className="absolute left-3 h-4 w-4 text-muted-foreground" />
+        <Search className="absolute left-4 h-5 w-5 text-muted-foreground" />
         <Input
           type="text"
           value={query}
           onChange={handleInputChange}
           onKeyDown={handleKeyDown}
           placeholder={placeholder || t('searchPlaceholder')}
-          className="pl-10 pr-20 h-11 rounded-2xl bg-muted border-none focus-visible:ring-2 focus-visible:ring-primary"
+          className="w-full pl-12 pr-4 py-3 h-14 bg-card dark:bg-card rounded-full border-none focus:outline-0 focus:ring-2 focus:ring-primary/50 shadow-sm shadow-black/5 placeholder:text-muted-foreground"
         />
-        <div className="absolute right-2 flex items-center gap-1">
+        <div className="absolute right-4 flex items-center gap-1">
           {isLoading && (
             <Loader2 className="h-4 w-4 animate-spin text-muted-foreground" />
           )}

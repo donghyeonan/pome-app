@@ -36,22 +36,25 @@ export default function Home() {
 
   return (
     <PageLayout>
-      {/* Hero Banner */}
-      <div className="relative -mx-4 sm:-mx-6 lg:-mx-8 -mt-4 sm:-mt-6 lg:-mt-8 mb-6 sm:mb-8 overflow-hidden bg-gradient-to-br from-primary/10 via-primary/5 to-transparent">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-16 lg:py-20">
-          <div className="max-w-2xl lg:max-w-3xl">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-2 sm:mb-3 lg:mb-4 transition-all">
+      {/* Hero Section - Rounded container with background image */}
+      <div className="px-4 py-4">
+        <div
+          className="relative overflow-hidden rounded-3xl min-h-[240px] bg-cover bg-center flex flex-col justify-end"
+          style={{
+            backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0) 40%), url('/images/hero/hero-background.jpg')`,
+            backgroundColor: '#E5E5E5',
+          }}
+        >
+          <div className="p-5">
+            <h1 className="text-white tracking-tight text-[32px] font-bold leading-tight">
               {t('title')}
             </h1>
-            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground">
-              {t('subtitle')}
-            </p>
           </div>
         </div>
       </div>
 
       {/* Sticky Search Input */}
-      <div className="sticky top-16 sm:top-20 z-40 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 py-3 sm:py-4 bg-background/95 backdrop-blur-sm border-b border-transparent mb-6 sm:mb-8">
+      <div className="sticky top-[72px] z-[9] px-4 py-2 bg-background/80 backdrop-blur-md -mx-px mb-4">
         <div className="max-w-2xl mx-auto">
           <SearchInput
             placeholder={t('searchPlaceholder')}
@@ -62,60 +65,54 @@ export default function Home() {
       </div>
 
       {/* Featured Clinics Section */}
-      <section className="mb-8 sm:mb-12 lg:mb-16">
-        <div className="flex items-center justify-between mb-4 lg:mb-6">
-          <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold">
+      <section className="pt-4">
+        <div className="flex items-center justify-between px-4 pb-3">
+          <h2 className="text-2xl font-bold leading-tight tracking-[-0.015em]">
             {t('featuredClinics')}
           </h2>
           <Link
             href="/clinics"
-            className="flex items-center gap-1 text-sm lg:text-base font-medium text-primary hover:underline touch-manipulation min-h-[44px] items-center transition-colors"
+            className="text-[#D90429] text-base font-semibold hover:underline"
           >
             {tCommon('seeAll')}
-            <ChevronRight className="h-4 w-4 lg:h-5 lg:w-5" />
           </Link>
         </div>
 
-        {/* Horizontal scrollable container - optimized for touch */}
-        <div className="overflow-x-auto -mx-4 px-4 pb-4 scrollbar-hide lg:overflow-visible lg:mx-0 lg:px-0">
-          <div className="flex gap-3 sm:gap-4 lg:gap-5 xl:gap-6 min-w-min lg:grid lg:grid-cols-3 xl:grid-cols-4 lg:min-w-0">
-            {featuredClinics.map((clinic) => (
-              <div
-                key={clinic.id}
-                className="w-[260px] sm:w-[280px] lg:w-auto flex-shrink-0"
-              >
-                <ClinicCard
-                  clinic={clinic}
-                  onClick={() => handleClinicClick(clinic.id)}
-                />
-              </div>
-            ))}
-          </div>
+        {/* Horizontal scrollable container with snap scrolling */}
+        <div className="flex w-full overflow-x-auto snap-x snap-mandatory gap-4 px-4 pb-4 scrollbar-hide">
+          {featuredClinics.map((clinic) => (
+            <div key={clinic.id} className="flex-shrink-0 w-[40%] snap-start">
+              <ClinicCard
+                clinic={clinic}
+                onClick={() => handleClinicClick(clinic.id)}
+              />
+            </div>
+          ))}
         </div>
       </section>
 
       {/* Popular Procedures Section */}
-      <section className="mb-8 sm:mb-12 lg:mb-16">
-        <div className="flex items-center justify-between mb-4 lg:mb-6">
-          <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold">
+      <section className="px-4 pb-24 pt-4">
+        <div className="flex items-center justify-between mb-3">
+          <h2 className="text-2xl font-bold leading-tight tracking-[-0.015em]">
             {t('popularProcedures')}
           </h2>
           <Link
             href="/treatments"
-            className="flex items-center gap-1 text-sm lg:text-base font-medium text-primary hover:underline touch-manipulation min-h-[44px] items-center transition-colors"
+            className="text-[#D90429] text-base font-semibold hover:underline"
           >
             {tCommon('seeAll')}
-            <ChevronRight className="h-4 w-4 lg:h-5 lg:w-5" />
           </Link>
         </div>
 
-        {/* Grid layout: 1 column on mobile, 2 on tablet, 4 on desktop, 5 on xl */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-5 gap-3 sm:gap-4 lg:gap-5 xl:gap-6">
-          {popularProcedures.map((treatment) => (
+        {/* 2-column grid matching HTML design */}
+        <div className="grid grid-cols-2 gap-4">
+          {popularProcedures.map((treatment, index) => (
             <TreatmentCard
               key={treatment.id}
               treatment={treatment}
               onClick={() => handleTreatmentClick(treatment.id)}
+              highlighted={index === 0}
             />
           ))}
         </div>

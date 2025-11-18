@@ -1,48 +1,86 @@
 @import 'tailwindcss';
 
 :root {
-  --background: 245 245 247;
-  --foreground: 44 44 46;
+  /* Base colors - matching HTML design */
+  --background: 245 245 247; /* #F5F5F7 - background-light */
+  --foreground: 44 44 46; /* #2C2C2E - text-primary-light */
   --card: 255 255 255;
   --card-foreground: 44 44 46;
-  --primary: 217 4 41;
+
+  /* Primary red theme - D90429 */
+  --primary: 217 4 41; /* #D90429 */
   --primary-foreground: 255 255 255;
-  --secondary: 239 239 244;
+
+  /* Secondary colors */
+  --secondary: 239 239 244; /* #EFEFF4 */
   --secondary-foreground: 44 44 46;
-  --muted: 239 239 244;
-  --muted-foreground: 138 138 142;
+
+  /* Muted/text colors */
+  --muted: 239 239 244; /* #EFEFF4 */
+  --muted-foreground: 138 138 142; /* #8A8A8E - text-secondary-light */
+
+  /* Accent colors */
   --accent: 239 239 244;
   --accent-foreground: 44 44 46;
+
+  /* Destructive */
   --destructive: 217 4 41;
   --destructive-foreground: 255 255 255;
+
+  /* Borders and inputs */
   --border: 229 229 234;
-  --input: 239 239 244;
+  --input: 239 239 244; /* #EFEFF4 - search-light */
   --ring: 217 4 41;
+
+  /* Border radius */
   --radius: 0.5rem;
+
+  /* Popover */
   --popover: 255 255 255;
   --popover-foreground: 44 44 46;
+
+  /* Search bar specific */
+  --search: 239 239 244; /* #EFEFF4 */
 }
 
 .dark {
-  --background: 28 28 30;
-  --foreground: 242 242 247;
-  --card: 44 44 46;
+  /* Base colors - dark theme */
+  --background: 28 28 30; /* #1C1C1E - background-dark */
+  --foreground: 242 242 247; /* #F2F2F7 - text-primary-dark */
+  --card: 44 44 46; /* #2C2C2E - card-dark */
   --card-foreground: 242 242 247;
-  --primary: 217 4 41;
+
+  /* Primary red theme (same in dark) */
+  --primary: 217 4 41; /* #D90429 */
   --primary-foreground: 255 255 255;
-  --secondary: 58 58 60;
+
+  /* Secondary colors */
+  --secondary: 58 58 60; /* #3A3A3C */
   --secondary-foreground: 242 242 247;
-  --muted: 58 58 60;
-  --muted-foreground: 142 142 147;
+
+  /* Muted/text colors */
+  --muted: 58 58 60; /* #3A3A3C */
+  --muted-foreground: 142 142 147; /* #8E8E93 - text-secondary-dark */
+
+  /* Accent colors */
   --accent: 58 58 60;
   --accent-foreground: 242 242 247;
+
+  /* Destructive */
   --destructive: 217 4 41;
   --destructive-foreground: 255 255 255;
+
+  /* Borders and inputs */
   --border: 58 58 60;
-  --input: 58 58 60;
+  --input: 58 58 60; /* #3A3A3C - search-dark */
   --ring: 217 4 41;
+
+  /* Popover */
   --popover: 44 44 46;
   --popover-foreground: 242 242 247;
+
+  /* Search bar specific */
+  --search: 58 58 60; /* #3A3A3C */
 }
 
 body {

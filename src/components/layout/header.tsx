@@ -72,14 +72,14 @@ export function Header({ title, showBackButton }: HeaderProps) {
               onClick={() => router.push('/')}
             >
               <Image
-                src="/pome-logo.svg"
+                src="/images/logo/pome-logo.png"
                 alt="Pome"
                 width={32}
                 height={32}
-                className="w-7 h-7 sm:w-8 sm:h-8 lg:w-10 lg:h-10"
+                className="w-7 h-7 sm:w-8 sm:h-8"
               />
               <span className="text-lg sm:text-xl lg:text-2xl font-bold">
-                Pome
+                pome
               </span>
             </div>
           )}
