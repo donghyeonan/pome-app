@@ -73,8 +73,10 @@
     "createNewPassword": "Create a new password for your account",
     "resetPasswordInstructions": "Enter your new password below. Make sure it meets all the requirements.",
     "resetPasswordHelp": "After resetting your password, you'll need to log in again with your new password.",
+    "createAccount": "Create your account",
     "noAccount": "Don't have an account?",
     "hasAccount": "Already have an account?",
+    "alreadyHaveAccount": "Already have an account?",
     "invalidCredentials": "Invalid email or password",
     "loginRequired": "Please log in to continue",
     "loginSuccess": "Successfully logged in",
@@ -83,7 +85,8 @@
     "loading": "Loading...",
     "demoCredentials": "Demo Credentials:",
     "demoEmail": "Email:",
-    "demoPassword": "Password:"
+    "demoPassword": "Password:",
+    "orDivider": "or"
   },
   "treatments": {
     "title": "Treatments",

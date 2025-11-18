@@ -16,7 +16,8 @@ model User {
   email             String      @unique
   passwordHash      String?
   name              String?
-  emailVerified     DateTime?   // For future email verification (Phase 4)
+  image             String?     // Profile picture URL (from OAuth providers)
+  emailVerified     DateTime?   // For email verification
   passwordChangedAt DateTime?   // Track password changes for JWT invalidation
   language          String      @default("en")
   gender            String?

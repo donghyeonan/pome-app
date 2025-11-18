@@ -8,6 +8,8 @@ A modern, full-stack web application for discovering dermatology cosmetic proced
 - **Clinic Directory**: Find verified clinics with ratings, locations, and specialties
 - **Smart Search**: Autocomplete search with intelligent result categorization
 - **Saved Items**: Bookmark favorite treatments and clinics
+- **User Authentication**: Email/Password and Google OAuth sign-in ⭐
+- **Account Linking**: Automatic linking of Google accounts to existing users
 - **Multi-language Support**: English (with Korean, Chinese, Japanese coming soon)
 - **Dark Mode**: Full dark mode support with system preference detection
 - **Responsive Design**: Mobile-first design that works on all devices
@@ -29,10 +31,15 @@ A modern, full-stack web application for discovering dermatology cosmetic proced
 - **Supported Languages**: English (en), Korean (ko), Chinese (zh), Japanese (ja)
 - **Translation Management**: JSON-based translation files
 
-### Future Stack (Phase 2+)
+### Backend & Database (Phase 2+)
 - **Database**: Neon (Serverless PostgreSQL)
 - **ORM**: Prisma
-- **Authentication**: NextAuth.js with JWT strategy
+- **Authentication**: NextAuth.js v4.24.13
+  - Email/Password (Credentials Provider)
+  - Google OAuth (OAuth Provider)
+  - JWT session strategy
+  - PrismaAdapter for database sessions
+- **Email Service**: Resend (transactional emails)
 - **Deployment**: Vercel
 
 ## 📁 Project Structure
@@ -463,22 +470,87 @@ Translation keys are organized by feature:
 
 See `messages/TRANSLATION_WORKFLOW.md` for detailed guidelines.
 
-## 🔐 Authentication (Phase 1 - Mock)
+## 🔐 Authentication (Phase 3)
 
-Phase 1 uses mock authentication with localStorage for demonstration purposes.
+Phase 3 implements real authentication using NextAuth.js with support for both email/password and Google OAuth.
 
-### Mock Credentials
+### Authentication Methods
 
+**1. Email/Password Authentication**
+- User registration with email and password
+- Secure password hashing with bcryptjs
+- Email verification system
+- Password reset functionality
+
+**2. Google OAuth** ⭐ NEW!
+- One-click sign-in with Google
+- Automatic account linking (same email)
+- Profile picture sync
+- No password required
+
+### Google OAuth Setup
+
+To enable Google OAuth authentication, you need to configure Google Cloud Console credentials.
+
+**Step 1: Create OAuth Credentials**
+
+1. Go to [Google Cloud Console](https://console.cloud.google.com/)
+2. Create a new project or select existing
+3. Navigate to **APIs & Services > Credentials**
+4. Click **Create Credentials > OAuth client ID**
+5. Choose **Web application**
+6. Configure:
+   - **Authorized JavaScript origins**: `http://localhost:3000`
+   - **Authorized redirect URIs**: `http://localhost:3000/api/auth/callback/google`
+
+**Step 2: Configure Environment Variables**
+
+Add to your `.env` file:
+
+```bash
+# Google OAuth Credentials
+GOOGLE_CLIENT_ID="your-client-id.apps.googleusercontent.com"
+GOOGLE_CLIENT_SECRET="your-client-secret"
+
+# NextAuth Configuration
+NEXTAUTH_URL="http://localhost:3000"
+NEXTAUTH_SECRET="generate-with-openssl-rand-base64-32"
 ```
-Email: sarah.kim@example.com
+
+**Step 3: Run Database Migration** (if not already done)
+
+```bash
+npm run db:migrate
+```
+
+**For detailed setup instructions**, see [GOOGLE_OAUTH_SETUP.md](./GOOGLE_OAUTH_SETUP.md)
+
+### Test Credentials
+
+**Email/Password:**
+```
+Email: test@pome.com
 Password: password123
 ```
 
-Other available test accounts:
+Other test accounts:
+- `sarah.kim@example.com` / `password123`
 - `john.park@example.com` / `password123`
-- `minji.lee@example.com` / `password123`
-- `emma.chen@example.com` / `password123`
-- `test@example.com` / `password123`
+
+**Google OAuth:**
+- Use any Google account to sign in
+- First sign-in creates a new user
+- Subsequent sign-ins link to existing account (if email matches)
+
+### Account Linking
+
+The system automatically links Google accounts to existing email/password accounts:
+
+1. **User registers with email/password** → Account created
+2. **User signs in with Google (same email)** → Google account linked
+3. **User can now sign in with BOTH methods** ✅
+
+**Note**: If you sign up with Google first, you cannot add a password later (Google-only account).
 
 ### Using Authentication
 
@@ -487,12 +559,12 @@ import { useAuth } from '@/hooks/use-auth';
 
 function MyComponent() {
   const { user, isAuthenticated, login, logout } = useAuth();
-  
+
   // Check if user is logged in
   if (!isAuthenticated) {
     return <LoginPrompt />;
   }
-  
+
   return <div>Welcome, {user?.name}!</div>;
 }
 ```
@@ -500,16 +572,36 @@ function MyComponent() {
 ### Protected Routes
 
 Routes that require authentication:
-- `/treatments` (list)
-- `/clinics` (list and detail)
-- `/search`
-- `/saved`
-- `/profile`
+- `/saved` - Saved items page
+- `/profile` - User profile page
 
 Public routes:
-- `/` (homepage)
-- `/treatments/[id]` (treatment detail)
-- `/login`
+- `/` - Homepage
+- `/treatments` - Treatment list
+- `/treatments/[id]` - Treatment detail
+- `/clinics` - Clinic list
+- `/clinics/[id]` - Clinic detail
+- `/search` - Search results
+- `/login` - Login page
+- `/register` - Registration page
+
+### Troubleshooting
+
+**"redirect_uri_mismatch" Error:**
+- Check that redirect URI in Google Console is exactly: `http://localhost:3000/api/auth/callback/google`
+- No trailing slash!
+
+**"invalid_client" Error:**
+- Verify `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` in `.env`
+- No extra spaces or quotes
+- Restart dev server after changing `.env`
+
+**User Not Created:**
+- Check server console for errors
+- Verify database connection
+- Run `npm run db:studio` to inspect database
+
+**For more troubleshooting**, see [GOOGLE_OAUTH_TESTING_PLAN.md](./GOOGLE_OAUTH_TESTING_PLAN.md)
 
 ## 🎨 Styling and Theming
 
@@ -563,7 +655,7 @@ Testing infrastructure will be added in Phase 2:
 
 ## 📊 Development Phases
 
-### ✅ Phase 1: UI/UX Migration (Current)
+### ✅ Phase 1: UI/UX Migration (Complete)
 - Next.js App Router with TypeScript
 - shadcn/ui component library
 - Mock data implementation
@@ -574,32 +666,45 @@ Testing infrastructure will be added in Phase 2:
 - Mock authentication
 - Mock saved items functionality
 
-### 🔜 Phase 2: Database Integration
+### ✅ Phase 2: Database Integration (Complete)
 - Neon PostgreSQL setup
 - Prisma ORM configuration
 - Database schema implementation
 - API routes for data fetching
 - Replace mock data with real database queries
+- Full CRUD operations
+- Validation and error handling
 
-### 🔜 Phase 3: Authentication
+### ✅ Phase 3: Authentication (Complete)
 - NextAuth.js integration
-- JWT strategy implementation
+- JWT session strategy
+- Email/Password authentication
+- **Google OAuth integration** ⭐
 - User registration
 - Password reset functionality
-- Email verification
+- Email verification system
+- Account linking (Google ↔ Email/Password)
+- Profile picture sync from Google
 
-### 🔜 Phase 4: Internationalization Expansion
+### 🔜 Phase 4: Additional OAuth Providers
+- Kakao OAuth (popular in Korea)
+- Naver OAuth (popular in Korea)
+- Account management UI
+- Multi-provider linking
+
+### 🔜 Phase 5: Internationalization Expansion
 - Professional Korean translations
 - Chinese translations
 - Japanese translations
 - Translation management workflow
 
-### 🔜 Phase 5: Advanced Features
+### 🔜 Phase 6: Advanced Features
 - Real-time search with Algolia/Meilisearch
 - User reviews and ratings
 - Clinic booking system
 - Email notifications
 - Admin dashboard
+- Redis for rate limiting (production)
 
 ## 🔧 Phase 2 Preparation
 
