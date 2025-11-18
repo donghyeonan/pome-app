@@ -1,0 +1,162 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// User model - User accounts and preferences
+model User {
+  id             String      @id @default(cuid())
+  email          String      @unique
+  passwordHash   String?
+  name           String?
+  emailVerified  DateTime?   // For future email verification (Phase 4)
+  language       String      @default("en")
+  gender         String?
+  ageRange       String?
+  skinType       String?
+  treatmentGoals Json?
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
+
+  // Relations
+  accounts       Account[]
+  sessions       Session[]
+  savedItems     SavedItem[]
+
+  @@index([email])
+}
+
+// Treatment model - Cosmetic procedures and treatments
+model Treatment {
+  id                String            @id @default(cuid())
+  name              String
+  slug              String            @unique
+  description       String
+  icon              String?
+  priceMin          Int?
+  priceMax          Int?
+  currency          String?           @default("KRW")
+  duration          String?
+  recoveryTime      String?
+  risks             String[]
+  categories        String[]
+  beforeAfterImages Json?
+  suitableFor       Json?
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
+  clinicMappings    ClinicTreatment[]
+
+  @@index([name])
+  @@index([slug])
+}
+
+// Clinic model - Medical facilities offering treatments
+model Clinic {
+  id           String            @id @default(cuid())
+  name         String
+  slug         String            @unique
+  location     String?
+  address      String?
+  description  String?
+  imageUrl     String?
+  rating       Float?            @default(0)
+  reviewCount  Int?              @default(0)
+  specialties  String[]
+  kakaoMapLink String?
+  verified     Boolean           @default(false)
+  priceLevel   Int?
+  openingHours Json?
+  phoneNumber  String?
+  websiteUrl   String?
+  photos       String[]
+  createdAt    DateTime          @default(now())
+  updatedAt    DateTime          @updatedAt
+  treatments   ClinicTreatment[]
+
+  @@index([name, location])
+  @@index([slug])
+  @@index([verified])
+}
+
+// ClinicTreatment junction model - Links clinics and treatments with pricing
+model ClinicTreatment {
+  id           String    @id @default(cuid())
+  clinic       Clinic    @relation(fields: [clinicId], references: [id])
+  clinicId     String
+  treatment    Treatment @relation(fields: [treatmentId], references: [id])
+  treatmentId  String
+  price        Int?
+  availability String    @default("available")
+  createdAt    DateTime  @default(now())
+
+  @@unique([clinicId, treatmentId])
+}
+
+// SavedItem model - User's saved treatments and clinics
+model SavedItem {
+  id       String   @id @default(cuid())
+  user     User     @relation(fields: [userId], references: [id])
+  userId   String
+  itemType String
+  itemId   String
+  notes    String?
+  savedAt  DateTime @default(now())
+
+  @@unique([userId, itemType, itemId])
+  @@index([userId])
+}
+
+// ============================================
+// NextAuth.js Models (Phase 3)
+// ============================================
+
+// Account model - For OAuth providers (future use in Phase 6)
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@index([userId])
+}
+
+// Session model - Database sessions for NextAuth
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([sessionToken])
+  @@index([userId])
+}
+
+// VerificationToken model - For password resets and email verification
+model VerificationToken {
+  identifier String   // email address
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@index([token])
+}

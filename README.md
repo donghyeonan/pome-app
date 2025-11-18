@@ -173,6 +173,241 @@ npm run test         # Run tests
 npm run test:watch   # Run tests in watch mode
 ```
 
+## 🗄️ Phase 2: Database & API
+
+Phase 2 replaces mock data with a real PostgreSQL database using Neon and Prisma ORM. All API routes are now functional with full CRUD operations, validation, and error handling.
+
+### Database Setup
+
+**1. Create a Neon Database**
+
+1. Sign up at [neon.tech](https://neon.tech) (free tier available)
+2. Create a new project
+3. Copy the connection strings from your Neon dashboard
+
+**2. Configure Environment Variables**
+
+Create a `.env` file in the project root:
+
+```bash
+# Copy from .env.example
+cp .env.example .env
+```
+
+Update the `.env` file with your Neon credentials:
+
+```env
+# Neon PostgreSQL (pooled connection for queries)
+DATABASE_URL="postgresql://user:password@ep-xxx.region.aws.neon.tech/dbname?sslmode=require"
+
+# Application URL
+NEXT_PUBLIC_APP_URL="http://localhost:3000"
+
+# JWT Secret (for Phase 3)
+JWT_SECRET="your-secret-key-here"
+```
+
+**3. Run Database Migrations**
+
+```bash
+# Create database tables
+npm run db:migrate
+
+# Generate Prisma Client
+npm run db:generate
+```
+
+**4. Seed the Database**
+
+```bash
+# Populate with sample data
+npm run db:seed
+```
+
+This creates:
+- 3 treatments (Botox, Laser Toning, Rhinoplasty)
+- 3 clinics (Gangnam, Apgujeong, Itaewon)
+- 5 clinic-treatment relationships
+- 1 test user (test@pome.com)
+
+### Database Scripts
+
+```bash
+npm run db:migrate   # Run migrations
+npm run db:generate  # Generate Prisma Client
+npm run db:seed      # Seed database with sample data
+npm run db:studio    # Open Prisma Studio (database GUI)
+```
+
+### API Endpoints
+
+All endpoints are available at `http://localhost:3000/api`
+
+#### Treatments
+
+- **GET** `/api/treatments` - List all treatments
+  - Query params: `page`, `limit`, `categories`, `priceMin`, `priceMax`
+  - Example: `/api/treatments?page=1&limit=20&categories=anti-aging`
+
+- **GET** `/api/treatments/:id` - Get treatment by ID
+  - Returns: Treatment details
+
+- **GET** `/api/treatments/:id/clinics` - Get clinics offering a treatment
+  - Returns: Clinics with pricing and availability
+
+#### Clinics
+
+- **GET** `/api/clinics` - List all clinics
+  - Query params: `page`, `limit`, `location`, `verified`, `specialties`
+  - Example: `/api/clinics?location=Gangnam&verified=true`
+
+- **GET** `/api/clinics/:id` - Get clinic by ID
+  - Returns: Clinic details with treatments offered
+
+#### Search
+
+- **GET** `/api/search` - Search treatments and clinics
+  - Query params: `q` (required), `limit`
+  - Example: `/api/search?q=botox&limit=20`
+  - Returns: Matching treatments and clinics
+
+#### Saved Items
+
+- **GET** `/api/saved` - Get user's saved items
+  - Returns: Saved treatments and clinics with populated data
+
+- **POST** `/api/saved` - Save a treatment or clinic
+  - Body: `{ "itemType": "treatment", "itemId": "xxx", "notes": "..." }`
+  - Returns: Created saved item
+
+- **DELETE** `/api/saved/:id` - Remove a saved item
+  - Returns: Success message
+
+### API Documentation
+
+**Swagger UI** (Interactive API docs)
+- Visit: [http://localhost:3000/api/docs](http://localhost:3000/api/docs)
+- Test all endpoints directly in the browser
+- View request/response schemas
+- See example requests and responses
+
+**Postman Collection**
+- Import: `scripts/postman-collection.json`
+- Pre-configured with all endpoints
+- Environment variable: `{{baseUrl}}` = `http://localhost:3000/api`
+
+### Error Handling
+
+All API routes return consistent error responses:
+
+```json
+{
+  "error": "Error message",
+  "details": {
+    // Additional error information
+  }
+}
+```
+
+**HTTP Status Codes:**
+- `200` - Success
+- `201` - Created
+- `400` - Bad Request (validation error)
+- `404` - Not Found
+- `409` - Conflict (duplicate resource)
+- `500` - Internal Server Error
+
+### Validation
+
+All API requests are validated using Zod schemas:
+- Query parameters are type-checked and coerced
+- Request bodies are validated before database operations
+- Invalid data returns 400 with detailed error messages
+
+### Database Schema
+
+The Prisma schema includes 5 models:
+
+```prisma
+model User {
+  id             String      @id @default(cuid())
+  email          String      @unique
+  passwordHash   String?
+  name           String?
+  language       String      @default("en")
+  savedItems     SavedItem[]
+}
+
+model Treatment {
+  id           String            @id @default(cuid())
+  name         String
+  slug         String            @unique
+  description  String
+  priceMin     Int?
+  priceMax     Int?
+  categories   String[]
+  // ... more fields
+}
+
+model Clinic {
+  id          String            @id @default(cuid())
+  name        String
+  slug        String            @unique
+  location    String?
+  verified    Boolean           @default(false)
+  specialties String[]
+  // ... more fields
+}
+
+model ClinicTreatment {
+  id          String   @id @default(cuid())
+  clinicId    String
+  treatmentId String
+  price       Int?
+  availability String  @default("available")
+  // ... relations
+}
+
+model SavedItem {
+  id       String   @id @default(cuid())
+  userId   String
+  itemType String
+  itemId   String
+  notes    String?
+  // ... relations
+}
+```
+
+### Testing the API
+
+**Using Swagger UI:**
+1. Start the dev server: `npm run dev`
+2. Visit: http://localhost:3000/api/docs
+3. Click "Try it out" on any endpoint
+4. Fill in parameters and execute
+
+**Using Postman:**
+1. Import `scripts/postman-collection.json`
+2. Set `{{baseUrl}}` to `http://localhost:3000/api`
+3. Run requests from the collection
+
+**Using curl:**
+```bash
+# List treatments
+curl http://localhost:3000/api/treatments
+
+# Get treatment by ID
+curl http://localhost:3000/api/treatments/[id]
+
+# Search
+curl "http://localhost:3000/api/search?q=botox"
+
+# Create saved item
+curl -X POST http://localhost:3000/api/saved \
+  -H "Content-Type: application/json" \
+  -d '{"itemType":"treatment","itemId":"xxx"}'
+```
+
 ## 🌍 Internationalization (i18n)
 
 ### Current Implementation

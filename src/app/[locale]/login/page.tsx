@@ -61,35 +61,15 @@ export default function LoginPage() {
             {t('login')}
           </h2>
 
-          <LoginForm onSuccess={handleLoginSuccess} />
-
-          {/* Forgot Password Link */}
-          <div className="mt-4 text-center">
-            <Link
-              href="#"
-              className="text-sm text-primary hover:underline"
-              onClick={(e) => {
-                e.preventDefault();
-                // Placeholder for future implementation
-                alert('Password reset feature coming soon!');
-              }}
-            >
-              {t('forgotPassword')}
-            </Link>
-          </div>
+          <LoginForm onSuccess={handleLoginSuccess} callbackUrl={redirectTo} />
         </div>
 
         {/* Registration Link */}
         <div className="text-center text-sm">
           <span className="text-muted-foreground">{t('noAccount')} </span>
           <Link
-            href="#"
+            href="/register"
             className="text-primary font-medium hover:underline"
-            onClick={(e) => {
-              e.preventDefault();
-              // Placeholder for future implementation
-              alert('Registration feature coming soon!');
-            }}
           >
             {t('register')}
           </Link>

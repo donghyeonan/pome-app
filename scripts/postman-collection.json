@@ -1,0 +1,277 @@
+{
+  "info": {
+    "name": "Pome API",
+    "_postman_id": "pome-api-collection",
+    "description": "API collection for Pome dermatology treatment discovery platform",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "version": "2.0.0"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000/api",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Treatments",
+      "description": "Browse and search cosmetic treatments",
+      "item": [
+        {
+          "name": "List Treatments",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/treatments?page=1&limit=20",
+              "host": ["{{baseUrl}}"],
+              "path": ["treatments"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number"
+                },
+                {
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Items per page"
+                },
+                {
+                  "key": "categories",
+                  "value": "anti-aging",
+                  "description": "Comma-separated categories",
+                  "disabled": true
+                },
+                {
+                  "key": "priceMin",
+                  "value": "100000",
+                  "description": "Minimum price in KRW",
+                  "disabled": true
+                },
+                {
+                  "key": "priceMax",
+                  "value": "500000",
+                  "description": "Maximum price in KRW",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "Get a paginated list of treatments with optional filtering"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Treatment by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/treatments/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["treatments", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "",
+                  "description": "Treatment ID"
+                }
+              ]
+            },
+            "description": "Get detailed information about a specific treatment"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Treatment Clinics",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/treatments/:id/clinics",
+              "host": ["{{baseUrl}}"],
+              "path": ["treatments", ":id", "clinics"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "",
+                  "description": "Treatment ID"
+                }
+              ]
+            },
+            "description": "Get all clinics offering a specific treatment with pricing"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Clinics",
+      "description": "Find and explore dermatology clinics",
+      "item": [
+        {
+          "name": "List Clinics",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/clinics?page=1&limit=20",
+              "host": ["{{baseUrl}}"],
+              "path": ["clinics"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number"
+                },
+                {
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Items per page"
+                },
+                {
+                  "key": "location",
+                  "value": "Gangnam",
+                  "description": "Filter by location",
+                  "disabled": true
+                },
+                {
+                  "key": "verified",
+                  "value": "true",
+                  "description": "Filter by verified status",
+                  "disabled": true
+                },
+                {
+                  "key": "specialties",
+                  "value": "Rhinoplasty,Botox",
+                  "description": "Comma-separated specialties",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "Get a paginated list of clinics with optional filtering"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Clinic by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/clinics/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["clinics", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "",
+                  "description": "Clinic ID"
+                }
+              ]
+            },
+            "description": "Get detailed information about a specific clinic including treatments"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Search",
+      "description": "Search across treatments and clinics",
+      "item": [
+        {
+          "name": "Search",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/search?q=botox&limit=20",
+              "host": ["{{baseUrl}}"],
+              "path": ["search"],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "botox",
+                  "description": "Search query"
+                },
+                {
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Max results per category"
+                }
+              ]
+            },
+            "description": "Search for treatments and clinics by name or description"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Saved Items",
+      "description": "Manage saved treatments and clinics",
+      "item": [
+        {
+          "name": "List Saved Items",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/saved",
+              "host": ["{{baseUrl}}"],
+              "path": ["saved"]
+            },
+            "description": "Get all saved items for the authenticated user"
+          },
+          "response": []
+        },
+        {
+          "name": "Create Saved Item",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"itemType\": \"treatment\",\n  \"itemId\": \"<treatment-id>\",\n  \"notes\": \"Interested in this treatment\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/saved",
+              "host": ["{{baseUrl}}"],
+              "path": ["saved"]
+            },
+            "description": "Save a treatment or clinic to user's favorites"
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Saved Item",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/saved/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["saved", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "",
+                  "description": "Saved item ID"
+                }
+              ]
+            },
+            "description": "Remove a saved item from user's favorites"
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

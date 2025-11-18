@@ -1,64 +1,52 @@
-import { NextRequest, NextResponse } from 'next/server';
-import type { Treatment } from '@/types';
+import { NextRequest } from 'next/server';
+import { prisma } from '@/lib/prisma';
+import { treatmentQuerySchema } from '@/lib/validations';
+import { handleApiError } from '@/lib/api-error';
+import { Prisma } from '@prisma/client';
 
-/**
- * GET /api/treatments
- * 
- * Retrieves a list of treatments with optional filtering and sorting.
- * 
- * Query Parameters:
- * - category: Filter by category (e.g., "skin-rejuvenation")
- * - minPrice: Minimum price filter
- * - maxPrice: Maximum price filter
- * - sort: Sort order ("popularity", "price-asc", "price-desc", "name")
- * - limit: Number of results to return
- * - offset: Pagination offset
- * 
- * @example
- * GET /api/treatments?category=anti-aging&sort=popularity&limit=10
- * 
- * Response:
- * {
- *   treatments: Treatment[],
- *   total: number,
- *   limit: number,
- *   offset: number
- * }
- * 
- * Phase 2 Implementation:
- * - Replace mock data with Prisma query
- * - Add proper filtering logic
- * - Add pagination
- * - Add caching with ISR
- */
 export async function GET(request: NextRequest) {
-  // TODO: Phase 2 - Implement with Prisma
-  // const { searchParams } = new URL(request.url);
-  // const category = searchParams.get('category');
-  // const minPrice = searchParams.get('minPrice');
-  // const maxPrice = searchParams.get('maxPrice');
-  // const sort = searchParams.get('sort') || 'popularity';
-  // const limit = parseInt(searchParams.get('limit') || '20');
-  // const offset = parseInt(searchParams.get('offset') || '0');
+  try {
+    const { searchParams } = new URL(request.url);
+    const query = treatmentQuerySchema.parse(Object.fromEntries(searchParams));
 
-  // const treatments = await prisma.treatment.findMany({
-  //   where: {
-  //     ...(category && { categories: { has: category } }),
-  //     ...(minPrice && { priceRangeMin: { gte: parseInt(minPrice) } }),
-  //     ...(maxPrice && { priceRangeMax: { lte: parseInt(maxPrice) } }),
-  //   },
-  //   orderBy: getSortOrder(sort),
-  //   take: limit,
-  //   skip: offset,
-  // });
+    // Build where clause for filters
+    const where: Prisma.TreatmentWhereInput = {};
 
-  // const total = await prisma.treatment.count({ where: { /* same filters */ } });
+    if (query.categories) {
+      where.categories = { hasSome: query.categories.split(',') };
+    }
 
-  return NextResponse.json(
-    {
-      error: 'Not implemented',
-      message: 'This endpoint will be implemented in Phase 2 with database integration',
-    },
-    { status: 501 }
-  );
+    if (query.priceMin !== undefined || query.priceMax !== undefined) {
+      where.AND = [];
+      if (query.priceMin !== undefined) {
+        where.AND.push({ priceMin: { gte: query.priceMin } });
+      }
+      if (query.priceMax !== undefined) {
+        where.AND.push({ priceMax: { lte: query.priceMax } });
+      }
+    }
+
+    // Query treatments with pagination
+    const [treatments, total] = await Promise.all([
+      prisma.treatment.findMany({
+        where,
+        skip: (query.page - 1) * query.limit,
+        take: query.limit,
+        orderBy: { name: 'asc' },
+      }),
+      prisma.treatment.count({ where }),
+    ]);
+
+    return Response.json({
+      treatments,
+      pagination: {
+        page: query.page,
+        limit: query.limit,
+        total,
+        totalPages: Math.ceil(total / query.limit),
+      },
+    });
+  } catch (error) {
+    return handleApiError(error);
+  }
 }

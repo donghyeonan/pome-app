@@ -1,70 +1,50 @@
-import { NextRequest, NextResponse } from 'next/server';
-import type { Clinic } from '@/types';
+import { NextRequest } from 'next/server';
+import { prisma } from '@/lib/prisma';
+import { clinicQuerySchema } from '@/lib/validations';
+import { handleApiError } from '@/lib/api-error';
+import { Prisma } from '@prisma/client';
 
-/**
- * GET /api/clinics
- * 
- * Retrieves a list of clinics with optional filtering and sorting.
- * 
- * Query Parameters:
- * - location: Filter by location (e.g., "Gangnam")
- * - specialty: Filter by specialty
- * - verified: Filter by verified status (true/false)
- * - minRating: Minimum rating filter
- * - priceLevel: Filter by price level (1, 2, 3)
- * - sort: Sort order ("rating", "name", "location")
- * - limit: Number of results to return
- * - offset: Pagination offset
- * 
- * @example
- * GET /api/clinics?location=Gangnam&verified=true&sort=rating&limit=10
- * 
- * Response:
- * {
- *   clinics: Clinic[],
- *   total: number,
- *   limit: number,
- *   offset: number
- * }
- * 
- * Phase 2 Implementation:
- * - Replace mock data with Prisma query
- * - Add proper filtering logic
- * - Add pagination
- * - Add caching with ISR
- */
 export async function GET(request: NextRequest) {
-  // TODO: Phase 2 - Implement with Prisma
-  // const { searchParams } = new URL(request.url);
-  // const location = searchParams.get('location');
-  // const specialty = searchParams.get('specialty');
-  // const verified = searchParams.get('verified') === 'true';
-  // const minRating = parseFloat(searchParams.get('minRating') || '0');
-  // const priceLevel = searchParams.get('priceLevel');
-  // const sort = searchParams.get('sort') || 'rating';
-  // const limit = parseInt(searchParams.get('limit') || '20');
-  // const offset = parseInt(searchParams.get('offset') || '0');
+  try {
+    const { searchParams } = new URL(request.url);
+    const query = clinicQuerySchema.parse(Object.fromEntries(searchParams));
 
-  // const clinics = await prisma.clinic.findMany({
-  //   where: {
-  //     ...(location && { location: { contains: location, mode: 'insensitive' } }),
-  //     ...(specialty && { specialties: { has: specialty } }),
-  //     ...(verified && { verified: true }),
-  //     rating: { gte: minRating },
-  //     ...(priceLevel && { priceLevel: parseInt(priceLevel) }),
-  //   },
-  //   orderBy: getSortOrder(sort),
-  //   take: limit,
-  //   skip: offset,
-  // });
+    // Build where clause for filters
+    const where: Prisma.ClinicWhereInput = {};
 
-  // const total = await prisma.clinic.count({ where: { /* same filters */ } });
+    if (query.location) {
+      where.location = { contains: query.location, mode: 'insensitive' };
+    }
 
-  return NextResponse.json(
-    {
-      error: 'Not implemented',
-      message: 'This endpoint will be implemented in Phase 2 with database integration',
-    },
-    { status: 501 }
-  );
+    if (query.verified !== undefined) {
+      where.verified = query.verified;
+    }
+
+    if (query.specialties) {
+      where.specialties = { hasSome: query.specialties.split(',') };
+    }
+
+    // Query clinics with pagination
+    const [clinics, total] = await Promise.all([
+      prisma.clinic.findMany({
+        where,
+        skip: (query.page - 1) * query.limit,
+        take: query.limit,
+        orderBy: { name: 'asc' },
+      }),
+      prisma.clinic.count({ where }),
+    ]);
+
+    return Response.json({
+      clinics,
+      pagination: {
+        page: query.page,
+        limit: query.limit,
+        total,
+        totalPages: Math.ceil(total / query.limit),
+      },
+    });
+  } catch (error) {
+    return handleApiError(error);
+  }
 }

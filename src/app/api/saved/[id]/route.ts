@@ -1,72 +1,22 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest } from 'next/server';
+import { prisma } from '@/lib/prisma';
+import { savedItemIdSchema } from '@/lib/validations';
+import { handleApiError, ApiError } from '@/lib/api-error';
 
-/**
- * DELETE /api/saved/[id]
- * 
- * Removes a saved item for the authenticated user.
- * 
- * Path Parameters:
- * - id: SavedItem ID
- * 
- * Response:
- * {
- *   success: boolean,
- *   message: string
- * }
- * 
- * Phase 2 Implementation:
- * - Require authentication
- * - Verify user owns the saved item
- * - Delete from database
- * - Return success response
- */
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
-  // TODO: Phase 3 - Add authentication check
-  // const session = await getServerSession(authOptions);
-  // if (!session) {
-  //   return NextResponse.json(
-  //     { error: 'Unauthorized' },
-  //     { status: 401 }
-  //   );
-  // }
+  try {
+    const { id } = savedItemIdSchema.parse(await params);
 
-  // TODO: Phase 2 - Implement with Prisma
-  // const savedItem = await prisma.savedItem.findUnique({
-  //   where: { id: params.id },
-  // });
+    // Delete saved item
+    await prisma.savedItem.delete({
+      where: { id },
+    });
 
-  // if (!savedItem) {
-  //   return NextResponse.json(
-  //     { error: 'Saved item not found' },
-  //     { status: 404 }
-  //   );
-  // }
-
-  // // Verify ownership
-  // if (savedItem.userId !== session.user.id) {
-  //   return NextResponse.json(
-  //     { error: 'Forbidden' },
-  //     { status: 403 }
-  //   );
-  // }
-
-  // await prisma.savedItem.delete({
-  //   where: { id: params.id },
-  // });
-
-  // return NextResponse.json({
-  //   success: true,
-  //   message: 'Saved item removed successfully',
-  // });
-
-  return NextResponse.json(
-    {
-      error: 'Not implemented',
-      message: 'This endpoint will be implemented in Phase 2/3 with database and authentication',
-    },
-    { status: 501 }
-  );
+    return Response.json({ message: 'Saved item deleted successfully' });
+  } catch (error) {
+    return handleApiError(error);
+  }
 }
