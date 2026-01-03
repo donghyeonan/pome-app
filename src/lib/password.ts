@@ -29,6 +29,6 @@ export function validatePassword(password: string): {
   const result = passwordSchema.safeParse(password);
   return {
     valid: result.success,
-    errors: result.success ? [] : result.error.errors.map(e => e.message),
+    errors: result.success ? [] : result.error.issues.map(e => e.message),
   };
 }

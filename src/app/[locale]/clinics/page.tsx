@@ -1,398 +1,46 @@
-'use client';
+import { getClinics } from '@/lib/db/queries/clinics';
+import ClinicsClient from './ClinicsClient';
 
-import { useState, useMemo } from 'react';
-import { useRouter } from 'next/navigation';
-import { useTranslations } from 'next-intl';
-import { SlidersHorizontal } from 'lucide-react';
-import { ProtectedRoute } from '@/components/auth/protected-route';
-import { PageLayout } from '@/components/layout/page-layout';
-import { SearchInput } from '@/components/search/search-input';
-import { ClinicCard } from '@/components/cards/clinic-card';
-import { ClinicFiltersSidebar } from '@/components/filters/clinic-filters-sidebar';
-import { Button } from '@/components/ui/button';
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from '@/components/ui/sheet';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
-import { clinics } from '@/data/clinics';
+interface PageProps {
+  searchParams: Promise<{
+    locations?: string;
+    specialties?: string;
+    verified?: string;
+    priceLevel?: string;
+    search?: string;
+    sort?: string;
+  }>;
+}
 
-type SortOption = 'rating' | 'name' | 'location';
+export default async function ClinicsPage({ searchParams }: PageProps) {
+  const params = await searchParams;
 
-export default function ClinicsPage() {
-  const t = useTranslations('clinics');
-  const tCommon = useTranslations('common');
-  const router = useRouter();
-
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedLocations, setSelectedLocations] = useState<string[]>([]);
-  const [selectedSpecialties, setSelectedSpecialties] = useState<string[]>([]);
-  const [verifiedOnly, setVerifiedOnly] = useState(false);
-  const [selectedPriceLevel, setSelectedPriceLevel] = useState<number[]>([]);
-  const [sortBy, setSortBy] = useState<SortOption>('rating');
-  const [isFilterOpen, setIsFilterOpen] = useState(false);
-
-  // Extract all unique locations and specialties
-  const allLocations = useMemo(() => {
-    const locationSet = new Set<string>();
-    clinics.forEach((clinic) => {
-      locationSet.add(clinic.location);
-    });
-    return Array.from(locationSet).sort();
-  }, []);
-
-  const allSpecialties = useMemo(() => {
-    const specialtySet = new Set<string>();
-    clinics.forEach((clinic) => {
-      clinic.specialties.forEach((specialty) => specialtySet.add(specialty));
-    });
-    return Array.from(specialtySet).sort();
-  }, []);
-
-  // Filter and sort clinics
-  const filteredClinics = useMemo(() => {
-    let filtered = clinics;
-
-    // Apply search filter
-    if (searchQuery.trim()) {
-      const query = searchQuery.toLowerCase();
-      filtered = filtered.filter(
-        (clinic) =>
-          clinic.name.toLowerCase().includes(query) ||
-          clinic.description.toLowerCase().includes(query) ||
-          clinic.location.toLowerCase().includes(query) ||
-          clinic.specialties.some((spec) => spec.toLowerCase().includes(query))
-      );
-    }
-
-    // Apply location filter
-    if (selectedLocations.length > 0) {
-      filtered = filtered.filter((clinic) =>
-        selectedLocations.includes(clinic.location)
-      );
-    }
-
-    // Apply specialty filter
-    if (selectedSpecialties.length > 0) {
-      filtered = filtered.filter((clinic) =>
-        clinic.specialties.some((spec) => selectedSpecialties.includes(spec))
-      );
-    }
-
-    // Apply verified filter
-    if (verifiedOnly) {
-      filtered = filtered.filter((clinic) => clinic.verified);
-    }
-
-    // Apply price level filter
-    if (selectedPriceLevel.length > 0) {
-      filtered = filtered.filter(
-        (clinic) =>
-          clinic.priceLevel && selectedPriceLevel.includes(clinic.priceLevel)
-      );
-    }
-
-    // Apply sorting
-    const sorted = [...filtered];
-    switch (sortBy) {
-      case 'rating':
-        sorted.sort((a, b) => b.rating - a.rating);
-        break;
-      case 'name':
-        sorted.sort((a, b) => a.name.localeCompare(b.name));
-        break;
-      case 'location':
-        sorted.sort((a, b) => a.location.localeCompare(b.location));
-        break;
-    }
-
-    return sorted;
-  }, [
-    searchQuery,
-    selectedLocations,
-    selectedSpecialties,
-    verifiedOnly,
-    selectedPriceLevel,
-    sortBy,
-  ]);
-
-  const handleSearch = (query: string) => {
-    setSearchQuery(query);
+  // Parse filters from URL
+  const filters = {
+    specialties: params.specialties?.split(',').filter(Boolean),
+    verified: params.verified === 'true' ? true : undefined,
+    search: params.search,
   };
 
-  const handleClinicClick = (clinicId: string) => {
-    router.push(`/clinics/${clinicId}`);
-  };
+  // Fetch clinics from database
+  const result = await getClinics(filters, { limit: 100 });
 
-  const toggleLocation = (location: string) => {
-    setSelectedLocations((prev) =>
-      prev.includes(location)
-        ? prev.filter((l) => l !== location)
-        : [...prev, location]
-    );
-  };
-
-  const toggleSpecialty = (specialty: string) => {
-    setSelectedSpecialties((prev) =>
-      prev.includes(specialty)
-        ? prev.filter((s) => s !== specialty)
-        : [...prev, specialty]
-    );
-  };
-
-  const togglePriceLevel = (level: number) => {
-    setSelectedPriceLevel((prev) =>
-      prev.includes(level) ? prev.filter((l) => l !== level) : [...prev, level]
-    );
-  };
-
-  const clearFilters = () => {
-    setSelectedLocations([]);
-    setSelectedSpecialties([]);
-    setVerifiedOnly(false);
-    setSelectedPriceLevel([]);
-  };
-
-  const hasActiveFilters =
-    selectedLocations.length > 0 ||
-    selectedSpecialties.length > 0 ||
-    verifiedOnly ||
-    selectedPriceLevel.length > 0;
-
-  const activeFilterCount =
-    selectedLocations.length +
-    selectedSpecialties.length +
-    (verifiedOnly ? 1 : 0) +
-    selectedPriceLevel.length;
+  // Extract unique locations and specialties for filter options
+  const locationSet = new Set<string>();
+  const specialtySet = new Set<string>();
+  result.clinics.forEach((clinic) => {
+    if (clinic.location) locationSet.add(clinic.location);
+    clinic.specialties.forEach((spec) => specialtySet.add(spec));
+  });
+  const allLocations = Array.from(locationSet).sort();
+  const allSpecialties = Array.from(specialtySet).sort();
 
   return (
-    <ProtectedRoute
-      fallback={
-        <PageLayout>
-          <div className="flex items-center justify-center min-h-[50vh]">
-            <p className="text-muted-foreground">{tCommon('loading')}</p>
-          </div>
-        </PageLayout>
-      }
-    >
-      <PageLayout title={t('title')}>
-        {/* Header */}
-        <div className="mb-4 sm:mb-6">
-          <h1 className="text-2xl sm:text-3xl font-bold mb-1 sm:mb-2">
-            {t('allClinics')}
-          </h1>
-          <p className="text-sm sm:text-base text-muted-foreground">
-            {filteredClinics.length} {t('title').toLowerCase()}
-          </p>
-        </div>
-
-        {/* Search and Filters Bar */}
-        <div className="mb-4 sm:mb-6 space-y-3 sm:space-y-4">
-          {/* Search Input */}
-          <SearchInput
-            placeholder={t('searchClinics')}
-            onSearch={handleSearch}
-            showAutocomplete={false}
-          />
-
-          {/* Filter and Sort Controls */}
-          <div className="flex items-center gap-2 sm:gap-3">
-            {/* Filter Button */}
-            <Sheet open={isFilterOpen} onOpenChange={setIsFilterOpen}>
-              <SheetTrigger asChild>
-                <Button
-                  variant="outline"
-                  className="flex-1 sm:flex-none min-h-[44px] touch-manipulation"
-                >
-                  <SlidersHorizontal className="h-4 w-4" />
-                  <span className="ml-2">{tCommon('filter')}</span>
-                  {hasActiveFilters && (
-                    <span className="ml-1 rounded-full bg-primary px-2 py-0.5 text-xs text-primary-foreground">
-                      {activeFilterCount}
-                    </span>
-                  )}
-                </Button>
-              </SheetTrigger>
-              <SheetContent side="left" className="w-[300px] sm:w-[400px]">
-                <SheetHeader>
-                  <SheetTitle>{tCommon('filter')}</SheetTitle>
-                </SheetHeader>
-
-                <div className="mt-6 space-y-6">
-                  {/* Location Filter */}
-                  <div>
-                    <h3 className="font-semibold mb-3">
-                      {t('filterByLocation')}
-                    </h3>
-                    <div className="space-y-2 max-h-[200px] overflow-y-auto">
-                      {allLocations.map((location) => (
-                        <label
-                          key={location}
-                          className="flex items-center gap-2 cursor-pointer"
-                        >
-                          <input
-                            type="checkbox"
-                            checked={selectedLocations.includes(location)}
-                            onChange={() => toggleLocation(location)}
-                            className="rounded border-border"
-                          />
-                          <span className="text-sm">{location}</span>
-                        </label>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Specialty Filter */}
-                  <div>
-                    <h3 className="font-semibold mb-3">
-                      {t('filterBySpecialty')}
-                    </h3>
-                    <div className="space-y-2 max-h-[200px] overflow-y-auto">
-                      {allSpecialties.map((specialty) => (
-                        <label
-                          key={specialty}
-                          className="flex items-center gap-2 cursor-pointer"
-                        >
-                          <input
-                            type="checkbox"
-                            checked={selectedSpecialties.includes(specialty)}
-                            onChange={() => toggleSpecialty(specialty)}
-                            className="rounded border-border"
-                          />
-                          <span className="text-sm">{specialty}</span>
-                        </label>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Verified Filter */}
-                  <div>
-                    <label className="flex items-center gap-2 cursor-pointer">
-                      <input
-                        type="checkbox"
-                        checked={verifiedOnly}
-                        onChange={(e) => setVerifiedOnly(e.target.checked)}
-                        className="rounded border-border"
-                      />
-                      <span className="text-sm font-semibold">
-                        {t('filterByVerified')}
-                      </span>
-                    </label>
-                  </div>
-
-                  {/* Price Level Filter */}
-                  <div>
-                    <h3 className="font-semibold mb-3">
-                      {t('filterByPriceLevel')}
-                    </h3>
-                    <div className="space-y-2">
-                      {[1, 2, 3].map((level) => (
-                        <label
-                          key={level}
-                          className="flex items-center gap-2 cursor-pointer"
-                        >
-                          <input
-                            type="checkbox"
-                            checked={selectedPriceLevel.includes(level)}
-                            onChange={() => togglePriceLevel(level)}
-                            className="rounded border-border"
-                          />
-                          <span className="text-sm">
-                            {t(`priceLevel.${level}`)}
-                          </span>
-                        </label>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Clear Filters Button */}
-                  {hasActiveFilters && (
-                    <Button
-                      variant="outline"
-                      onClick={clearFilters}
-                      className="w-full"
-                    >
-                      {tCommon('clear')} {tCommon('filter')}
-                    </Button>
-                  )}
-                </div>
-              </SheetContent>
-            </Sheet>
-
-            {/* Sort Dropdown */}
-            <Select
-              value={sortBy}
-              onValueChange={(value) => setSortBy(value as SortOption)}
-            >
-              <SelectTrigger className="flex-1 sm:w-[180px] min-h-[44px] touch-manipulation">
-                <SelectValue placeholder={t('sortBy')} />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="rating">{t('sortByRating')}</SelectItem>
-                <SelectItem value="name">{t('sortByName')}</SelectItem>
-                <SelectItem value="location">{t('sortByLocation')}</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-        </div>
-
-        {/* Desktop Layout with Sidebar */}
-        <div className="lg:grid lg:grid-cols-[280px_1fr] lg:gap-6 xl:gap-8">
-          {/* Desktop Sidebar - Hidden on mobile/tablet */}
-          <aside className="hidden lg:block">
-            <ClinicFiltersSidebar
-              allLocations={allLocations}
-              allSpecialties={allSpecialties}
-              selectedLocations={selectedLocations}
-              selectedSpecialties={selectedSpecialties}
-              verifiedOnly={verifiedOnly}
-              selectedPriceLevel={selectedPriceLevel}
-              onLocationToggle={toggleLocation}
-              onSpecialtyToggle={toggleSpecialty}
-              onVerifiedToggle={setVerifiedOnly}
-              onPriceLevelToggle={togglePriceLevel}
-              onClearFilters={clearFilters}
-              hasActiveFilters={hasActiveFilters}
-            />
-          </aside>
-
-          {/* Clinics Grid */}
-          <div>
-            {filteredClinics.length > 0 ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-3 sm:gap-4 lg:gap-5">
-                {filteredClinics.map((clinic) => (
-                  <ClinicCard
-                    key={clinic.id}
-                    clinic={clinic}
-                    onClick={() => handleClinicClick(clinic.id)}
-                  />
-                ))}
-              </div>
-            ) : (
-              <div className="flex flex-col items-center justify-center py-12 text-center">
-                <p className="text-lg font-medium mb-2">{t('noClinics')}</p>
-                <p className="text-muted-foreground mb-4">
-                  {tCommon('tryAgain')}
-                </p>
-                {hasActiveFilters && (
-                  <Button variant="outline" onClick={clearFilters}>
-                    {tCommon('clear')} {tCommon('filter')}
-                  </Button>
-                )}
-              </div>
-            )}
-          </div>
-        </div>
-      </PageLayout>
-    </ProtectedRoute>
+    <ClinicsClient
+      clinics={result.clinics}
+      allLocations={allLocations}
+      allSpecialties={allSpecialties}
+      totalCount={result.pagination.total}
+    />
   );
 }

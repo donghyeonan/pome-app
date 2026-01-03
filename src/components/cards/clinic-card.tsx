@@ -3,14 +3,18 @@
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { BadgeCheck } from 'lucide-react';
-import { Clinic } from '@/types';
+import type { Clinic as PrismaClinic } from '@prisma/client';
+import type { Clinic as LegacyClinic } from '@/types';
+
+// Support both Prisma and legacy mock data types
+type ClinicData = PrismaClinic | LegacyClinic;
 
 /**
  * Props for the ClinicCard component
  */
 interface ClinicCardProps {
   /** Clinic data to display */
-  clinic: Clinic;
+  clinic: ClinicData;
   /** Optional click handler for the card */
   onClick?: () => void;
 }
@@ -66,15 +70,21 @@ export function ClinicCard({ clinic, onClick }: ClinicCardProps) {
       onClick={onClick}
     >
       {/* Image Section with Verified Badge Overlay */}
-      <div className="relative h-48 overflow-hidden rounded-2xl">
-        <Image
-          src={clinic.imageUrl}
-          alt={clinic.name}
-          fill
-          className="object-cover"
-          sizes="75vw"
-          priority={false}
-        />
+      <div className="relative h-48 overflow-hidden rounded-2xl bg-muted">
+        {clinic.imageUrl ? (
+          <Image
+            src={clinic.imageUrl}
+            alt={clinic.name}
+            fill
+            className="object-cover"
+            sizes="75vw"
+            priority={false}
+          />
+        ) : (
+          <div className="absolute inset-0 flex items-center justify-center text-muted-foreground">
+            <span className="text-4xl">🏥</span>
+          </div>
+        )}
 
         {/* Verified Badge - Overlaid on image at bottom-left */}
         {clinic.verified && (

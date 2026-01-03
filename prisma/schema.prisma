@@ -55,6 +55,11 @@ model Treatment {
   updatedAt         DateTime          @updatedAt
   clinicMappings    ClinicTreatment[]
 
+  // Taxonomy tags (Phase 0.6)
+  goalTags          String[]          @default([])
+  modalityTags      String[]          @default([])
+  areaTags          String[]          @default([])
+
   @@index([name])
   @@index([slug])
 }

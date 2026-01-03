@@ -1,7 +1,8 @@
 // src/lib/api-auth.ts
-import { getServerSession } from "next-auth/next";
-import { NextResponse } from "next/server";
-import { authOptions } from "@/lib/auth";
+import { getServerSession } from 'next-auth/next';
+import { NextResponse } from 'next/server';
+import { authOptions } from '@/lib/auth';
+import type { Session } from 'next-auth';
 
 /**
  * Require authentication for API routes
@@ -19,11 +20,11 @@ import { authOptions } from "@/lib/auth";
  * ```
  */
 export async function requireAuthAPI() {
-  const session = await getServerSession(authOptions);
+  const session = (await getServerSession(authOptions)) as Session | null;
 
   if (!session || !session.user) {
     return NextResponse.json(
-      { error: "Unauthorized. Please log in." },
+      { error: 'Unauthorized. Please log in.' },
       { status: 401 }
     );
   }

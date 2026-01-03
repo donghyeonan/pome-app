@@ -1,15 +1,19 @@
 'use client';
 
 import * as LucideIcons from 'lucide-react';
-import { Treatment } from '@/types';
+import type { Treatment as PrismaTreatment } from '@prisma/client';
+import type { Treatment as LegacyTreatment } from '@/types';
 import { cn } from '@/lib/utils';
+
+// Support both Prisma and legacy mock data types
+type TreatmentData = PrismaTreatment | LegacyTreatment;
 
 /**
  * Props for the TreatmentCard component
  */
 interface TreatmentCardProps {
   /** Treatment data to display */
-  treatment: Treatment;
+  treatment: TreatmentData;
   /** Whether to highlight the card (for featured items) */
   highlighted?: boolean;
   /** Optional click handler for the card */

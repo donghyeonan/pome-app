@@ -1,7 +1,148 @@
-[00:00:00.410] Server  WARN     ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
-[00:00:00.459] Server  LOG      ✓ Ready in 351ms
-[00:00:06.521] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/apgujeong-aesthetic.jpg" "received" null
-[00:00:06.521] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/seoul-skin.jpg" "received" null
-[00:00:06.522] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/gangnam-beauty.jpg" "received" null
-[00:00:06.577] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/hongdae-derma.jpg" "received" null
-[00:00:06.587] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/itaewon-international.jpg" "received" null
+[00:00:00.626] Server  WARN     ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+[00:00:00.683] Server  LOG      ✓ Ready in 529ms
+[00:00:13.829] Server  LOG      ○ Compiling /[locale] ...
+[00:00:16.575] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/seoul-skin.jpg" "received" null
+[00:00:16.575] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/gangnam-beauty.jpg" "received" null
+[00:00:16.576] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/apgujeong-aesthetic.jpg" "received" null
+[00:00:16.639] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/hongdae-derma.jpg" "received" null
+[00:00:16.640] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/itaewon-international.jpg" "received" null
+[00:00:48.709] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/gangnam-beauty.jpg" "received" null
+[00:00:48.709] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/apgujeong-aesthetic.jpg" "received" null
+[00:00:48.712] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/hongdae-derma.jpg" "received" null
+[00:00:48.737] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/itaewon-international.jpg" "received" null
+[00:00:48.741] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/seoul-skin.jpg" "received" null
+[00:00:50.614] Server  ERROR   (node:8330) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[00:00:57.308] Server  LOG     prisma:query "SELECT \"public\".\"Account\".\"id\", \"public\".\"Account\".\"userId\" FROM \"public\".\"Account\" WHERE ((\"public\".\"Account\".\"provider\" = $1 AND \"public\".\"Account\".\"providerAccountId\" = $2) AND 1=1) LIMIT $3 OFFSET $4"
+[00:00:57.566] Server  LOG     prisma:query "SELECT \"public\".\"User\".\"id\", \"public\".\"User\".\"email\", \"public\".\"User\".\"passwordHash\", \"public\".\"User\".\"name\", \"public\".\"User\".\"image\", \"public\".\"User\".\"emailVerified\", \"public\".\"User\".\"passwordChangedAt\", \"public\".\"User\".\"language\", \"public\".\"User\".\"gender\", \"public\".\"User\".\"ageRange\", \"public\".\"User\".\"skinType\", \"public\".\"User\".\"treatmentGoals\", \"public\".\"User\".\"createdAt\", \"public\".\"User\".\"updatedAt\" FROM \"public\".\"User\" WHERE \"public\".\"User\".\"id\" IN ($1) OFFSET $2"
+[00:00:57.755] Server  LOG     prisma:query "SELECT \"public\".\"User\".\"id\", \"public\".\"User\".\"email\", \"public\".\"User\".\"passwordHash\", \"public\".\"User\".\"name\", \"public\".\"User\".\"image\", \"public\".\"User\".\"emailVerified\", \"public\".\"User\".\"passwordChangedAt\", \"public\".\"User\".\"language\", \"public\".\"User\".\"gender\", \"public\".\"User\".\"ageRange\", \"public\".\"User\".\"skinType\", \"public\".\"User\".\"treatmentGoals\", \"public\".\"User\".\"createdAt\", \"public\".\"User\".\"updatedAt\" FROM \"public\".\"User\" WHERE (\"public\".\"User\".\"email\" = $1 AND 1=1) LIMIT $2 OFFSET $3"
+[00:00:57.973] Server  LOG     prisma:query "SELECT \"public\".\"Account\".\"id\", \"public\".\"Account\".\"userId\", \"public\".\"Account\".\"type\", \"public\".\"Account\".\"provider\", \"public\".\"Account\".\"providerAccountId\", \"public\".\"Account\".\"refresh_token\", \"public\".\"Account\".\"access_token\", \"public\".\"Account\".\"expires_at\", \"public\".\"Account\".\"token_type\", \"public\".\"Account\".\"scope\", \"public\".\"Account\".\"id_token\", \"public\".\"Account\".\"session_state\" FROM \"public\".\"Account\" WHERE \"public\".\"Account\".\"userId\" IN ($1) OFFSET $2"
+[00:00:58.159] Server  LOG     prisma:query "SELECT \"public\".\"Account\".\"id\", \"public\".\"Account\".\"userId\" FROM \"public\".\"Account\" WHERE ((\"public\".\"Account\".\"provider\" = $1 AND \"public\".\"Account\".\"providerAccountId\" = $2) AND 1=1) LIMIT $3 OFFSET $4"
+[00:00:58.268] Server  LOG     prisma:query "SELECT \"public\".\"User\".\"id\", \"public\".\"User\".\"email\", \"public\".\"User\".\"passwordHash\", \"public\".\"User\".\"name\", \"public\".\"User\".\"image\", \"public\".\"User\".\"emailVerified\", \"public\".\"User\".\"passwordChangedAt\", \"public\".\"User\".\"language\", \"public\".\"User\".\"gender\", \"public\".\"User\".\"ageRange\", \"public\".\"User\".\"skinType\", \"public\".\"User\".\"treatmentGoals\", \"public\".\"User\".\"createdAt\", \"public\".\"User\".\"updatedAt\" FROM \"public\".\"User\" WHERE \"public\".\"User\".\"id\" IN ($1) OFFSET $2"
+[00:00:58.508] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/gangnam-beauty.jpg" "received" null
+[00:00:58.538] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/seoul-skin.jpg" "received" null
+[00:00:58.543] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/apgujeong-aesthetic.jpg" "received" null
+[00:00:58.596] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/hongdae-derma.jpg" "received" null
+[00:00:58.632] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/itaewon-international.jpg" "received" null
+[00:00:58.754] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/gangnam-beauty.jpg" "received" null
+[00:00:58.763] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/apgujeong-aesthetic.jpg" "received" null
+[00:00:58.765] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/hongdae-derma.jpg" "received" null
+[00:00:58.765] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/itaewon-international.jpg" "received" null
+[00:00:58.794] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/seoul-skin.jpg" "received" null
+[00:01:04.880] Server  WARN    Error: Route "/[locale]/search" used `searchParams.q`. `searchParams` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[00:01:10.851] Server  WARN    Error: Route "/[locale]/search" used `searchParams.q`. `searchParams` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[00:01:15.151] Server  WARN    Error: Route "/[locale]/search" used `searchParams.q`. `searchParams` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[00:01:17.268] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/gangnam-beauty.jpg" "received" null
+[00:01:17.328] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/apgujeong-aesthetic.jpg" "received" null
+[00:01:17.334] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/hongdae-derma.jpg" "received" null
+[00:01:17.335] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/itaewon-international.jpg" "received" null
+[00:01:17.362] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/seoul-skin.jpg" "received" null
+[00:01:19.804] Server  LOG     prisma:query "SELECT 1"
+[00:01:19.993] Server  LOG     prisma:query "SELECT \"public\".\"SavedItem\".\"id\", \"public\".\"SavedItem\".\"userId\", \"public\".\"SavedItem\".\"itemType\", \"public\".\"SavedItem\".\"itemId\", \"public\".\"SavedItem\".\"notes\", \"public\".\"SavedItem\".\"savedAt\" FROM \"public\".\"SavedItem\" WHERE \"public\".\"SavedItem\".\"userId\" = $1 ORDER BY \"public\".\"SavedItem\".\"savedAt\" DESC OFFSET $2"
+[00:01:20.568] Server  LOG     prisma:query "SELECT \"public\".\"SavedItem\".\"id\", \"public\".\"SavedItem\".\"userId\", \"public\".\"SavedItem\".\"itemType\", \"public\".\"SavedItem\".\"itemId\", \"public\".\"SavedItem\".\"notes\", \"public\".\"SavedItem\".\"savedAt\" FROM \"public\".\"SavedItem\" WHERE \"public\".\"SavedItem\".\"userId\" = $1 ORDER BY \"public\".\"SavedItem\".\"savedAt\" DESC OFFSET $2"
+[00:01:26.238] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/gangnam-beauty.jpg" "received" null
+[00:01:26.266] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/apgujeong-aesthetic.jpg" "received" null
+[00:01:26.268] Server  LOG     prisma:query "SELECT \"public\".\"SavedItem\".\"id\", \"public\".\"SavedItem\".\"userId\", \"public\".\"SavedItem\".\"itemType\", \"public\".\"SavedItem\".\"itemId\", \"public\".\"SavedItem\".\"notes\", \"public\".\"SavedItem\".\"savedAt\" FROM \"public\".\"SavedItem\" WHERE \"public\".\"SavedItem\".\"userId\" = $1 ORDER BY \"public\".\"SavedItem\".\"savedAt\" DESC OFFSET $2"
+[00:01:26.268] Server  LOG     prisma:query "SELECT \"public\".\"SavedItem\".\"id\", \"public\".\"SavedItem\".\"userId\", \"public\".\"SavedItem\".\"itemType\", \"public\".\"SavedItem\".\"itemId\", \"public\".\"SavedItem\".\"notes\", \"public\".\"SavedItem\".\"savedAt\" FROM \"public\".\"SavedItem\" WHERE \"public\".\"SavedItem\".\"userId\" = $1 ORDER BY \"public\".\"SavedItem\".\"savedAt\" DESC OFFSET $2"
+[00:01:26.275] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/itaewon-international.jpg" "received" null
+[00:01:28.136] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/yeonnam-skin.jpg" "received" null
+[00:01:28.138] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/cheongdam-luxury.jpg" "received" null
+[00:01:28.140] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/hannam-boutique.jpg" "received" null
+[00:01:30.902] Server  LOG     prisma:query "SELECT \"public\".\"SavedItem\".\"id\", \"public\".\"SavedItem\".\"userId\", \"public\".\"SavedItem\".\"itemType\", \"public\".\"SavedItem\".\"itemId\", \"public\".\"SavedItem\".\"notes\", \"public\".\"SavedItem\".\"savedAt\" FROM \"public\".\"SavedItem\" WHERE \"public\".\"SavedItem\".\"userId\" = $1 ORDER BY \"public\".\"SavedItem\".\"savedAt\" DESC OFFSET $2"
+[00:01:30.903] Server  LOG     prisma:query "SELECT \"public\".\"SavedItem\".\"id\", \"public\".\"SavedItem\".\"userId\", \"public\".\"SavedItem\".\"itemType\", \"public\".\"SavedItem\".\"itemId\", \"public\".\"SavedItem\".\"notes\", \"public\".\"SavedItem\".\"savedAt\" FROM \"public\".\"SavedItem\" WHERE \"public\".\"SavedItem\".\"userId\" = $1 ORDER BY \"public\".\"SavedItem\".\"savedAt\" DESC OFFSET $2"
+[00:01:37.857] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/gangnam-beauty.jpg" "received" null
+[00:01:37.888] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/apgujeong-aesthetic.jpg" "received" null
+[00:01:37.901] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/hongdae-derma.jpg" "received" null
+[00:01:37.901] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/itaewon-international.jpg" "received" null
+[00:01:37.929] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/seoul-skin.jpg" "received" null
+[00:02:09.334] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `clinics.sortBy` in messages for locale `en`."}
+[00:02:09.334] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `clinics.sortBy` in messages for locale `en`."}
+[00:02:09.672] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/apgujeong-aesthetic.jpg" "received" null
+[00:02:09.673] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/cheongdam-luxury.jpg" "received" null
+[00:02:09.673] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/gangnam-beauty.jpg" "received" null
+[00:02:09.726] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/sinsa-plastic.jpg" "received" null
+[00:02:09.727] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/hannam-boutique.jpg" "received" null
+[00:02:09.733] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/itaewon-international.jpg" "received" null
+[00:02:09.808] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/seocho-advanced.jpg" "received" null
+[00:02:09.808] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/yeonnam-skin.jpg" "received" null
+[00:02:09.852] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/hongdae-derma.jpg" "received" null
+[00:02:09.858] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/jamsil-family.jpg" "received" null
+[00:02:09.859] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/seoul-skin.jpg" "received" null
+[00:02:11.818] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `clinics.sortBy` in messages for locale `en`."}
+[00:02:11.818] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `clinics.sortBy` in messages for locale `en`."}
+[00:02:12.562] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `clinics.sortBy` in messages for locale `en`."}
+[00:02:12.562] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `clinics.sortBy` in messages for locale `en`."}
+[00:02:12.600] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/cheongdam-luxury.jpg" "received" null
+[00:02:12.601] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/gangnam-beauty.jpg" "received" null
+[00:02:12.601] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/sinsa-plastic.jpg" "received" null
+[00:02:12.601] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/hannam-boutique.jpg" "received" null
+[00:02:12.608] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/itaewon-international.jpg" "received" null
+[00:02:12.609] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/seocho-advanced.jpg" "received" null
+[00:02:12.710] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/yeonnam-skin.jpg" "received" null
+[00:02:12.710] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/hongdae-derma.jpg" "received" null
+[00:02:12.713] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/jamsil-family.jpg" "received" null
+[00:02:12.713] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/seoul-skin.jpg" "received" null
+[00:02:13.683] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `clinics.sortBy` in messages for locale `en`."}
+[00:02:13.684] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `clinics.sortBy` in messages for locale `en`."}
+[00:02:14.468] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `clinics.sortBy` in messages for locale `en`."}
+[00:02:14.468] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `clinics.sortBy` in messages for locale `en`."}
+[00:02:14.489] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/apgujeong-aesthetic.jpg" "received" null
+[00:02:14.489] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/cheongdam-luxury.jpg" "received" null
+[00:02:14.489] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/gangnam-beauty.jpg" "received" null
+[00:02:14.489] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/sinsa-plastic.jpg" "received" null
+[00:02:14.492] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/hannam-boutique.jpg" "received" null
+[00:02:14.494] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/itaewon-international.jpg" "received" null
+[00:02:14.548] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/seocho-advanced.jpg" "received" null
+[00:02:14.548] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/yeonnam-skin.jpg" "received" null
+[00:02:16.884] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `clinics.sortBy` in messages for locale `en`."}
+[00:02:16.884] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `clinics.sortBy` in messages for locale `en`."}
+[00:02:18.171] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `clinics.sortBy` in messages for locale `en`."}
+[00:02:18.171] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `clinics.sortBy` in messages for locale `en`."}
+[00:02:18.193] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/apgujeong-aesthetic.jpg" "received" null
+[00:02:18.194] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/cheongdam-luxury.jpg" "received" null
+[00:02:18.194] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/gangnam-beauty.jpg" "received" null
+[00:02:18.194] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/sinsa-plastic.jpg" "received" null
+[00:02:18.197] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/hannam-boutique.jpg" "received" null
+[00:02:18.204] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/itaewon-international.jpg" "received" null
+[00:02:18.278] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/seocho-advanced.jpg" "received" null
+[00:02:18.280] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/yeonnam-skin.jpg" "received" null
+[00:02:18.281] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/seoul-skin.jpg" "received" null
+[00:02:19.708] Server  LOG     prisma:query "SELECT 1"
+[00:02:19.708] Server  LOG     prisma:query "SELECT 1"
+[00:02:19.787] Server  LOG     prisma:query "SELECT \"public\".\"SavedItem\".\"id\", \"public\".\"SavedItem\".\"userId\", \"public\".\"SavedItem\".\"itemType\", \"public\".\"SavedItem\".\"itemId\", \"public\".\"SavedItem\".\"notes\", \"public\".\"SavedItem\".\"savedAt\" FROM \"public\".\"SavedItem\" WHERE \"public\".\"SavedItem\".\"userId\" = $1 ORDER BY \"public\".\"SavedItem\".\"savedAt\" DESC OFFSET $2"
+[00:02:19.787] Server  LOG     prisma:query "SELECT \"public\".\"SavedItem\".\"id\", \"public\".\"SavedItem\".\"userId\", \"public\".\"SavedItem\".\"itemType\", \"public\".\"SavedItem\".\"itemId\", \"public\".\"SavedItem\".\"notes\", \"public\".\"SavedItem\".\"savedAt\" FROM \"public\".\"SavedItem\" WHERE \"public\".\"SavedItem\".\"userId\" = $1 ORDER BY \"public\".\"SavedItem\".\"savedAt\" DESC OFFSET $2"
+[00:02:23.938] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `clinics.sortBy` in messages for locale `en`."}
+[00:02:23.938] Browser ERROR   {"code":"MISSING_MESSAGE","originalMessage":"Could not resolve `clinics.sortBy` in messages for locale `en`."}
+[00:02:24.448] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/apgujeong-aesthetic.jpg" "received" null
+[00:02:24.449] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/cheongdam-luxury.jpg" "received" null
+[00:02:24.449] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/gangnam-beauty.jpg" "received" null
+[00:02:24.449] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/sinsa-plastic.jpg" "received" null
+[00:02:24.461] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/hannam-boutique.jpg" "received" null
+[00:02:24.463] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/itaewon-international.jpg" "received" null
+[00:02:24.583] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/seocho-advanced.jpg" "received" null
+[00:02:24.583] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/yeonnam-skin.jpg" "received" null
+[00:02:24.588] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/hongdae-derma.jpg" "received" null
+[00:02:24.591] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/jamsil-family.jpg" "received" null
+[00:02:24.591] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/seoul-skin.jpg" "received" null
+[00:02:28.486] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/gangnam-beauty.jpg" "received" null
+[00:02:28.487] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/apgujeong-aesthetic.jpg" "received" null
+[00:02:28.487] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/hongdae-derma.jpg" "received" null
+[00:02:28.489] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/itaewon-international.jpg" "received" null
+[00:02:28.490] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/seoul-skin.jpg" "received" null
+[00:02:31.662] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/gangnam-beauty.jpg" "received" null
+[00:02:31.663] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/apgujeong-aesthetic.jpg" "received" null
+[00:02:31.663] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/hongdae-derma.jpg" "received" null
+[00:02:31.668] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/itaewon-international.jpg" "received" null
+[00:02:31.674] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/seoul-skin.jpg" "received" null
+[00:02:38.390] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/hongdae-derma.jpg" "received" null
+[00:02:38.390] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/jamsil-family.jpg" "received" null
+[00:02:38.399] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/seoul-skin.jpg" "received" null
+[00:02:38.401] Server  LOG     prisma:query "SELECT 1"
+[00:02:38.418] Server  LOG     prisma:query "SELECT 1"
+[00:02:38.483] Server  LOG     prisma:query "SELECT \"public\".\"SavedItem\".\"id\", \"public\".\"SavedItem\".\"userId\", \"public\".\"SavedItem\".\"itemType\", \"public\".\"SavedItem\".\"itemId\", \"public\".\"SavedItem\".\"notes\", \"public\".\"SavedItem\".\"savedAt\" FROM \"public\".\"SavedItem\" WHERE \"public\".\"SavedItem\".\"userId\" = $1 ORDER BY \"public\".\"SavedItem\".\"savedAt\" DESC OFFSET $2"
+[00:02:38.505] Server  LOG     prisma:query "SELECT \"public\".\"SavedItem\".\"id\", \"public\".\"SavedItem\".\"userId\", \"public\".\"SavedItem\".\"itemType\", \"public\".\"SavedItem\".\"itemId\", \"public\".\"SavedItem\".\"notes\", \"public\".\"SavedItem\".\"savedAt\" FROM \"public\".\"SavedItem\" WHERE \"public\".\"SavedItem\".\"userId\" = $1 ORDER BY \"public\".\"SavedItem\".\"savedAt\" DESC OFFSET $2"
+[00:02:44.368] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/gangnam-beauty.jpg" "received" null
+[00:02:44.368] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/apgujeong-aesthetic.jpg" "received" null
+[00:02:44.376] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/hongdae-derma.jpg" "received" null
+[00:02:44.385] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/itaewon-international.jpg" "received" null
+[00:02:44.399] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/images/clinics/seoul-skin.jpg" "received" null

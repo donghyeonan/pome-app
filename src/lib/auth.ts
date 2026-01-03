@@ -1,10 +1,10 @@
 // src/lib/auth.ts
-import { NextAuthOptions } from "next-auth";
-import CredentialsProvider from "next-auth/providers/credentials";
-import GoogleProvider from "next-auth/providers/google";
-import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import { prisma } from "@/lib/prisma";
-import { verifyPassword } from "@/lib/password";
+import type { NextAuthOptions } from 'next-auth';
+import CredentialsProvider from 'next-auth/providers/credentials';
+import GoogleProvider from 'next-auth/providers/google';
+import { PrismaAdapter } from '@next-auth/prisma-adapter';
+import { prisma } from '@/lib/prisma';
+import { verifyPassword } from '@/lib/password';
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
@@ -59,18 +59,7 @@ export const authOptions: NextAuthOptions = {
     signIn: "/login",
     error: "/login",
   },
-  events: {
-    // Set emailVerified for new OAuth users after account creation
-    async createUser({ user }) {
-      // For OAuth users, set emailVerified immediately
-      if (user.email && !user.emailVerified) {
-        await prisma.user.update({
-          where: { id: user.id },
-          data: { emailVerified: new Date() }
-        });
-      }
-    },
-  },
+  // Note: PrismaAdapter handles emailVerified for OAuth users automatically
   callbacks: {
     // SignIn callback - Custom account linking for Google OAuth
     // Required because we use JWT sessions (not database sessions)

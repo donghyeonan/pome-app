@@ -30,7 +30,7 @@ import type { Treatment } from '@/types';
  */
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   // TODO: Phase 2 - Implement with Prisma
   // const { searchParams } = new URL(request.url);

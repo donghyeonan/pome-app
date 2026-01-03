@@ -23,7 +23,7 @@ export async function DELETE(
     });
 
     if (!savedItem) {
-      throw new ApiError('Saved item not found', 404);
+      throw new ApiError(404, 'Saved item not found');
     }
 
     if (savedItem.userId !== userId) {

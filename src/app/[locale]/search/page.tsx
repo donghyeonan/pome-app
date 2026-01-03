@@ -1,24 +1,26 @@
-import { useTranslations } from 'next-intl';
-import { ProtectedRoute } from '@/components/auth/protected-route';
-import { PageLayout } from '@/components/layout/page-layout';
-import { SearchResultsContent } from '@/components/search/search-results-content';
+import { search } from '@/lib/db/queries/search';
+import SearchClient from './SearchClient';
 
-interface SearchPageProps {
-  searchParams: { q?: string };
+interface PageProps {
+  searchParams: Promise<{
+    q?: string;
+  }>;
 }
 
-export default function SearchPage({ searchParams }: SearchPageProps) {
-  const t = useTranslations('search');
-  const query = searchParams.q || '';
+export default async function SearchPage({ searchParams }: PageProps) {
+  const params = await searchParams;
+  const query = params.q || '';
+
+  // Fetch search results from database
+  const result = query
+    ? await search(query, { limit: 20 })
+    : { treatments: [], clinics: [], query: '' };
 
   return (
-    <ProtectedRoute>
-      <PageLayout title={t('title')}>
-        <h1 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">
-          {t('title')}
-        </h1>
-        <SearchResultsContent query={query} />
-      </PageLayout>
-    </ProtectedRoute>
+    <SearchClient
+      treatments={result.treatments}
+      clinics={result.clinics}
+      query={query}
+    />
   );
 }

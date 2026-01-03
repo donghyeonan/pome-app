@@ -27,3 +27,23 @@ export {
 
 // Search
 export { searchQuerySchema, type SearchQuery } from './search';
+
+// Taxonomy
+export {
+  goalTagSchema,
+  modalityTagSchema,
+  areaTagSchema,
+  positioningTagSchema,
+  goalTagsArraySchema,
+  modalityTagsArraySchema,
+  areaTagsArraySchema,
+  positioningTagsArraySchema,
+  treatmentTagsSchema,
+  devicePositioningSchema,
+  eventTagsSchema,
+  quizResultTagsSchema,
+  type TreatmentTagsInput,
+  type DevicePositioningInput,
+  type EventTagsInput,
+  type QuizResultTagsInput,
+} from './taxonomy';

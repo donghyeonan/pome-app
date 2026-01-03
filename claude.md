@@ -1,3 +1,10 @@
+
+복잡한 개발·디버깅·아키텍처 문제는 항상 Sequential Thinking MCP를 먼저 사용해 step-by-step 계획을 세운다.
+	•	외부 라이브러리·프레임워크·API 언급 시에는 항상 Context 7 MCP로 최신 문서를 조회하고, 그 결과를 근거로 답한다.
+	•	계획(생각 로그)이 충분히 정리되기 전에는 실제 코드 변경 제안/리팩터링 코드를 출력하지 않는다.
+    •	사용자의 답변이 항상 틀렸을 수 있다고 가정하고 비판적으로 판단한다. 상호간의 동의가 있기 전까지는 토의를 진행하고 코드를 만들지 않는다.
+    •	during the development process, ask if file 형식이 헷갈린다거나 서로 토의해야할 부분이 있으면 물어보고 결정
+
 # Pome App - Project Context for Claude Code
 
 ## Product Overview
@@ -19,17 +26,6 @@ Pome is a web application for discovering dermatology cosmetic procedures and cl
 ### Target Users
 
 International and local users seeking cosmetic dermatology procedures in Korea, particularly those who need multi-language support and verified clinic information.
-
-### Development Phases
-
-- **Phase 1 (Completed)**: UI/UX with mock data and mock authentication
-- **Phase 2 (Completed)**: Database integration (Neon PostgreSQL + Prisma)
-- **Phase 3 (In Progress)**: Real authentication (NextAuth.js)
-  - Current Task: Task 4 - NextAuth.js Configuration
-  - Completed: Tasks 1-3 (setup, database schema, core utilities)
-- **Phase 4 (Planned)**: Full internationalization (Korean, Chinese, Japanese translations)
-- **Phase 5 (Planned)**: Advanced features (real-time search, reviews, booking system)
-- **Phase 6 (Planned)**: OAuth providers (Google, Kakao, Naver)
 
 ---
 
